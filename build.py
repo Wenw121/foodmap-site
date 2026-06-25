@@ -662,6 +662,8 @@ def build():
 
     (OUT / "index.html").write_text(
         root_tpl.render(**base_ctx, alt_urls={l: home_url(l) for l in LANGS}), encoding="utf-8")
+    (OUT / "404.html").write_text(
+        env.get_template("notfound.html").render(**base_ctx), encoding="utf-8")
 
     write_sitemap(foods)
     write_robots()
