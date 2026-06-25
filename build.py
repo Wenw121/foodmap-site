@@ -154,6 +154,13 @@ STR = {
         "diaas_na_note": "DIAAS requires ileal digestibility studies that have not been published for this food.",
         "limiting_aa": "First limiting amino acid", "quality_cat": "FAO quality category",
         "diaas_method_label": "Method", "also_measured": "Also measured",
+        "related_title": "Related foods", "nav_guides": "Guides",
+        "guides_title": "Protein-quality guides",
+        "guides_intro": "Curated lists of foods by protein quality (DIAAS), food group, and methionine content — a quick way to find complete proteins, the best plant proteins, and more.",
+        "bc_home": "Home", "bc_guides": "Guides",
+        "kw_protein": "protein", "kw_amino": "amino acids",
+        "home_title": "Protein Quality & DIAAS of 87 Foods — Amino Acid Comparison",
+        "home_desc": "Compare the protein quality (DIAAS), full essential amino-acid profiles, and methionine content of 87 common animal and plant foods. Search, filter, and compare proteins side by side.",
         "fdc_source": "USDA FoodData Central match", "band_label": "Methionine (mg/g protein)",
         "protein_label": "Protein content", "per_serving": "Protein per serving",
         "serving_note": "≈ per typical serving",
@@ -206,6 +213,13 @@ STR = {
         "diaas_na_note": "DIAAS 需要回肠消化率实验数据，该食物尚无已发表研究。",
         "limiting_aa": "第一限制性氨基酸", "quality_cat": "FAO 质量等级",
         "diaas_method_label": "测定方法", "also_measured": "另有实测值",
+        "related_title": "相关食物", "nav_guides": "指南",
+        "guides_title": "蛋白质量指南",
+        "guides_intro": "按蛋白质量（DIAAS）、食物类别与甲硫氨酸含量整理的食物清单——快速找到完整蛋白、最佳植物蛋白等。",
+        "bc_home": "首页", "bc_guides": "指南",
+        "kw_protein": "蛋白质", "kw_amino": "氨基酸",
+        "home_title": "87 种食物的蛋白质量与 DIAAS — 氨基酸对比",
+        "home_desc": "对比 87 种常见动物与植物性食物的蛋白质量（DIAAS）、完整必需氨基酸谱与甲硫氨酸含量。可搜索、筛选并并排比较。",
         "fdc_source": "USDA FoodData Central 匹配项", "band_label": "甲硫氨酸 (mg/g 蛋白)",
         "protein_label": "蛋白质含量", "per_serving": "每份蛋白质",
         "serving_note": "≈ 每份常见食用量",
@@ -235,6 +249,50 @@ STR = {
         ],
     },
 }
+
+
+LIMIT_EXPLAIN = {
+    "SAA": {"en": "the sulfur amino acids (methionine and cysteine)", "zh": "含硫氨基酸（甲硫氨酸与半胱氨酸）"},
+    "Lys": {"en": "lysine", "zh": "赖氨酸"},
+    "Trp": {"en": "tryptophan", "zh": "色氨酸"},
+}
+BAND_ADJ = {"en": {"lower": "low", "intermediate": "moderate", "higher": "high"},
+            "zh": {"lower": "较低", "intermediate": "中等", "higher": "较高"}}
+
+# category guide / hub pages (target broader search queries + internal linking)
+HUBS = [
+    {"slug": "complete-proteins",
+     "title": {"en": "Complete proteins: foods with DIAAS 100 or higher",
+               "zh": "完整蛋白：DIAAS ≥ 100 的食物"},
+     "intro": {"en": "Foods whose protein scores DIAAS 100 or above — the FAO's “excellent quality” tier, meaning they meet adult essential amino-acid needs on their own.",
+               "zh": "蛋白质 DIAAS ≥ 100 的食物——FAO「优质」档，单独食用即可满足成人必需氨基酸需求。"},
+     "filter": lambda f: f["diaas_val"] is not None and f["diaas_val"] >= 100,
+     "sort": lambda f: -(f["diaas_val"] or 0)},
+    {"slug": "high-protein-plant-foods",
+     "title": {"en": "High-protein plant foods", "zh": "高蛋白植物性食物"},
+     "intro": {"en": "Plant foods ranked by protein per 100 g, with DIAAS and methionine for comparison.",
+               "zh": "按每 100 克蛋白质含量排序的植物性食物，并列出 DIAAS 与甲硫氨酸便于比较。"},
+     "filter": lambda f: f["category_en"].startswith("Plant"),
+     "sort": lambda f: -(f["protein_val"] or 0), "limit": 20},
+    {"slug": "diaas-of-legumes",
+     "title": {"en": "DIAAS of legumes and beans", "zh": "豆类的 DIAAS"},
+     "intro": {"en": "Protein quality (DIAAS) and limiting amino acids of beans, lentils, peas, and soy foods — most are limited by the sulfur amino acids.",
+               "zh": "豆类、扁豆、豌豆与大豆制品的蛋白质量（DIAAS）与限制性氨基酸——多数受含硫氨基酸限制。"},
+     "filter": lambda f: f["category_en"] == "Plant · legumes",
+     "sort": lambda f: -(f["diaas_val"] or 0)},
+    {"slug": "diaas-of-grains",
+     "title": {"en": "DIAAS of grains and cereals", "zh": "谷物的 DIAAS"},
+     "intro": {"en": "Protein quality of rice, wheat, oats, and other cereals — usually limited by lysine.",
+               "zh": "大米、小麦、燕麦等谷物的蛋白质量——通常受赖氨酸限制。"},
+     "filter": lambda f: f["category_en"] == "Plant · grains",
+     "sort": lambda f: -(f["diaas_val"] or 0)},
+    {"slug": "lower-methionine-foods",
+     "title": {"en": "Lower-methionine foods (per gram of protein)", "zh": "较低甲硫氨酸的食物（每克蛋白）"},
+     "intro": {"en": "Foods in the lower third for methionine per gram of protein. A neutral description of composition, not a health rating.",
+               "zh": "每克蛋白质甲硫氨酸含量处于较低三分位的食物。仅为成分描述，非健康评级。"},
+     "filter": lambda f: f["band"] == "lower",
+     "sort": lambda f: (f["met_val"] or 0)},
+]
 
 
 def to_float(v):
@@ -322,21 +380,113 @@ def page_url(lang, name):
     return f"{SITE_URL}/{lang}/{name}/"
 
 
+def guides_index_url(lang):
+    return f"{SITE_URL}/{lang}/guides/"
+
+
+def guide_url(lang, slug):
+    return f"{SITE_URL}/{lang}/guides/{slug}/"
+
+
+QUALITY_SHORT = {"excellent": {"en": "excellent quality", "zh": "优质"},
+                 "high": {"en": "high quality", "zh": "高质量"},
+                 "noclaim": {"en": "no quality claim", "zh": "不作声明"}}
+QUALITY_LONG = {
+    "en": {"excellent": "which the FAO classes as an excellent-quality protein",
+           "high": "which the FAO classes as a high-quality protein",
+           "noclaim": "which is below the FAO threshold for a quality claim"},
+    "zh": {"excellent": "达到 FAO「优质蛋白」标准", "high": "达到 FAO「高质量蛋白」标准",
+           "noclaim": "低于 FAO 质量声明门槛"},
+}
+
+
 def make_description(food, lang):
     name = food["name_en"] if lang == "en" else food["name_zh"]
-    band = STR[lang]["band"][food["band"]]
-    diaas = food.get("diaas")
+    lys = food["amino_full"].get("Lys")
+    d = food.get("diaas")
     if lang == "en":
-        d = f"{name}: {band.lower()}, {food['Met']} mg methionine per gram of protein"
-        if diaas:
-            d += f", DIAAS {diaas}"
-        d += f". Protein {food['protein_g_100g']} g/100g. Full essential amino-acid profile and protein quality."
+        s = f"{name} protein: "
+        if d:
+            s += f"DIAAS {d} ({QUALITY_SHORT[food['quality']]['en']}), "
+        s += f"{food['protein_g_100g']} g protein/100g, methionine {food['Met']} mg/g"
+        if lys:
+            s += f", lysine {lys} mg/g"
+        s += " protein. Full essential amino-acid profile."
     else:
-        d = f"{name}：{band}，每克蛋白质含甲硫氨酸 {food['Met']} mg"
-        if diaas:
-            d += f"，DIAAS {diaas}"
-        d += f"。蛋白质 {food['protein_g_100g']} g/100g。完整必需氨基酸谱与蛋白质量。"
-    return d
+        s = f"{name}蛋白质："
+        if d:
+            s += f"DIAAS {d}（{QUALITY_SHORT[food['quality']]['zh']}），"
+        s += f"蛋白质 {food['protein_g_100g']} g/100g，每克蛋白甲硫氨酸 {food['Met']} mg"
+        if lys:
+            s += f"、赖氨酸 {lys} mg"
+        s += "。完整必需氨基酸谱。"
+    return s
+
+
+def generate_blurb(food, lang):
+    name = food["name_en"] if lang == "en" else food["name_zh"]
+    p, d = food["protein_val"], food["diaas_val"]
+    met, lys = food.get("Met"), food["amino_full"].get("Lys")
+    adj = BAND_ADJ[lang][food["band"]]
+    out = []
+    if lang == "en":
+        if p is not None:
+            lvl = "a high-protein food" if p >= 20 else "a moderate-protein food" if p >= 10 else "a lower-protein food by weight"
+            s = f"{name} provides {food['protein_g_100g']} g of protein per 100 g, making it {lvl}"
+            if food["protein_per_serving"] is not None:
+                s += f" — about {food['protein_per_serving']} g in a typical {food['serving_g']} g serving"
+            out.append(s + ".")
+        if d is not None:
+            s = f"Its protein-quality score (DIAAS) is {food['diaas']}, {QUALITY_LONG['en'][food['quality']]}"
+            le = LIMIT_EXPLAIN.get((food.get("diaas_limit") or "").strip(), {}).get("en")
+            if le:
+                s += f", and its first limiting amino acid is {le}"
+            out.append(s + ".")
+            if d >= 100:
+                out.append("It supplies all essential amino acids in adequate amounts, so it counts as a complete protein on its own.")
+        else:
+            out.append(f"No DIAAS has been published for {name}, so its protein quality is not scored here; the full amino-acid profile is shown below.")
+        if met:
+            s = f"Measured per gram of protein, it is {adj} in methionine ({met} mg/g)"
+            if lys:
+                s += f" and provides {lys} mg/g of lysine"
+            out.append(s + ".")
+        return " ".join(out)
+    else:
+        if p is not None:
+            lvl = "高蛋白食物" if p >= 20 else "中等蛋白食物" if p >= 10 else "按重量计蛋白较低的食物"
+            s = f"{name}每 100 克提供 {food['protein_g_100g']} 克蛋白质，属于{lvl}"
+            if food["protein_per_serving"] is not None:
+                s += f"（每份约 {food['serving_g']} 克含 {food['protein_per_serving']} 克蛋白质）"
+            out.append(s + "。")
+        if d is not None:
+            s = f"其蛋白质量评分（DIAAS）为 {food['diaas']}，{QUALITY_LONG['zh'][food['quality']]}"
+            le = LIMIT_EXPLAIN.get((food.get("diaas_limit") or "").strip(), {}).get("zh")
+            if le:
+                s += f"，第一限制性氨基酸为{le}"
+            out.append(s + "。")
+            if d >= 100:
+                out.append("它能以充足的量提供全部必需氨基酸，单独食用即为完整蛋白。")
+        else:
+            out.append(f"{name}尚无已发表的 DIAAS，本站不对其蛋白质量评分；下方列出完整氨基酸谱。")
+        if met:
+            s = f"以每克蛋白质计，其甲硫氨酸含量{adj}（{met} mg/g）"
+            if lys:
+                s += f"，赖氨酸 {lys} mg/g"
+            out.append(s + "。")
+        return "".join(out)
+
+
+def related_foods(food, foods, n=6):
+    same = [g for g in foods if g["category_en"] == food["category_en"] and g["slug"] != food["slug"]]
+    same.sort(key=lambda g: abs((g["protein_val"] or 0) - (food["protein_val"] or 0)))
+    return same[:n]
+
+
+def breadcrumb_jsonld(items):
+    return json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList",
+                       "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u}
+                                           for i, (n, u) in enumerate(items)]}, ensure_ascii=False)
 
 
 def build():
@@ -376,7 +526,8 @@ def build():
     refs_tpl = env.get_template("references.html")
 
     def nav_urls(lang):
-        return {"foods": home_url(lang), "explainer": page_url(lang, "what-is-diaas"),
+        return {"foods": home_url(lang), "guides": guides_index_url(lang),
+                "explainer": page_url(lang, "what-is-diaas"),
                 "references": page_url(lang, "references")}
 
     # homepages
@@ -411,6 +562,12 @@ def build():
             quality_label = QUALITY[f["quality"]][lang] if f["quality"] else ""
             src_list = [{"key": k, "label": refs[k]["ref_en" if lang == "en" else "ref_zh"],
                          "url": refs[k]["url"]} for k in f["diaas_sources"] if k in refs]
+            blurb = generate_blurb(f, lang)
+            rel = [{"name": (g["name_en"] if lang == "en" else g["name_zh"]),
+                    "url": food_url(lang, g["slug"])} for g in related_foods(f, foods)]
+            crumbs = breadcrumb_jsonld([(s["bc_home"], home_url(lang)),
+                                        (s["nav_foods"], home_url(lang)),
+                                        (name, food_url(lang, f["slug"]))])
             method_label = DIAAS_METHOD[lang][f["method_key"]] if f["method_key"] else ""
             alt = None
             if f["alt_diaas"]:
@@ -439,6 +596,7 @@ def build():
                 alt_name=alt_name, category=cat, band_label=s["band"][f["band"]],
                 amino_rows=amino_rows, limit_label=limit_label, quality_label=quality_label,
                 diaas_sources=src_list, method_label=method_label, alt=alt,
+                blurb=blurb, related=rel, breadcrumb=crumbs,
                 nav=nav_urls(lang), description=make_description(f, lang),
                 canonical=food_url(lang, f["slug"]),
                 alt_urls={l: food_url(l, f["slug"]) for l in LANGS},
@@ -467,13 +625,48 @@ def build():
                             alt_urls={l: page_url(l, "references") for l in LANGS}),
             encoding="utf-8")
 
+    # guide / hub pages + guides index
+    hub_tpl = env.get_template("hub.html")
+    guides_tpl = env.get_template("guides_index.html")
+    for lang in LANGS:
+        s = STR[lang]
+        name_key = "name_en" if lang == "en" else "name_zh"
+        cat_key = "category_en" if lang == "en" else "category_zh"
+        hub_links = []
+        for h in HUBS:
+            items = [f for f in foods if h["filter"](f)]
+            if "sort" in h:
+                items = sorted(items, key=h["sort"])
+            if "limit" in h:
+                items = items[:h["limit"]]
+            crumbs = breadcrumb_jsonld([(s["bc_home"], home_url(lang)),
+                                        (s["bc_guides"], guides_index_url(lang)),
+                                        (h["title"][lang], guide_url(lang, h["slug"]))])
+            html = hub_tpl.render(
+                **base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s, nav=nav_urls(lang),
+                title=h["title"][lang], intro=h["intro"][lang], foods=items,
+                name_key=name_key, cat_key=cat_key, food_base=f"{SITE_URL}/{lang}/foods/",
+                breadcrumb=crumbs, canonical=guide_url(lang, h["slug"]),
+                alt_urls={l: guide_url(l, h["slug"]) for l in LANGS})
+            out = OUT / lang / "guides" / h["slug"] / "index.html"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(html, encoding="utf-8")
+            hub_links.append({"title": h["title"][lang], "intro": h["intro"][lang],
+                              "url": guide_url(lang, h["slug"]), "count": len(items)})
+        out = OUT / lang / "guides" / "index.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(guides_tpl.render(
+            **base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s, nav=nav_urls(lang),
+            hubs=hub_links, canonical=guides_index_url(lang),
+            alt_urls={l: guides_index_url(l) for l in LANGS}), encoding="utf-8")
+
     (OUT / "index.html").write_text(
         root_tpl.render(**base_ctx, alt_urls={l: home_url(l) for l in LANGS}), encoding="utf-8")
 
     write_sitemap(foods)
     write_robots()
-    n = 1 + len(LANGS) * (1 + 2 + len(foods))
-    print(f"Built {n} HTML pages ({len(foods)} foods, +explainer +references) -> {OUT}")
+    n = 1 + len(LANGS) * (1 + 2 + 1 + len(HUBS) + len(foods))
+    print(f"Built {n} HTML pages ({len(foods)} foods, {len(HUBS)} guides, +explainer +references) -> {OUT}")
     print(f"SITE_URL = {SITE_URL}")
 
 
@@ -494,6 +687,9 @@ def write_sitemap(foods):
     entry({l: home_url(l) for l in LANGS})
     entry({l: page_url(l, "what-is-diaas") for l in LANGS})
     entry({l: page_url(l, "references") for l in LANGS})
+    entry({l: guides_index_url(l) for l in LANGS})
+    for h in HUBS:
+        entry({l: guide_url(l, h["slug"]) for l in LANGS})
     for f in foods:
         entry({l: food_url(l, f["slug"]) for l in LANGS})
     lines.append("</urlset>")

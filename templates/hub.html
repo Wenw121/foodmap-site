@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} | {{ s.site_name }}{% endblock %}
+{% block description %}{{ intro }}{% endblock %}
+{% block head_extra %}
+<script type="application/ld+json">
+{{ breadcrumb|safe }}
+</script>
+{% endblock %}
+
+{% block content %}
+<p class="crumb"><a href="{{ nav.guides }}">← {{ s.guides_title }}</a></p>
+<article>
+  <h1>{{ title }}</h1>
+  <p class="lede">{{ intro }}</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">{{ s.th_food }}</th>
+          <th scope="col">{{ s.th_category }}</th>
+          <th class="num" scope="col">{{ s.th_protein }}</th>
+          <th class="num" scope="col">{{ s.th_met }}</th>
+          <th class="num" scope="col">{{ s.th_diaas }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for f in foods %}
+        <tr>
+          <td class="name"><a href="{{ food_base }}{{ f.slug }}/">{{ f[name_key] }}</a></td>
+          <td>{{ f[cat_key] }}</td>
+          <td class="num">{{ f.protein_g_100g or s.na }}</td>
+          <td class="num">{{ f.Met or s.na }}</td>
+          <td class="num">{{ f.diaas or s.na }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</article>
+{% endblock %}

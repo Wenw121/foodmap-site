@@ -46,6 +46,18 @@ a:hover { text-decoration: underline; }
 .refs li { margin: 14px 0; line-height: 1.5; }
 .refs li a { font-size: .9rem; word-break: break-all; }
 
+.related { margin-top: 28px; }
+.related-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.related-list a { display: inline-block; border: 1px solid var(--line);
+  border-radius: 999px; padding: 5px 14px; font-size: .9rem; background: var(--surface); }
+
+.guide-cards { list-style: none; padding: 0; display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.guide-cards li { border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px; background: var(--surface); }
+.guide-cards .count { float: right; color: var(--muted); font-size: .8rem; }
+.guide-cards p { margin: 8px 0 0; font-size: .9rem; color: var(--muted); }
+
 .hero { padding: 32px 0 8px; }
 h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 12px; letter-spacing: -.01em; }
 .lede { font-size: 1.05rem; color: var(--muted); max-width: 68ch; }

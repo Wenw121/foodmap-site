@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ s.guides_title }} | {{ s.site_name }}{% endblock %}
+{% block description %}{{ s.guides_intro }}{% endblock %}
+
+{% block content %}
+<article class="prose">
+  <h1>{{ s.guides_title }}</h1>
+  <p class="lede">{{ s.guides_intro }}</p>
+  <ul class="guide-cards">
+    {% for h in hubs %}
+    <li>
+      <a href="{{ h.url }}"><strong>{{ h.title }}</strong></a>
+      <span class="count">{{ h.count }}</span>
+      <p>{{ h.intro }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</article>
+{% endblock %}

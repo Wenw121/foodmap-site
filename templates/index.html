@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}{{ s.site_name }} — {{ s.tagline }}{% endblock %}
-{% block description %}{{ s.intro|truncate(155, true, '…') }}{% endblock %}
+{% block title %}{{ s.home_title }} | {{ s.site_name }}{% endblock %}
+{% block description %}{{ s.home_desc }}{% endblock %}
 {% block head_extra %}
 <script type="application/json" id="foodsData">{{ client_data|safe }}</script>
 <script type="application/json" id="uiConfig">{{ ui_json|safe }}</script>

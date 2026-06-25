@@ -37,6 +37,78 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/references/"/>
   </url>
   <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/guides/complete-proteins/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/complete-proteins/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/complete-proteins/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/complete-proteins/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/guides/complete-proteins/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/complete-proteins/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/complete-proteins/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/complete-proteins/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/guides/high-protein-plant-foods/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/high-protein-plant-foods/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/high-protein-plant-foods/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/high-protein-plant-foods/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/guides/high-protein-plant-foods/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/high-protein-plant-foods/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/high-protein-plant-foods/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/high-protein-plant-foods/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/guides/diaas-of-legumes/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/diaas-of-legumes/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/diaas-of-legumes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/diaas-of-legumes/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/guides/diaas-of-legumes/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/diaas-of-legumes/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/diaas-of-legumes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/diaas-of-legumes/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/guides/diaas-of-grains/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/diaas-of-grains/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/diaas-of-grains/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/diaas-of-grains/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/guides/diaas-of-grains/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/diaas-of-grains/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/diaas-of-grains/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/diaas-of-grains/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/guides/lower-methionine-foods/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/lower-methionine-foods/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/lower-methionine-foods/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/lower-methionine-foods/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/guides/lower-methionine-foods/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/lower-methionine-foods/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/lower-methionine-foods/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/lower-methionine-foods/"/>
+  </url>
+  <url>
     <loc>https://wenw121.github.io/foodmap-site/en/foods/almonds/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/foods/almonds/"/>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/foods/almonds/"/>

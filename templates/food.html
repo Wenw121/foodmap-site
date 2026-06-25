@@ -1,9 +1,12 @@
 {% extends "base.html" %}
-{% block title %}{{ name }} — {{ s.th_diaas }} {{ food.diaas or s.na }} | {{ s.site_name }}{% endblock %}
+{% block title %}{{ name }} {{ s.kw_protein }} — DIAAS {{ food.diaas or s.na }}, {{ s.kw_amino }} | {{ s.site_name }}{% endblock %}
 {% block description %}{{ description }}{% endblock %}
 {% block head_extra %}
 <script type="application/ld+json">
 {{ jsonld|safe }}
+</script>
+<script type="application/ld+json">
+{{ breadcrumb|safe }}
 </script>
 {% endblock %}
 
@@ -20,7 +23,7 @@
     </p>
   </header>
 
-  <p class="summary">{{ description }}</p>
+  <p class="summary">{{ blurb }}</p>
 
   <section class="facts">
     <div class="fact">
@@ -92,5 +95,16 @@
     <p class="src">{{ s.fdc_source }}: {{ food.fdc_match }}</p>
     {% endif %}
   </section>
+
+  {% if related %}
+  <section class="related">
+    <h2>{{ s.related_title }}</h2>
+    <ul class="related-list">
+      {% for r in related %}
+      <li><a href="{{ r.url }}">{{ r.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
 </article>
 {% endblock %}
