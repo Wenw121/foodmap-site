@@ -182,7 +182,7 @@ STR = {
         "band": {"lower": "Lower methionine", "intermediate": "Intermediate methionine", "higher": "Higher methionine"},
         "na": "N/A",
         "ref_title": "References & data sources",
-        "ref_intro": "All DIAAS values on this site come from the peer-reviewed literature below; amino-acid composition is from USDA FoodData Central. Existing whole-food DIAAS values are representative figures compiled from Mathai 2017, Bailey 2020, and FAO 2013.",
+        "ref_intro": "DIAAS values on this site come from the peer-reviewed literature below; the amino-acid values shown are from USDA FoodData Central. The national and regional food-composition databases listed under data sources are additional authoritative references for the protein and amino-acid composition of foods. Existing whole-food DIAAS values are representative figures compiled from Mathai 2017, Bailey 2020, and FAO 2013.",
         "explainer_title": "What is DIAAS? A short guide to protein quality",
         "explainer_lead": "DIAAS is the modern standard for scoring how well a food's protein meets human amino-acid needs. Here's how to read every number on this site.",
         "explainer": [
@@ -199,6 +199,39 @@ STR = {
                 "Alongside DIAAS, each food shows methionine in milligrams per gram of protein. Methionine is one of the sulfur amino acids and its content varies several-fold across foods. The lower / intermediate / higher labels describe composition only — they are not a health rating."]},
             {"h": "Caveats", "p": [
                 "DIAAS values are measured for specific foods and forms, often in pig or human ileal studies; variety, cooking, and processing change them. The values here are representative, not exact for every preparation. Many whole foods — most vegetables, mushrooms, and spices — have no published DIAAS at all, and are shown as “no published value” rather than guessed."]},
+        ],
+        "nav_research": "Research",
+        "home_research_cta": "Why these amino acids? Read the research background →",
+        "ref_grp_quality": "Protein quality (DIAAS)",
+        "ref_grp_cancer": "Amino acids in cancer-metabolism research",
+        "ref_grp_data": "Food-composition data sources",
+        "research_title": "Why these amino acids? Amino acids studied in cancer-metabolism research",
+        "research_lead": "The food map lets you filter by methionine, cysteine, glycine, leucine, the branched-chain amino acids, arginine and lysine. Here is the research background on why those particular amino acids come up when scientists study how cancer cells use nutrients — and, just as importantly, what that research does not say.",
+        "research_note": "This page summarises published laboratory and animal research. It is background information, not medical or dietary advice, and nothing here claims that any food, amino acid, or diet prevents, treats, or cures cancer. Most of this work is preclinical — done in cells and mice — and how it applies to people is still being studied. If you are living with cancer, please make food and treatment decisions together with your oncology team and a registered dietitian.",
+        "research_sources": "Background drawn from Lieu et al. (2020) and Gao et al. (2019). Full citations:",
+        "research": [
+            {"h": "Why amino acids come up in cancer research", "p": [
+                "Cancer cells divide quickly, and to build new cells they need a steady supply of amino acids — both as protein building blocks and as raw material for DNA, antioxidants, and energy. Since Otto Warburg's work nearly a century ago, researchers have mapped how tumours rewire their metabolism, and amino-acid handling is one of the pathways that is often changed (Lieu et al., 2020).",
+                "Because of this, scientists have asked whether limiting the supply of specific amino acids can slow particular cancer cells in the laboratory. The amino acids below are the ones most discussed in that research and that this site has composition data for."]},
+            {"h": "Methionine", "p": [
+                "Methionine feeds the cell's main methyl-donor cycle, which dividing cells rely on heavily. In mouse cancer models, restricting dietary methionine slowed tumour growth and changed how the tumours responded to some chemotherapy and radiotherapy; the same short diet measurably shifted one-carbon metabolism markers in a small group of healthy volunteers (Gao et al., 2019).",
+                "This is early research in animals and short-term human metabolism. It is not evidence that a low-methionine diet treats cancer in patients, and methionine is an essential amino acid that the body needs."]},
+            {"h": "Cysteine", "p": [
+                "Many tumour cells import cystine (the paired form of cysteine) to make glutathione, an antioxidant that protects them from a kind of cell death called ferroptosis. Limiting cysteine availability is therefore studied as a way to make some cancer cells more vulnerable in the laboratory (Lieu et al., 2020)."]},
+            {"h": "Glycine and serine", "p": [
+                "Glycine and serine supply the 'one-carbon units' that cells use to build DNA and methyl groups. This one-carbon metabolism is frequently rewired in fast-dividing cancers, which makes it a busy area of study (Lieu et al., 2020).",
+                "This site reports glycine but not serine, because USDA FoodData Central does not list serine separately for most foods."]},
+            {"h": "Leucine and the branched-chain amino acids (BCAAs)", "p": [
+                "Leucine, isoleucine and valine are the branched-chain amino acids. Leucine in particular helps switch on the mTORC1 pathway, a master signal that tells cells to grow and make protein. BCAA metabolism is altered in several cancers, so it is studied both as a growth signal and as a possible target (Lieu et al., 2020)."]},
+            {"h": "Arginine", "p": [
+                "Some tumours lose the enzyme (ASS1) that lets cells make their own arginine, so they have to take it from the blood — a dependence called arginine auxotrophy. Researchers study this as a potential weak point that arginine-depleting drugs might exploit (Lieu et al., 2020)."]},
+            {"h": "Lysine", "p": [
+                "Lysine is included for a different, simpler reason: it is the amino acid that most often limits the protein quality of grains and many plant foods. Filtering by lysine helps explain why some plant proteins score lower on DIAAS, which is the main purpose of this site."]},
+            {"h": "How this connects to the food map", "p": [
+                "The filter on the home page lets you sort foods by any of these amino acids, measured in milligrams per gram of protein, and combine that with a minimum DIAAS. It is a way to explore the composition of foods — for example, to find higher-quality proteins that happen to be lower in methionine.",
+                "The lower / intermediate / higher labels describe composition only. They are not a health rating, and a food being 'lower' or 'higher' in an amino acid says nothing on its own about whether it is good or bad for any person."]},
+            {"h": "What this page is not", "p": [
+                "It is not a diet plan, a cancer-prevention claim, or a treatment recommendation. Single nutrients behave very differently inside a whole diet and a whole body than they do in a dish of cells, and restricting essential amino acids can be harmful without medical supervision. Use this as background for understanding the data, and talk to qualified professionals about anything concerning your own health."]},
         ],
     },
     "zh": {
@@ -241,7 +274,7 @@ STR = {
         "band": {"lower": "较低甲硫氨酸", "intermediate": "中等甲硫氨酸", "higher": "较高甲硫氨酸"},
         "na": "暂无",
         "ref_title": "参考文献与数据来源",
-        "ref_intro": "本站所有 DIAAS 值均来自下列同行评议文献；氨基酸组成来自 USDA FoodData Central。现有整食物的 DIAAS 为整理自 Mathai 2017、Bailey 2020 与 FAO 2013 的代表值。",
+        "ref_intro": "本站的 DIAAS 值来自下列同行评议文献；所显示的氨基酸数值取自 USDA FoodData Central。「食物成分数据来源」下列出的各国家与地区食物成分数据库，是食物蛋白质与氨基酸组成的权威参考。现有整食物的 DIAAS 为整理自 Mathai 2017、Bailey 2020 与 FAO 2013 的代表值。",
         "explainer_title": "什么是 DIAAS？一份蛋白质量速读指南",
         "explainer_lead": "DIAAS 是衡量食物蛋白质满足人体氨基酸需求程度的现代标准。下面教你读懂本站的每一个数字。",
         "explainer": [
@@ -258,6 +291,39 @@ STR = {
                 "除 DIAAS 外，每种食物还标出每克蛋白质中的甲硫氨酸毫克数。甲硫氨酸属于含硫氨基酸，不同食物间含量相差数倍。「较低/中等/较高」标签只描述成分含量，不是健康评级。"]},
             {"h": "注意事项", "p": [
                 "DIAAS 是针对特定食物与形态测得的，多来自猪或人的回肠实验；品种、烹饪、加工都会改变它。本站数值为代表值，并非每种做法的精确值。许多整食物——大多数蔬菜、蘑菇和香料——根本没有已发表的 DIAAS，本站标为「暂无已发表的值」，而非臆测填数。"]},
+        ],
+        "nav_research": "研究背景",
+        "home_research_cta": "为什么是这几种氨基酸？查看研究背景 →",
+        "ref_grp_quality": "蛋白质量（DIAAS）",
+        "ref_grp_cancer": "癌症代谢研究中的氨基酸",
+        "ref_grp_data": "食物成分数据来源",
+        "research_title": "为什么是这几种氨基酸？癌症代谢研究中受关注的氨基酸",
+        "research_lead": "本食物地图可按甲硫氨酸、半胱氨酸、甘氨酸、亮氨酸、支链氨基酸、精氨酸与赖氨酸筛选。这里说明科学家在研究癌细胞如何利用营养时，为什么会关注这几种氨基酸——以及同样重要的，这些研究并没有说什么。",
+        "research_note": "本页整理的是已发表的实验室与动物研究，仅为背景信息，不构成医疗或饮食建议；本页不主张任何食物、氨基酸或饮食能预防、治疗或治愈癌症。这些研究大多为临床前研究（在细胞和小鼠中进行），能否、以及如何推及人体仍在研究中。如果您正在与癌症共处，请与您的肿瘤科团队和注册营养师一起做出饮食与治疗决定。",
+        "research_sources": "背景取自 Lieu 等（2020）与 Gao 等（2019）。完整引用见：",
+        "research": [
+            {"h": "为什么癌症研究会关注氨基酸", "p": [
+                "癌细胞分裂很快，要构建新细胞就需要持续供应氨基酸——它们既是蛋白质的组成单元，也是合成 DNA、抗氧化物和提供能量的原料。自奥托·瓦尔堡近一个世纪前的工作以来，研究者描绘了肿瘤如何重塑自身代谢，而氨基酸的处理正是经常被改变的通路之一（Lieu 等，2020）。",
+                "因此，科学家会探究在实验室中限制某些氨基酸的供应能否减缓特定癌细胞。下面这几种，正是该领域讨论最多、且本站有成分数据的氨基酸。"]},
+            {"h": "甲硫氨酸", "p": [
+                "甲硫氨酸供给细胞主要的甲基供体循环，分裂中的细胞对其需求很高。在小鼠癌症模型中，限制膳食甲硫氨酸减缓了肿瘤生长，并改变了肿瘤对部分化疗与放疗的反应；同样的短期饮食也使一小群健康志愿者的一碳代谢指标发生了可测量的变化（Gao 等，2019）。",
+                "这是在动物和短期人体代谢层面的早期研究，并不能证明低甲硫氨酸饮食可以治疗患者的癌症；而且甲硫氨酸是人体必需的氨基酸。"]},
+            {"h": "半胱氨酸", "p": [
+                "许多肿瘤细胞会摄取胱氨酸（半胱氨酸的二聚形式）来合成谷胱甘肽——一种保护它们免于「铁死亡」这类细胞死亡的抗氧化物。因此，限制半胱氨酸的可得性被作为一种在实验室中使某些癌细胞更脆弱的思路来研究（Lieu 等，2020）。"]},
+            {"h": "甘氨酸与丝氨酸", "p": [
+                "甘氨酸与丝氨酸提供细胞用于合成 DNA 和甲基基团的「一碳单元」。这种一碳代谢在快速分裂的癌症中经常被重塑，因而是研究的热点（Lieu 等，2020）。",
+                "本站列出甘氨酸但未列丝氨酸，因为 USDA FoodData Central 对多数食物没有单独列出丝氨酸。"]},
+            {"h": "亮氨酸与支链氨基酸（BCAA）", "p": [
+                "亮氨酸、异亮氨酸和缬氨酸属于支链氨基酸。其中亮氨酸尤其有助于开启 mTORC1 通路——一个指挥细胞生长与合成蛋白质的核心信号。多种癌症中 BCAA 的代谢会发生改变，因此它既被作为生长信号、也被作为可能的干预靶点来研究（Lieu 等，2020）。"]},
+            {"h": "精氨酸", "p": [
+                "有些肿瘤丢失了让细胞自行合成精氨酸的酶（ASS1），只能从血液中获取精氨酸——这种依赖被称为「精氨酸营养缺陷」。研究者把它视为一个潜在弱点，并研究用消耗精氨酸的药物加以利用（Lieu 等，2020）。"]},
+            {"h": "赖氨酸", "p": [
+                "把赖氨酸列入这里出于一个不同而更简单的原因：它最常是限制谷物和许多植物性食物蛋白质量的氨基酸。按赖氨酸筛选有助于解释为什么有些植物蛋白的 DIAAS 较低——而这正是本站的主要用途。"]},
+            {"h": "这与食物地图的关系", "p": [
+                "首页的筛选器可让你按上述任一氨基酸（以每克蛋白质中的毫克数计）排序，并与最低 DIAAS 组合使用。这是一种探索食物成分的方式——例如，找出质量较高、同时甲硫氨酸较低的蛋白质。",
+                "「较低／中等／较高」标签仅描述成分含量，并非健康评级；某种食物某种氨基酸「较低」或「较高」，本身并不说明它对任何人是好是坏。"]},
+            {"h": "本页不是什么", "p": [
+                "它不是饮食方案，不是癌症预防主张，也不是治疗建议。单一营养素在完整饮食与完整人体中的表现，与在一皿细胞中截然不同；在没有医疗监督的情况下限制必需氨基酸可能有害。请把本页当作理解数据的背景，涉及自身健康的任何问题，请咨询合格的专业人员。"]},
         ],
     },
 }
@@ -535,11 +601,13 @@ def build():
     food_tpl = env.get_template("food.html")
     root_tpl = env.get_template("root.html")
     explainer_tpl = env.get_template("explainer.html")
+    research_tpl = env.get_template("research.html")
     refs_tpl = env.get_template("references.html")
 
     def nav_urls(lang):
         return {"foods": home_url(lang), "guides": guides_index_url(lang),
                 "explainer": page_url(lang, "what-is-diaas"),
+                "research": page_url(lang, "amino-acids-and-cancer-research"),
                 "references": page_url(lang, "references")}
 
     # homepages
@@ -627,21 +695,35 @@ def build():
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text(html, encoding="utf-8")
 
-    # explainer + references pages
+    # explainer + research + references pages
+    ref_group_keys = [
+        ("ref_grp_quality", ["mathai2017", "bailey2020", "herreman2020", "nosworthy2017",
+                             "han2019", "hammer2023", "fao2013"]),
+        ("ref_grp_cancer", ["lieu2020", "gao2019"]),
+        ("ref_grp_data", ["usda", "china_cdc", "hk_cfs", "fsanz", "thai_fcd"]),
+    ]
     for lang in LANGS:
         s = STR[lang]
+        lang_key = "ref_en" if lang == "en" else "ref_zh"
         (OUT / lang / "what-is-diaas").mkdir(parents=True, exist_ok=True)
         (OUT / lang / "what-is-diaas" / "index.html").write_text(
             explainer_tpl.render(**base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s,
                                  nav=nav_urls(lang), canonical=page_url(lang, "what-is-diaas"),
                                  alt_urls={l: page_url(l, "what-is-diaas") for l in LANGS}),
             encoding="utf-8")
-        ref_rows = [refs[k] for k in ["mathai2017", "bailey2020", "herreman2020", "nosworthy2017",
-                                       "han2019", "hammer2023", "fao2013", "usda"] if k in refs]
+        (OUT / lang / "amino-acids-and-cancer-research").mkdir(parents=True, exist_ok=True)
+        (OUT / lang / "amino-acids-and-cancer-research" / "index.html").write_text(
+            research_tpl.render(**base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s,
+                                nav=nav_urls(lang),
+                                canonical=page_url(lang, "amino-acids-and-cancer-research"),
+                                alt_urls={l: page_url(l, "amino-acids-and-cancer-research") for l in LANGS}),
+            encoding="utf-8")
+        ref_groups = [{"heading": s[hk], "refs": [refs[k] for k in keys if k in refs]}
+                      for hk, keys in ref_group_keys]
         (OUT / lang / "references").mkdir(parents=True, exist_ok=True)
         (OUT / lang / "references" / "index.html").write_text(
             refs_tpl.render(**base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s, nav=nav_urls(lang),
-                            refs=ref_rows, lang_key=("ref_en" if lang == "en" else "ref_zh"),
+                            ref_groups=ref_groups, lang_key=lang_key,
                             canonical=page_url(lang, "references"),
                             alt_urls={l: page_url(l, "references") for l in LANGS}),
             encoding="utf-8")
@@ -688,7 +770,7 @@ def build():
 
     write_sitemap(foods)
     write_robots()
-    n = 1 + len(LANGS) * (1 + 2 + 1 + len(HUBS) + len(foods))
+    n = 1 + len(LANGS) * (1 + 3 + 1 + len(HUBS) + len(foods))
     print(f"Built {n} HTML pages ({len(foods)} foods, {len(HUBS)} guides, +explainer +references) -> {OUT}")
     print(f"SITE_URL = {SITE_URL}")
 
@@ -709,6 +791,7 @@ def write_sitemap(foods):
 
     entry({l: home_url(l) for l in LANGS})
     entry({l: page_url(l, "what-is-diaas") for l in LANGS})
+    entry({l: page_url(l, "amino-acids-and-cancer-research") for l in LANGS})
     entry({l: page_url(l, "references") for l in LANGS})
     entry({l: guides_index_url(l) for l in LANGS})
     for h in HUBS:

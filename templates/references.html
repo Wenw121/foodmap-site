@@ -6,13 +6,16 @@
 <article class="prose">
   <h1>{{ s.ref_title }}</h1>
   <p class="lede">{{ s.ref_intro }}</p>
+  {% for g in ref_groups %}
+  <h2>{{ g.heading }}</h2>
   <ol class="refs">
-    {% for r in refs %}
+    {% for r in g.refs %}
     <li id="{{ r.key }}">
       {{ r[lang_key] }}
       {% if r.url %}<br><a href="{{ r.url }}" rel="nofollow">{{ r.url }}</a>{% endif %}
     </li>
     {% endfor %}
   </ol>
+  {% endfor %}
 </article>
 {% endblock %}
