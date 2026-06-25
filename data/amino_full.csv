@@ -1,0 +1,88 @@
+slug,name_en,fdc_used,match,Trp,Thr,Ile,Leu,Lys,Met,Cys,Phe,Tyr,Val,His,Arg,Gly
+almonds,Almonds,"Nuts, almonds",ok,10.0,28.4,35.5,69.6,26.9,7.4,10.2,53.5,21.3,40.4,25.5,116.5,67.6
+atlantic-salmon,Atlantic salmon,"Fish, salmon, Atlantic, farmed, raw",ok,10.2,42.1,47.4,79.1,91.6,30.7,10.7,41.4,37.2,54.2,26.9,59.8,47.0
+bacon,Bacon,"Pork, cured, bacon, cooked, baked",ok,8.4,39.2,46.9,77.9,83.0,22.3,11.1,39.7,31.3,53.2,37.6,64.8,70.2
+barley,Barley,"Barley, pearled, raw",ok,16.6,34.0,36.5,67.9,37.2,19.2,22.1,56.1,28.7,49.0,22.5,50.1,36.2
+beef-liver,Beef liver,"Beef, variety meats and by-products, liver, raw",ok,12.9,42.7,47.5,93.8,78.9,26.7,18.5,53.2,39.6,61.9,30.9,61.0,57.2
+beef-sirloin,Beef sirloin,"DENNY'S, top sirloin steak",ok,13.1,47.4,48.5,84.2,69.9,25.6,9.7,42.2,34.3,51.6,34.3,68.5,51.6
+black-beans,Black beans,"Beans, black, mature seeds, raw",ok,11.9,42.1,44.2,79.9,68.7,15.0,10.9,54.1,28.1,52.3,27.8,61.9,39.0
+brazil-nuts,Brazil nuts,"Nuts, brazilnuts, dried, unblanched",ok,9.4,25.5,36.2,83.1,34.2,78.5,21.4,44.6,29.1,53.1,28.6,149.4,51.2
+broccoli,Broccoli,"Broccoli, raw",ok,11.7,31.2,28.0,45.7,47.9,13.5,9.9,41.5,17.7,44.3,20.9,67.7,31.6
+brown-rice,Brown rice,"Rice, brown, long-grain, raw (Includes foods for USDA's Food Distribution Program)",ok,13.4,38.6,44.6,87.1,40.2,23.7,12.7,54.4,39.5,61.8,26.8,79.8,51.9
+buckwheat,Buckwheat,Buckwheat,ok,14.5,38.2,37.6,62.8,50.7,13.0,17.3,39.2,18.2,51.2,23.3,74.1,77.8
+cashews,Cashews,"Nuts, cashew nuts, raw",ok,15.8,37.8,43.3,80.8,50.9,19.9,21.6,52.2,27.9,60.0,25.0,116.5,51.4
+cheddar-cheese,Cheddar cheese,"Cheese, cheddar, sharp, sliced",ok,13.2,45.0,53.2,100.4,84.0,24.2,5.9,51.9,54.3,67.3,29.3,44.7,20.0
+chia-seeds,Chia seeds,"Seeds, chia seeds, dried",ok,26.4,42.9,48.4,82.9,58.6,35.6,24.6,61.4,34.0,57.4,32.1,129.6,57.0
+chicken-breast,Chicken breast,"Chicken, broilers or fryers, breast, meat and skin, raw",ok,11.4,41.7,51.0,73.6,82.7,27.0,13.1,39.1,32.8,48.9,30.0,61.8,58.9
+chicken-thigh,Chicken thigh,"Chicken, broilers or fryers, thigh, meat and skin, raw",ok,10.1,44.5,44.2,79.8,87.7,26.5,11.1,38.3,35.0,46.2,28.1,70.0,60.8
+chickpeas,Chickpeas,"Chickpeas (garbanzo beans, bengal gram), mature seeds, raw",ok,9.8,37.4,43.1,71.6,67.3,13.2,13.6,53.9,25.0,42.3,27.7,94.7,41.9
+cinnamon-ground,Cinnamon (ground),"Spices, cinnamon, ground",ok,12.3,34.1,36.6,63.4,60.9,19.5,14.5,36.6,34.1,56.1,29.3,41.6,48.9
+cod,Cod,"Fish, cod, Atlantic, raw",ok,11.2,43.9,46.1,81.2,91.8,29.6,10.7,39.0,33.7,51.5,29.4,59.9,48.0
+corn,Corn,"Corn grain, yellow",ok,7.1,37.6,35.8,122.6,28.1,20.9,18.0,49.2,40.7,50.6,30.5,49.9,41.0
+cottage-cheese,Cottage cheese,"Cheese, cottage, lowfat, 1% milkfat",ok,11.1,44.4,58.8,102.8,80.9,30.1,9.3,53.9,53.3,61.9,33.3,45.6,21.8
+crab,Crab,"Crustaceans, crab, blue, raw",ok,13.9,40.5,48.4,79.3,87.0,28.1,11.2,42.2,33.3,47.0,20.3,87.3,60.3
+duck,Duck,"Duck, domesticated, meat only, raw",ok,13.9,42.7,51.4,84.5,85.6,27.0,15.4,41.9,38.1,52.3,26.4,63.8,56.0
+edamame-green-soy,Edamame (green soy),"Soybeans, green, raw",ok,12.1,39.8,44.0,71.5,59.8,12.1,9.1,45.3,35.8,44.5,26.9,80.5,41.6
+egg-white,Egg white,"Egg, white, raw, fresh",ok,11.5,41.2,60.6,93.2,73.9,36.6,26.3,62.9,41.9,74.2,26.6,59.4,37.9
+egg-yolk,Egg yolk,"Egg, yolk, raw, fresh",ok,11.2,43.3,54.6,88.2,76.7,23.8,16.6,42.9,42.7,59.8,26.2,69.3,30.8
+enoki-mushroom,Enoki mushroom,"Mushrooms, enoki, raw",ok,15.0,41.4,33.8,48.9,48.9,11.3,7.5,56.4,52.6,86.5,26.3,41.4,41.4
+flaxseed,Flaxseed,"Flaxseed, ground",ok,16.7,51.6,52.0,76.5,51.7,22.3,,61.9,31.7,63.1,28.5,122.6,76.8
+gelatin,Gelatin,"Gelatins, dry powder, unsweetened",ok,,17.2,13.5,28.7,40.4,7.1,,20.3,3.5,24.3,7.7,77.3,222.5
+greek-yogurt,Greek yogurt,"Yogurt, Greek, whole, plain, CHOBANI",ok,14.8,44.5,54.0,99.6,85.8,27.5,6.3,49.8,49.8,65.7,28.6,36.0,19.1
+green-peas,Green peas,"Peas, green, raw",ok,6.8,37.5,36.0,59.6,58.5,15.1,5.9,36.9,21.0,43.4,19.7,79.0,33.9
+ground-beef,Ground beef,"Beef, ground, 70% lean meat / 30% fat, raw",ok,5.1,38.7,44.2,77.9,82.8,25.7,10.3,39.0,30.7,49.1,32.5,65.0,67.8
+grouper,Grouper,"Fish, grouper, mixed species, raw",ok,11.2,43.8,46.1,81.3,91.8,29.6,10.7,39.0,33.7,51.5,29.4,59.8,48.0
+ham-cured,Ham (cured),"Ham, sliced, regular (approximately 11% fat)",ok,9.3,33.6,34.5,59.4,66.9,19.2,9.6,29.9,25.4,40.4,28.7,50.4,41.0
+hazelnuts,Hazelnuts,"Nuts, hazelnuts or filberts",ok,12.9,33.2,36.5,71.1,28.1,14.8,18.5,44.3,24.2,46.9,28.9,147.9,48.4
+hemp-seeds,Hemp seeds,"Seeds, hemp seed, hulled",ok,11.7,40.2,40.7,68.5,40.4,29.6,21.3,45.8,40.0,56.3,30.7,144.2,51.0
+kidney-beans,Kidney beans,"Beans, kidney, red, mature seeds, raw",ok,11.9,42.1,44.2,79.8,68.7,15.0,10.9,54.1,28.1,52.3,27.8,61.9,39.1
+lamb-leg,Lamb leg,"Lamb, leg, whole (shank and sirloin), separable lean and fat, trimmed to 1/4"" fat, choice, raw",ok,11.7,42.8,48.2,77.8,88.3,25.7,11.9,40.7,33.6,54.0,31.7,59.4,48.9
+lentils,Lentils,"Lentils, raw",ok,9.0,35.8,43.2,72.5,69.8,8.5,13.1,49.3,26.7,49.7,28.1,77.3,40.7
+mackerel,Mackerel,"Fish, mackerel, Atlantic, raw",ok,11.2,43.8,46.1,81.3,91.8,29.6,10.7,39.0,33.8,51.5,29.5,59.8,48.0
+millet,Millet,"Millet, raw",ok,10.8,32.0,42.2,127.0,19.2,20.1,19.2,52.6,30.9,52.5,21.4,34.7,26.0
+mozzarella,Mozzarella,"Cheese, mozzarella, whole milk",ok,23.2,44.3,51.2,82.4,43.5,23.2,5.2,45.6,47.0,59.6,23.2,23.2,23.2
+mung-beans,Mung beans,"Mung beans, mature seeds, raw",ok,10.9,32.8,42.2,77.4,69.7,12.0,8.8,60.5,29.9,51.8,29.1,70.1,40.0
+natto,Natto,Natto,ok,11.5,41.9,48.0,77.8,59.0,10.7,11.3,48.5,28.7,52.5,26.4,46.9,33.3
+oats,Oats,"Cereals, oats, regular and quick, not fortified, dry",ok,13.8,29.0,38.3,74.5,48.4,15.7,34.6,50.6,30.0,52.3,20.9,64.6,48.8
+oysters,Oysters,"Mollusks, oyster, eastern, farmed, raw",ok,11.3,43.1,43.5,70.5,74.7,22.6,13.2,35.8,32.0,43.7,19.2,73.0,62.6
+parmesan-cheese,Parmesan cheese,"Cheese, parmesan, hard",ok,13.5,36.8,53.0,96.6,92.5,26.8,6.6,53.8,55.8,68.6,38.7,36.8,17.4
+peanuts,Peanuts,"Peanuts, spanish, raw",ok,9.7,34.3,35.2,64.9,35.9,12.3,12.8,51.9,40.7,42.0,25.3,119.6,60.3
+pecans,Pecans,"Nuts, pecans",ok,10.1,33.4,36.6,65.2,31.3,20.0,16.6,46.5,23.4,44.8,28.6,128.4,49.4
+pinto-beans,Pinto beans,"Beans, pinto, mature seeds, sprouted, raw",ok,10.5,41.9,44.4,71.8,57.0,10.5,11.4,50.5,34.5,51.4,28.0,54.5,34.5
+pistachios,Pistachios,"Nuts, pistachio nuts, raw",ok,12.5,33.9,45.5,79.6,56.4,17.9,14.5,54.2,25.2,62.0,25.4,105.9,50.0
+pork-loin,Pork loin,"Pork, fresh, loin, top loin (roasts), boneless, separable lean and fat, raw",ok,10.5,44.9,49.2,85.2,92.7,27.6,11.5,42.0,38.1,52.2,43.2,66.5,45.0
+pork-sausage,Pork sausage,"Sausage, pork and beef, fresh, cooked",ok,9.6,40.1,38.4,70.6,78.8,23.8,10.1,34.6,29.3,42.9,29.9,61.6,65.1
+pork-tenderloin-lean,Pork tenderloin (lean),"Pork, fresh, loin, tenderloin, separable lean only, raw",ok,10.5,44.9,49.2,85.2,92.7,27.5,11.6,42.1,38.0,52.3,43.2,66.5,45.1
+potato,Potato,"Potatoes, flesh and skin, raw",ok,10.2,32.7,32.2,47.8,52.2,15.6,11.7,39.5,23.4,50.2,17.1,49.3,27.8
+pumpkin-seeds,Pumpkin seeds,"Seeds, pumpkin and squash seed kernels, dried",ok,19.1,33.0,42.4,80.0,40.9,19.9,11.0,57.3,36.2,52.2,25.8,177.1,61.0
+quinoa,Quinoa,"Quinoa, uncooked",ok,11.8,29.8,35.7,59.5,54.2,21.9,14.4,42.0,18.9,42.1,28.8,77.3,49.2
+sardines,Sardines,"Fish, sardine, Atlantic, canned in oil, drained solids with bone",ok,11.2,43.8,46.1,81.3,91.8,29.6,10.7,39.0,33.8,51.5,29.4,59.8,48.0
+scallops,Scallops,"Mollusks, scallop, mixed species, raw",ok,8.5,30.6,33.7,59.7,61.3,23.7,10.0,29.1,24.5,31.4,15.3,53.6,85.7
+sea-bass,Sea bass,"Fish, sea bass, mixed species, raw",ok,11.2,43.8,46.1,81.3,91.9,29.6,10.7,39.1,33.7,51.5,29.5,59.8,48.0
+sesame-seeds,Sesame seeds,"Seeds, sesame seeds, whole, dried",ok,21.9,41.5,43.0,76.6,32.1,33.1,20.2,53.0,41.9,55.8,29.4,148.3,68.5
+shiitake-mushroom,Shiitake mushroom,"Mushrooms, shiitake, raw",ok,4.9,59.8,49.6,84.4,59.8,14.7,9.8,49.6,34.8,64.7,25.0,69.6,64.7
+shrimp,Shrimp,"Crustaceans, shrimp, mixed species, canned",ok,9.1,40.4,47.7,82.3,88.8,27.3,11.9,46.3,39.7,45.8,23.8,79.9,52.2
+soba-noodles,Soba noodles,"Noodles, japanese, soba, dry",ok,14.2,35.0,38.5,65.2,42.2,14.2,18.6,42.9,20.8,49.2,23.6,62.5,65.5
+soybeans,Soybeans,"Soybeans, mature seeds, raw",ok,16.2,48.4,54.0,90.7,74.2,15.0,18.0,58.2,42.2,55.6,30.1,86.4,51.5
+spinach,Spinach,"Spinach, raw",ok,13.6,42.7,51.4,78.0,60.8,18.5,12.2,45.1,37.8,56.3,22.4,56.6,46.9
+spirulina-dried,Spirulina (dried),"Seaweed, spirulina, dried",ok,16.2,51.7,55.8,86.1,52.6,20.0,11.5,48.3,45.0,61.1,18.9,72.2,53.9
+sunflower-seeds,Sunflower seeds,"Seeds, sunflower seed kernels, dried",ok,16.7,44.7,54.8,79.8,45.1,23.8,21.7,56.3,32.1,63.3,30.4,115.6,70.3
+sweet-potato,Sweet potato,"Sweet potato, raw, unprepared (Includes foods for USDA's Food Distribution Program)",ok,19.7,52.9,35.0,58.6,42.0,18.5,14.0,56.7,21.7,54.8,19.7,35.0,40.1
+tempeh,Tempeh,Tempeh,ok,9.6,39.2,43.4,70.5,44.8,8.6,9.5,44.0,32.7,45.3,23.0,61.7,37.2
+tilapia,Tilapia,"Fish, tilapia, raw",ok,10.5,47.3,46.3,79.8,90.1,29.5,11.0,40.3,33.9,48.3,23.4,63.6,51.9
+tofu,Tofu,"Tofu, raw, firm, prepared with calcium sulfate",ok,13.6,45.5,49.2,80.6,51.1,12.2,3.3,48.3,40.6,50.4,25.0,79.3,42.4
+tuna,Tuna,"Fish, tuna, fresh, bluefin, raw",ok,11.2,43.8,46.1,81.3,91.8,29.6,10.7,39.0,33.7,51.5,29.4,59.8,48.0
+turkey-breast,Turkey breast,"Turkey, whole, breast, meat only, raw",ok,10.7,36.3,28.7,69.3,82.5,26.2,9.4,32.2,29.7,32.0,27.1,56.6,42.7
+turmeric-ground,Turmeric (ground),"Spices, turmeric, ground",ok,17.6,34.1,48.6,83.7,39.3,14.5,15.5,54.8,33.1,68.2,15.5,55.8,48.6
+walnuts,Walnuts,"Nuts, walnuts, english",ok,11.2,39.1,41.0,76.8,27.8,15.5,13.7,46.7,26.7,49.4,25.7,149.6,53.6
+wheat-hard,Wheat (hard),"Wheat, hard red winter",ok,12.7,28.9,36.3,67.7,26.6,15.9,25.5,46.9,30.7,44.1,22.6,47.2,41.9
+wheat-germ,Wheat germ,"Wheat germ, crude",ok,13.7,41.8,36.6,67.9,63.4,19.7,19.8,40.1,30.4,51.7,27.8,80.6,61.5
+whey-protein-isolate,Whey protein isolate,"Whey, acid, dried",ok,20.5,50.3,49.5,95.1,85.9,18.8,18.0,32.9,25.6,49.4,19.6,27.9,18.0
+white-mushroom,White mushroom,"Mushrooms, white, raw",ok,11.3,34.6,24.6,38.8,34.6,10.0,3.9,27.5,14.2,75.1,18.4,25.2,29.8
+white-rice,White rice,"Rice, white, long-grain, regular, raw, enriched",ok,11.6,35.8,43.2,82.6,36.2,23.6,20.5,53.4,33.4,61.0,23.6,83.3,45.6
+whole-egg,Whole egg,"Egg, whole, raw, fresh",ok,13.3,44.3,53.4,86.5,72.6,30.3,21.7,54.1,39.7,68.3,24.6,65.3,34.4
+whole-milk,Whole milk,"Milk, whole, 3.25% milkfat, with added vitamin D",ok,12.7,42.5,51.7,94.9,83.8,26.3,6.0,51.7,50.5,65.4,30.2,28.6,19.7
+yam,Yam,"Yam, raw",ok,7.8,35.3,34.0,62.7,38.6,13.7,12.4,46.4,26.1,40.5,22.2,83.0,34.6
+soy-protein-isolate,Soy protein isolate,Soy protein isolate,ok,12.6,35.5,48.2,76.8,60.3,12.8,11.8,52.0,36.5,46.4,26.1,75.5,40.8
+mealworm,Mealworm larvae (dried),Hammer et al. 2023 (in vitro),lit,11.4,43.6,49.2,79.5,60.6,15.2,11.4,41.7,56.8,72.0,34.1,,
+cricket,Cricket (dried),Hammer et al. 2023 (in vitro),lit,8.6,38.6,41.4,70.0,60.0,15.7,11.4,35.7,37.1,60.0,24.3,,

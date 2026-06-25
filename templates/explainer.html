@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ s.explainer_title }} | {{ s.site_name }}{% endblock %}
+{% block description %}{{ s.explainer_lead }}{% endblock %}
+
+{% block content %}
+<article class="prose">
+  <h1>{{ s.explainer_title }}</h1>
+  <p class="lede">{{ s.explainer_lead }}</p>
+
+  {% for sec in s.explainer %}
+  <h2>{{ sec.h }}</h2>
+  {% for para in sec.p %}
+  <p>{{ para }}</p>
+  {% endfor %}
+  {% endfor %}
+
+  <p class="src"><a href="{{ nav.references }}">{{ s.nav_references }} →</a></p>
+</article>
+{% endblock %}

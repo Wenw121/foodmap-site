@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}{{ name }} — {{ s.th_diaas }} {{ food.diaas or s.na }} | {{ s.site_name }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+{% block head_extra %}
+<script type="application/ld+json">
+{{ jsonld|safe }}
+</script>
+{% endblock %}
+
+{% block content %}
+<p class="crumb"><a href="{{ SITE_URL }}/{{ lang }}/">{{ s.back_home }}</a></p>
+
+<article class="food">
+  <header class="food-head">
+    <h1>{{ name }}</h1>
+    <p class="alt-name">{{ alt_name }}</p>
+    <p class="meta">
+      <span class="cat">{{ category }}</span>
+      <span class="badge band-{{ food.band }}">{{ band_label }}</span>
+    </p>
+  </header>
+
+  <p class="summary">{{ description }}</p>
+
+  <section class="facts">
+    <div class="fact">
+      <span class="fact-label">{{ s.protein_label }}</span>
+      <span class="fact-value">{{ food.protein_g_100g or s.na }} <small>g/100g</small></span>
+    </div>
+    <div class="fact">
+      <span class="fact-label">{{ s.per_serving }}</span>
+      <span class="fact-value">{{ food.protein_per_serving if food.protein_per_serving is not none else s.na }} <small>g · {{ s.serving_note }} {{ food.serving_g }}g</small></span>
+    </div>
+    <div class="fact">
+      <span class="fact-label">{{ s.band_label }}</span>
+      <span class="fact-value">{{ food.Met or s.na }} <small>mg/g</small></span>
+    </div>
+    <div class="fact">
+      <span class="fact-label">{{ s.th_diaas }}</span>
+      <span class="fact-value">{{ food.diaas or s.diaas_na }}</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>{{ s.diaas_section }}</h2>
+    {% if food.diaas %}
+    <p><strong>DIAAS:</strong> {{ food.diaas }}{% if quality_label %} — {{ quality_label }}{% endif %}</p>
+    {% if limit_label %}
+    <p><strong>{{ s.limiting_aa }}:</strong> {{ limit_label }}</p>
+    {% endif %}
+    {% if method_label %}
+    <p class="src">{{ s.diaas_method_label }}: {{ method_label }}</p>
+    {% endif %}
+    {% if diaas_sources %}
+    <p class="src">{{ s.diaas_source }}:
+      {% for r in diaas_sources %}<a href="{{ r.url }}" rel="nofollow">{{ r.label }}</a>{% if not loop.last %}; {% endif %}{% endfor %}
+    </p>
+    {% endif %}
+    {% if alt %}
+    <p class="alt-diaas"><strong>{{ s.also_measured }}:</strong> DIAAS {{ alt.val }}
+      {% if alt.limit %}({{ s.limiting_aa|lower }}: {{ alt.limit }}){% endif %}<br>
+      <span class="src">{{ alt.method }} — <a href="{{ alt.url }}" rel="nofollow">{{ alt.source }}</a></span>
+    </p>
+    {% endif %}
+    {% else %}
+    <p>{{ s.diaas_na }}.</p>
+    <p class="src">{{ s.diaas_na_note }}</p>
+    {% endif %}
+  </section>
+
+  <section>
+    <h2>{{ s.amino_profile }}</h2>
+    <table class="amino">
+      <thead>
+        <tr>
+          <th scope="col">{{ s.th_food }}</th>
+          <th scope="col">{{ s.essential }}</th>
+          <th class="num" scope="col">{{ s.th_value }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in amino_rows %}
+        <tr>
+          <td>{{ a.label }}</td>
+          <td>{% if a.essential %}●{% endif %}</td>
+          <td class="num">{{ a.value if a.value != "" else s.na }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if food.fdc_match %}
+    <p class="src">{{ s.fdc_source }}: {{ food.fdc_match }}</p>
+    {% endif %}
+  </section>
+</article>
+{% endblock %}

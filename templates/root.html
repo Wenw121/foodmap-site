@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methionine Food Map · 甲硫氨酸食物地图</title>
+<meta name="description" content="Bilingual reference for methionine content and protein quality (DIAAS) of common foods. 常见食物的甲硫氨酸含量与蛋白质量（DIAAS）双语参考。">
+<link rel="canonical" href="{{ alt_urls['en'] }}">
+<link rel="alternate" hreflang="en" href="{{ alt_urls['en'] }}">
+<link rel="alternate" hreflang="zh-Hans" href="{{ alt_urls['zh'] }}">
+<link rel="alternate" hreflang="x-default" href="{{ alt_urls['en'] }}">
+<link rel="stylesheet" href="{{ SITE_URL }}/static/style.css">
+<script>
+  (function () {
+    try {
+      var zh = (navigator.language || "").toLowerCase().indexOf("zh") === 0;
+      location.replace(zh ? "{{ alt_urls['zh'] }}" : "{{ alt_urls['en'] }}");
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<main class="container picker">
+  <h1>Methionine Food Map<br><span>甲硫氨酸食物地图</span></h1>
+  <p class="picker-links">
+    <a class="btn" href="{{ alt_urls['en'] }}">English</a>
+    <a class="btn" href="{{ alt_urls['zh'] }}">中文</a>
+  </p>
+  <p class="disclaimer">This site is for educational purposes only and is not medical or dietary advice.</p>
+  <p class="disclaimer">本网站仅用于教育和研究展示，不构成医疗或饮食建议。</p>
+</main>
+</body>
+</html>

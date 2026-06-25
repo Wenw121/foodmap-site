@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{ html_lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ s.site_name }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ s.tagline }}{% endblock %}">
+<link rel="canonical" href="{{ canonical }}">
+{% for l in LANGS %}
+<link rel="alternate" hreflang="{{ HTML_LANG[l] }}" href="{{ alt_urls[l] }}">
+{% endfor %}
+<link rel="alternate" hreflang="x-default" href="{{ alt_urls['en'] }}">
+<meta property="og:title" content="{{ self.title() }}">
+<meta property="og:description" content="{{ self.description() }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ canonical }}">
+<meta name="robots" content="index, follow">
+<link rel="stylesheet" href="{{ SITE_URL }}/static/style.css">
+{% block head_extra %}{% endblock %}
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="{{ SITE_URL }}/{{ lang }}/">{{ s.site_name }}</a>
+  <nav class="site-nav">
+    {% if nav %}
+    <a href="{{ nav.foods }}">{{ s.nav_foods }}</a>
+    <a href="{{ nav.explainer }}">{{ s.nav_explainer }}</a>
+    <a href="{{ nav.references }}">{{ s.nav_references }}</a>
+    {% endif %}
+    <a class="lang" href="{{ alt_urls['en' if lang == 'zh' else 'zh'] }}">{{ s.other_lang }}</a>
+  </nav>
+</header>
+
+<main class="container">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <p class="disclaimer">{{ DISCLAIMER['en'] }}</p>
+  <p class="disclaimer">{{ DISCLAIMER['zh'] }}</p>
+  <p class="src">{{ s.footer_data }}</p>
+</footer>
+{% block body_extra %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}{{ s.site_name }} — {{ s.tagline }}{% endblock %}
+{% block description %}{{ s.intro|truncate(155, true, '…') }}{% endblock %}
+{% block head_extra %}
+<script type="application/json" id="foodsData">{{ client_data|safe }}</script>
+<script type="application/json" id="uiConfig">{{ ui_json|safe }}</script>
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>{{ s.site_name }}</h1>
+  <p class="lede">{{ s.intro }}</p>
+</section>
+
+<section class="controls" aria-label="filters">
+  <input type="search" id="searchBox" placeholder="{{ s.search_ph }}" autocomplete="off">
+  <select id="catFilter">
+    <option value="">{{ s.all_categories }}</option>
+    {% for cat_en, cat_zh in categories %}
+    <option value="{{ cat_en }}">{{ cat_en if lang == 'en' else cat_zh }}</option>
+    {% endfor %}
+  </select>
+  <select id="bandFilter">
+    <option value="">{{ s.all_bands }}</option>
+    <option value="lower">{{ s.band.lower }}</option>
+    <option value="intermediate">{{ s.band.intermediate }}</option>
+    <option value="higher">{{ s.band.higher }}</option>
+  </select>
+</section>
+
+<section class="scatter-wrap">
+  <h2>{{ s.scatter_title }}</h2>
+  <p class="hint">{{ s.scatter_hint }}</p>
+  <div id="scatter" aria-hidden="true"></div>
+</section>
+
+<section id="comparePanel" class="compare" hidden>
+  <h2>{{ s.compare_title }}</h2>
+  <div id="compareBody"></div>
+  <button type="button" id="compareClear">{{ s.compare_clear }}</button>
+</section>
+
+<section class="table-wrap">
+  <table id="foodTable">
+    <thead>
+      <tr>
+        <th data-sort="name" scope="col">{{ s.th_food }}</th>
+        <th data-sort="cat" scope="col">{{ s.th_category }}</th>
+        <th data-sort="band" scope="col">{{ s.th_band }}</th>
+        <th data-sort="protein" class="num" scope="col">{{ s.th_protein }}</th>
+        <th data-sort="met" class="num" scope="col">{{ s.th_met }}</th>
+        <th data-sort="diaas" class="num" scope="col">{{ s.th_diaas }}</th>
+        <th class="nocompare" scope="col">{{ s.th_compare }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for f in foods %}
+      <tr data-slug="{{ f.slug }}"
+          data-name="{{ (f.name_en if lang=='en' else f.name_zh) }}"
+          data-search="{{ (f.name_en ~ ' ' ~ f.name_zh)|lower }}"
+          data-cat="{{ f.category_en }}"
+          data-band="{{ f.band }}"
+          data-protein="{{ f.protein_val if f.protein_val is not none else '' }}"
+          data-met="{{ f.met_val if f.met_val is not none else '' }}"
+          data-diaas="{{ f.diaas_val if f.diaas_val is not none else '' }}">
+        <td class="name">
+          <a href="{{ SITE_URL }}/{{ lang }}/foods/{{ f.slug }}/">{{ f.name_en if lang=='en' else f.name_zh }}</a>
+          <span class="alt">{{ f.name_zh if lang=='en' else f.name_en }}</span>
+        </td>
+        <td>{{ f.category_en if lang=='en' else f.category_zh }}</td>
+        <td><span class="badge band-{{ f.band }}">{{ s.band[f.band] }}</span></td>
+        <td class="num">{{ f.protein_g_100g or s.na }}</td>
+        <td class="num">{{ f.Met or s.na }}</td>
+        <td class="num">{{ f.diaas or s.na }}</td>
+        <td class="num nocompare">
+          <input type="checkbox" class="cmp" aria-label="compare {{ f.name_en }}">
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p id="noResults" class="no-results" hidden>{{ s.no_results }}</p>
+</section>
+{% endblock %}
+
+{% block body_extra %}
+<script src="{{ SITE_URL }}/static/app.js" defer></script>
+{% endblock %}
