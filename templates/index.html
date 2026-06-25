@@ -20,12 +20,18 @@
     <option value="{{ cat_en }}">{{ cat_en if lang == 'en' else cat_zh }}</option>
     {% endfor %}
   </select>
-  <select id="bandFilter">
-    <option value="">{{ s.all_bands }}</option>
-    <option value="lower">{{ s.band.lower }}</option>
-    <option value="intermediate">{{ s.band.intermediate }}</option>
-    <option value="higher">{{ s.band.higher }}</option>
+  <select id="aminoSelect" aria-label="amino acid">
+    {% for k, en, zh in amino_filter %}
+    <option value="{{ k }}">{{ en if lang == 'en' else zh }}</option>
+    {% endfor %}
   </select>
+</section>
+<section class="controls sliders" aria-label="range filters">
+  <label class="slider"><span id="aminoMaxLabel"></span>
+    <input type="range" id="aminoMax"></label>
+  <label class="slider"><span id="diaasMinLabel"></span>
+    <input type="range" id="diaasMin" min="0"></label>
+  <button type="button" id="presetHiLo" class="preset"></button>
 </section>
 
 <section class="scatter-wrap">
@@ -46,9 +52,9 @@
       <tr>
         <th data-sort="name" scope="col">{{ s.th_food }}</th>
         <th data-sort="cat" scope="col">{{ s.th_category }}</th>
-        <th data-sort="band" scope="col">{{ s.th_band }}</th>
+        <th data-sort="band" id="bandHead" scope="col">{{ s.th_band }}</th>
         <th data-sort="protein" class="num" scope="col">{{ s.th_protein }}</th>
-        <th data-sort="met" class="num" scope="col">{{ s.th_met }}</th>
+        <th data-sort="amino" class="num" id="aminoColHead" scope="col">{{ s.th_met }}</th>
         <th data-sort="diaas" class="num" scope="col">{{ s.th_diaas }}</th>
         <th class="nocompare" scope="col">{{ s.th_compare }}</th>
       </tr>
@@ -61,8 +67,14 @@
           data-cat="{{ f.category_en }}"
           data-band="{{ f.band }}"
           data-protein="{{ f.protein_val if f.protein_val is not none else '' }}"
-          data-met="{{ f.met_val if f.met_val is not none else '' }}"
-          data-diaas="{{ f.diaas_val if f.diaas_val is not none else '' }}">
+          data-diaas="{{ f.diaas_val if f.diaas_val is not none else '' }}"
+          data-aa-met="{{ f.amino_full.Met }}"
+          data-aa-cys="{{ f.amino_full.Cys }}"
+          data-aa-gly="{{ f.amino_full.Gly }}"
+          data-aa-leu="{{ f.amino_full.Leu }}"
+          data-aa-bcaa="{{ f.BCAA }}"
+          data-aa-arg="{{ f.amino_full.Arg }}"
+          data-aa-lys="{{ f.amino_full.Lys }}">
         <td class="name">
           <a href="{{ SITE_URL }}/{{ lang }}/foods/{{ f.slug }}/">{{ f.name_en if lang=='en' else f.name_zh }}</a>
           <span class="alt">{{ f.name_zh if lang=='en' else f.name_en }}</span>
@@ -70,7 +82,7 @@
         <td>{{ f.category_en if lang=='en' else f.category_zh }}</td>
         <td><span class="badge band-{{ f.band }}">{{ s.band[f.band] }}</span></td>
         <td class="num">{{ f.protein_g_100g or s.na }}</td>
-        <td class="num">{{ f.Met or s.na }}</td>
+        <td class="num aaCell">{{ f.Met or s.na }}</td>
         <td class="num">{{ f.diaas or s.na }}</td>
         <td class="num nocompare">
           <input type="checkbox" class="cmp" aria-label="compare {{ f.name_en }}">

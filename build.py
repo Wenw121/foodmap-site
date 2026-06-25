@@ -115,6 +115,18 @@ FULL_AMINOS = [
     ("Gly", "Glycine (Gly)", "甘氨酸 (Gly)", False),
 ]
 
+# amino acids offered in the homepage filter: methionine plus others studied in
+# cancer-metabolism research, limited to those USDA reports (no serine/glutamine)
+AMINO_FILTER = [
+    ("met", "Methionine", "甲硫氨酸"),
+    ("cys", "Cysteine", "半胱氨酸"),
+    ("gly", "Glycine", "甘氨酸"),
+    ("leu", "Leucine", "亮氨酸"),
+    ("bcaa", "BCAA", "支链氨基酸"),
+    ("arg", "Arginine", "精氨酸"),
+    ("lys", "Lysine", "赖氨酸"),
+]
+
 LIMIT_LABEL = {
     "SAA": {"en": "Sulfur amino acids (Met+Cys)", "zh": "含硫氨基酸 (Met+Cys)"},
     "Lys": {"en": "Lysine", "zh": "赖氨酸"},
@@ -531,17 +543,26 @@ def build():
                 "references": page_url(lang, "references")}
 
     # homepages
+    dvals = [f["diaas_val"] for f in foods if f["diaas_val"]]
+    diaas_max = int(((max(dvals) // 5) + 1) * 5) if dvals else 120
     for lang in LANGS:
         s = STR[lang]
         ordered = sorted(foods, key=lambda f: f["name_en"].lower())
+        amino_opts = [{"key": k, "label": (en if lang == "en" else zh)} for k, en, zh in AMINO_FILTER]
         html = index_tpl.render(
             **base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s, foods=ordered,
-            categories=categories, nav=nav_urls(lang), canonical=home_url(lang),
-            alt_urls={l: home_url(l) for l in LANGS},
+            categories=categories, amino_filter=AMINO_FILTER, nav=nav_urls(lang),
+            canonical=home_url(lang), alt_urls={l: home_url(l) for l in LANGS},
             client_data=json.dumps(client_foods, ensure_ascii=False),
             ui_json=json.dumps({"lang": lang, "band": s["band"], "compareMax": 4,
                                 "scatterX": s["th_met"], "scatterY": s["th_diaas"],
-                                "na": s["na"], "diaas": s["th_diaas"], "protein": s["th_protein"]},
+                                "na": s["na"], "diaas": s["th_diaas"], "protein": s["th_protein"],
+                                "aminoOptions": amino_opts, "diaasMax": diaas_max,
+                                "unit": ("mg/g protein" if lang == "en" else "mg/g 蛋白"),
+                                "colUnit": ("(mg/g protein)" if lang == "en" else "(mg/g 蛋白)"),
+                                "maxLabel": ("Max" if lang == "en" else "最高"),
+                                "minDiaasLabel": ("Min DIAAS" if lang == "en" else "DIAAS 最低"),
+                                "presetLabel": ("High DIAAS · low" if lang == "en" else "高 DIAAS · 低")},
                                ensure_ascii=False),
         )
         out = OUT / lang / "index.html"

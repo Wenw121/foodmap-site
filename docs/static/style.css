@@ -89,6 +89,16 @@ h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); margin: 0 0 16px; }
 }
 #searchBox { flex: 1 1 280px; }
 
+.controls.sliders { align-items: center; gap: 22px; margin-top: -6px; }
+.slider { display: flex; flex-direction: column; gap: 4px; font-size: .82rem;
+  color: var(--muted); flex: 1 1 220px; }
+.slider input[type="range"] { width: 100%; accent-color: var(--accent); cursor: pointer; }
+.preset { font: inherit; font-size: .88rem; padding: 9px 16px; cursor: pointer;
+  border: 1px solid var(--accent); color: var(--accent); background: var(--accent-soft);
+  border-radius: 999px; transition: all .16s ease; white-space: nowrap; }
+.preset:hover { background: var(--accent); color: #fff; }
+.preset:active { transform: translateY(1px); }
+
 h2 { font-size: 1.4rem; margin: 36px 0 8px; }
 .hint { color: var(--muted); font-size: .9rem; margin: 0 0 14px; }
 

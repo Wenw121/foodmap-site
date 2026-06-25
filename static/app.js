@@ -17,58 +17,126 @@
   var rows = Array.prototype.slice.call(tbody.querySelectorAll("tr"));
   var search = document.getElementById("searchBox");
   var catFilter = document.getElementById("catFilter");
-  var bandFilter = document.getElementById("bandFilter");
+  var aminoSelect = document.getElementById("aminoSelect");
+  var aminoMax = document.getElementById("aminoMax");
+  var diaasMin = document.getElementById("diaasMin");
+  var aminoMaxLabel = document.getElementById("aminoMaxLabel");
+  var diaasMinLabel = document.getElementById("diaasMinLabel");
+  var presetBtn = document.getElementById("presetHiLo");
+  var bandHead = document.getElementById("bandHead");
+  var aminoColHead = document.getElementById("aminoColHead");
   var noResults = document.getElementById("noResults");
+
+  var curAmino = "met";
+  var aminoSliderMax = 1;
+
+  function aa(tr, key) {
+    var v = parseFloat(tr.dataset["aa" + key.charAt(0).toUpperCase() + key.slice(1)]);
+    return isNaN(v) ? null : v;
+  }
+  function aminoLabel(key) {
+    var o = UI.aminoOptions.filter(function (x) { return x.key === key; })[0];
+    return o ? o.label : key;
+  }
+  function tertiles(key) {
+    var vals = rows.map(function (r) { return aa(r, key); })
+      .filter(function (v) { return v !== null; }).sort(function (a, b) { return a - b; });
+    var n = vals.length;
+    return { lo: vals[Math.floor(n / 3)], hi: vals[Math.floor(2 * n / 3)],
+             min: vals[0], max: vals[n - 1] };
+  }
+  function bandOf(v, t) { return v === null ? null : v < t.lo ? "lower" : v >= t.hi ? "higher" : "intermediate"; }
+
+  /* switch which amino acid the badge/value column + slider represent */
+  function updateAmino(key) {
+    curAmino = key;
+    var label = aminoLabel(key);
+    var t = tertiles(key);
+    if (bandHead) bandHead.textContent = label;
+    aminoColHead.textContent = label + " " + UI.colUnit;
+    rows.forEach(function (tr) {
+      var v = aa(tr, key), b = bandOf(v, t);
+      tr.dataset.band = b || "";
+      var badge = tr.querySelector(".badge");
+      if (badge) { badge.className = "badge" + (b ? " band-" + b : ""); badge.textContent = b ? UI.band[b] : UI.na; }
+      var cell = tr.querySelector(".aaCell");
+      if (cell) cell.textContent = (v === null ? UI.na : v);
+    });
+    aminoSliderMax = Math.ceil(t.max);
+    aminoMax.min = Math.floor(t.min);
+    aminoMax.max = aminoSliderMax;
+    aminoMax.step = 1;
+    aminoMax.value = aminoSliderMax;
+    updateLabels();
+  }
+  function updateLabels() {
+    aminoMaxLabel.textContent = UI.maxLabel + " " + aminoLabel(curAmino) + ": " + aminoMax.value + " " + UI.unit;
+    diaasMinLabel.textContent = UI.minDiaasLabel + ": " + diaasMin.value;
+    presetBtn.textContent = UI.presetLabel + " " + aminoLabel(curAmino);
+  }
 
   /* ---------- filtering ---------- */
   function applyFilters() {
     var q = (search.value || "").trim().toLowerCase();
     var cat = catFilter.value;
-    var band = bandFilter.value;
+    var amax = parseFloat(aminoMax.value);
+    var dmin = parseFloat(diaasMin.value);
     var shown = 0;
     rows.forEach(function (tr) {
-      var ok =
-        (!q || tr.dataset.search.indexOf(q) !== -1) &&
-        (!cat || tr.dataset.cat === cat) &&
-        (!band || tr.dataset.band === band);
+      var av = aa(tr, curAmino);
+      var dv = parseFloat(tr.dataset.diaas);
+      var okAmino = (amax >= aminoSliderMax) || (av !== null && av <= amax);
+      var okDiaas = (dmin <= 0) || (!isNaN(dv) && dv >= dmin);
+      var ok = (!q || tr.dataset.search.indexOf(q) !== -1) &&
+               (!cat || tr.dataset.cat === cat) && okAmino && okDiaas;
       tr.hidden = !ok;
       if (ok) shown++;
     });
     noResults.hidden = shown !== 0;
   }
-  [search, catFilter, bandFilter].forEach(function (el) {
-    el.addEventListener("input", applyFilters);
+  search.addEventListener("input", applyFilters);
+  catFilter.addEventListener("input", applyFilters);
+  aminoSelect.addEventListener("change", function () { updateAmino(aminoSelect.value); applyFilters(); });
+  aminoMax.addEventListener("input", function () { updateLabels(); applyFilters(); });
+  diaasMin.addEventListener("input", function () { updateLabels(); applyFilters(); });
+  presetBtn.addEventListener("click", function () {
+    var t = tertiles(curAmino);
+    aminoMax.value = Math.round(t.lo);
+    diaasMin.value = Math.min(75, UI.diaasMax);
+    updateLabels(); applyFilters();
   });
 
   /* ---------- sorting ---------- */
-  var NUMERIC = { protein: 1, met: 1, diaas: 1 };
+  var NUMERIC = { protein: 1, diaas: 1 };
   function sortBy(key, dir) {
     var sorted = rows.slice().sort(function (a, b) {
       var av, bv;
-      if (NUMERIC[key]) {
-        av = parseFloat(a.dataset[key]); bv = parseFloat(b.dataset[key]);
-        if (isNaN(av)) av = -Infinity;
-        if (isNaN(bv)) bv = -Infinity;
-        return dir * (av - bv);
+      if (key === "amino") { av = aa(a, curAmino); bv = aa(b, curAmino); }
+      else if (NUMERIC[key]) { av = parseFloat(a.dataset[key]); bv = parseFloat(b.dataset[key]); }
+      else {
+        av = (a.dataset[key] || "").toLowerCase(); bv = (b.dataset[key] || "").toLowerCase();
+        return dir * av.localeCompare(bv);
       }
-      av = (a.dataset[mapKey(key)] || "").toLowerCase();
-      bv = (b.dataset[mapKey(key)] || "").toLowerCase();
-      return dir * av.localeCompare(bv);
+      if (av === null || isNaN(av)) av = -Infinity;
+      if (bv === null || isNaN(bv)) bv = -Infinity;
+      return dir * (av - bv);
     });
     sorted.forEach(function (tr) { tbody.appendChild(tr); });
   }
-  function mapKey(k) { return k === "name" ? "name" : k === "cat" ? "cat" : k; }
   table.querySelectorAll("th[data-sort]").forEach(function (th) {
     var dir = 1;
     th.addEventListener("click", function () {
-      table.querySelectorAll("th").forEach(function (o) {
-        o.classList.remove("sorted-asc", "sorted-desc");
-      });
+      table.querySelectorAll("th").forEach(function (o) { o.classList.remove("sorted-asc", "sorted-desc"); });
       dir = -dir;
       th.classList.add(dir === 1 ? "sorted-asc" : "sorted-desc");
       sortBy(th.dataset.sort, dir);
     });
   });
+
+  /* init */
+  diaasMin.min = 0; diaasMin.max = UI.diaasMax; diaasMin.step = 1; diaasMin.value = 0;
+  updateAmino("met");
+  applyFilters();
 
   /* ---------- compare ---------- */
   var selected = [];
