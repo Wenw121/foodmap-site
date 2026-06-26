@@ -128,6 +128,14 @@ AMINO_FILTER = [
     ("lys", "Lysine", "赖氨酸"),
 ]
 
+# per-food data-source label (drives the attribution line on each food page)
+SOURCE_LABEL = {
+    "en": {"USDA": "USDA FoodData Central match",
+           "FSANZ": "FSANZ Australian Food Composition Database (Release 3)"},
+    "zh": {"USDA": "USDA FoodData Central 匹配项",
+           "FSANZ": "FSANZ 澳洲食物成分数据库（Release 3）"},
+}
+
 LIMIT_LABEL = {
     "SAA": {"en": "Sulfur amino acids (Met+Cys)", "zh": "含硫氨基酸 (Met+Cys)"},
     "Lys": {"en": "Lysine", "zh": "赖氨酸"},
@@ -143,10 +151,10 @@ QUALITY = {  # (min_diaas) -> key
 STR = {
     "en": {
         "site_name": "Methionine Food Map",
-        "tagline": "Protein quality (DIAAS) and full amino-acid profiles of 95 common foods.",
+        "tagline": "Protein quality (DIAAS) and full amino-acid profiles of 104 common foods.",
         "intro": (
             "An interactive, bilingual reference for the methionine content, full "
-            "essential amino-acid profile, and protein quality (DIAAS) of 95 common "
+            "essential amino-acid profile, and protein quality (DIAAS) of 104 common "
             "animal and plant foods. Search, filter by category, compare foods side "
             "by side, and explore the methionine-vs-DIAAS map. Amino-acid values are "
             "milligrams per gram of protein, from USDA FoodData Central."
@@ -172,13 +180,13 @@ STR = {
         "guides_intro": "Curated lists of foods by protein quality (DIAAS), food group, and methionine content — a quick way to find complete proteins, the best plant proteins, and more.",
         "bc_home": "Home", "bc_guides": "Guides",
         "kw_protein": "protein", "kw_amino": "amino acids",
-        "home_title": "Protein Quality & DIAAS of 95 Foods — Amino Acid Comparison",
-        "home_desc": "Compare the protein quality (DIAAS), full essential amino-acid profiles, and methionine content of 95 common animal and plant foods. Search, filter, and compare proteins side by side.",
+        "home_title": "Protein Quality & DIAAS of 104 Foods — Amino Acid Comparison",
+        "home_desc": "Compare the protein quality (DIAAS), full essential amino-acid profiles, and methionine content of 104 common animal and plant foods. Search, filter, and compare proteins side by side.",
         "fdc_source": "USDA FoodData Central match", "band_label": "Methionine (mg/g protein)",
         "protein_label": "Protein content", "per_serving": "Protein per serving",
         "serving_note": "≈ per typical serving",
         "diaas_source": "DIAAS source", "other_lang": "中文",
-        "footer_data": "Amino-acid data: USDA FoodData Central. DIAAS values from published literature — see References.",
+        "footer_data": "Amino-acid data: USDA FoodData Central and FSANZ (per food). DIAAS values from published literature — see References.",
         "nav_explainer": "What is DIAAS?", "nav_references": "References", "nav_foods": "Foods",
         "band": {"lower": "Lower methionine", "intermediate": "Intermediate methionine", "higher": "Higher methionine"},
         "na": "N/A",
@@ -237,9 +245,9 @@ STR = {
     },
     "zh": {
         "site_name": "甲硫氨酸食物地图",
-        "tagline": "95 种常见食物的蛋白质量（DIAAS）与完整氨基酸谱。",
+        "tagline": "104 种常见食物的蛋白质量（DIAAS）与完整氨基酸谱。",
         "intro": (
-            "一个交互式双语参考工具，收录 95 种常见动物与植物性食物的甲硫氨酸含量、"
+            "一个交互式双语参考工具，收录 104 种常见动物与植物性食物的甲硫氨酸含量、"
             "完整必需氨基酸谱与蛋白质量（DIAAS）。可搜索、按分类筛选、并排对比，"
             "并探索「甲硫氨酸—DIAAS」分布图。氨基酸数值为每克蛋白质中的毫克数，"
             "来源于 USDA FoodData Central。"
@@ -264,13 +272,13 @@ STR = {
         "guides_intro": "按蛋白质量（DIAAS）、食物类别与甲硫氨酸含量整理的食物清单——快速找到完整蛋白、最佳植物蛋白等。",
         "bc_home": "首页", "bc_guides": "指南",
         "kw_protein": "蛋白质", "kw_amino": "氨基酸",
-        "home_title": "95 种食物的蛋白质量与 DIAAS — 氨基酸对比",
-        "home_desc": "对比 95 种常见动物与植物性食物的蛋白质量（DIAAS）、完整必需氨基酸谱与甲硫氨酸含量。可搜索、筛选并并排比较。",
+        "home_title": "104 种食物的蛋白质量与 DIAAS — 氨基酸对比",
+        "home_desc": "对比 104 种常见动物与植物性食物的蛋白质量（DIAAS）、完整必需氨基酸谱与甲硫氨酸含量。可搜索、筛选并并排比较。",
         "fdc_source": "USDA FoodData Central 匹配项", "band_label": "甲硫氨酸 (mg/g 蛋白)",
         "protein_label": "蛋白质含量", "per_serving": "每份蛋白质",
         "serving_note": "≈ 每份常见食用量",
         "diaas_source": "DIAAS 出处", "other_lang": "English",
-        "footer_data": "氨基酸数据来源：USDA FoodData Central。DIAAS 数值来自已发表文献，详见「参考文献」。",
+        "footer_data": "氨基酸数据来源：USDA FoodData Central 与 FSANZ（按食物标注）。DIAAS 数值来自已发表文献，详见「参考文献」。",
         "nav_explainer": "什么是 DIAAS？", "nav_references": "参考文献", "nav_foods": "食物",
         "band": {"lower": "较低甲硫氨酸", "intermediate": "中等甲硫氨酸", "higher": "较高甲硫氨酸"},
         "na": "暂无",
@@ -684,6 +692,7 @@ def build():
             html = food_tpl.render(
                 **base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s, food=f, name=name,
                 alt_name=alt_name, category=cat, band_label=s["band"][f["band"]],
+                source_label=SOURCE_LABEL[lang].get(f.get("source") or "USDA", SOURCE_LABEL[lang]["USDA"]),
                 amino_rows=amino_rows, limit_label=limit_label, quality_label=quality_label,
                 diaas_sources=src_list, method_label=method_label, alt=alt,
                 blurb=blurb, related=rel, breadcrumb=crumbs,
