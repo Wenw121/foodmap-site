@@ -36,7 +36,7 @@
      drives only the scatter axis + the amino slider/preset. */
   var AMINO_COL_KEYS = ["met", "cys", "leu", "bcaa", "arg", "gly", "lys"];
 
-  var curAmino = "met";
+  var curAmino = "all";
   var aminoSliderMax = 1;
 
   function aa(tr, key) {
@@ -169,7 +169,7 @@
   diaasMin.min = 0; diaasMin.max = UI.diaasMax; diaasMin.step = 1; diaasMin.value = 0;
   colorCells();
   renderLegend();
-  updateAmino("met");
+  updateAmino("all");
   applyFilters();
 
   /* ---------- compare ---------- */
@@ -229,7 +229,10 @@
     if (maxv <= 12) return 2;
     if (maxv <= 30) return 5;
     if (maxv <= 70) return 10;
-    return 20;
+    if (maxv <= 150) return 20;
+    if (maxv <= 350) return 50;
+    if (maxv <= 700) return 100;
+    return 200;
   }
   function drawScatter() {
     if (!scatterHost) return;

@@ -119,6 +119,7 @@ FULL_AMINOS = [
 # amino acids offered in the homepage filter: methionine plus others studied in
 # cancer-metabolism research, limited to those USDA reports (no serine/glutamine)
 AMINO_FILTER = [
+    ("all", "All amino acids (total)", "全部氨基酸（总量）"),
     ("met", "Methionine", "甲硫氨酸"),
     ("cys", "Cysteine", "半胱氨酸"),
     ("gly", "Glycine", "甘氨酸"),
@@ -448,6 +449,9 @@ def load_foods():
         # full amino profile (mg/g protein) from amino_full.csv
         a = amino.get(slug, {})
         f["amino_full"] = {k: a.get(k, "") for k, *_ in FULL_AMINOS}
+        # total of the full amino profile (mg/g protein) — drives the "All" view
+        tot = sum(v for v in (to_float(a.get(k)) for k, *_ in FULL_AMINOS) if v is not None)
+        f["aa_total"] = round(tot, 1) if tot else ""
         # serving size + protein per serving
         serv = SERVING_OVERRIDE.get(slug, CATEGORY_SERVING.get(f["category_en"], 100))
         f["serving_g"] = serv
