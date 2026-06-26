@@ -23,8 +23,6 @@
   var aminoMaxLabel = document.getElementById("aminoMaxLabel");
   var diaasMinLabel = document.getElementById("diaasMinLabel");
   var presetBtn = document.getElementById("presetHiLo");
-  var bandHead = document.getElementById("bandHead");
-  var aminoColHead = document.getElementById("aminoColHead");
   var noResults = document.getElementById("noResults");
   var scatterHost = document.getElementById("scatter");
   var scatterTitle = document.getElementById("scatterTitle");
@@ -33,6 +31,10 @@
   scatterTip.hidden = true;
   if (scatterHost) scatterHost.style.position = "relative";
   var GROUP_COLOR = { Animal: "#b5532f", Plant: "#4a8a5c", Spice: "#c8932f", Special: "#6b6b70" };
+  var GROUP_ORDER = ["Animal", "Plant", "Spice", "Special"];
+  /* amino columns now shown all at once in the table; the selector below
+     drives only the scatter axis + the amino slider/preset. */
+  var AMINO_COL_KEYS = ["met", "cys", "leu", "bcaa", "arg", "gly", "lys"];
 
   var curAmino = "met";
   var aminoSliderMax = 1;
@@ -54,27 +56,48 @@
   }
   function bandOf(v, t) { return v === null ? null : v < t.lo ? "lower" : v >= t.hi ? "higher" : "intermediate"; }
 
-  /* switch which amino acid the badge/value column + slider represent */
+  /* shade every amino column low->high by its own tertiles (a heatmap "map"),
+     done once on load since tertiles are over the full data set */
+  function colorCells() {
+    AMINO_COL_KEYS.forEach(function (key) {
+      var t = tertiles(key);
+      rows.forEach(function (tr) {
+        var cell = tr.querySelector(".aa-" + key);
+        if (!cell) return;
+        var b = bandOf(aa(tr, key), t);
+        cell.classList.remove("cell-lower", "cell-intermediate", "cell-higher");
+        if (b) cell.classList.add("cell-" + b);
+      });
+    });
+  }
+  /* mark which amino column is the one currently plotted on the scatter */
+  function highlightCol(key) {
+    table.querySelectorAll("th.aacol").forEach(function (th) {
+      th.classList.toggle("col-active", th.dataset.amino === key);
+    });
+  }
+  /* the selector drives the scatter axis + the amino slider/preset */
   function updateAmino(key) {
     curAmino = key;
-    var label = aminoLabel(key);
     var t = tertiles(key);
-    if (bandHead) bandHead.textContent = label;
-    aminoColHead.textContent = label + " " + UI.colUnit;
-    rows.forEach(function (tr) {
-      var v = aa(tr, key), b = bandOf(v, t);
-      tr.dataset.band = b || "";
-      var badge = tr.querySelector(".badge");
-      if (badge) { badge.className = "badge" + (b ? " band-" + b : ""); badge.textContent = b ? UI.band[b] : UI.na; }
-      var cell = tr.querySelector(".aaCell");
-      if (cell) cell.textContent = (v === null ? UI.na : v);
-    });
+    highlightCol(key);
     aminoSliderMax = Math.ceil(t.max);
     aminoMax.min = Math.floor(t.min);
     aminoMax.max = aminoSliderMax;
     aminoMax.step = 1;
     aminoMax.value = aminoSliderMax;
     updateLabels();
+  }
+  function renderLegend() {
+    var host = document.getElementById("scatterLegend");
+    if (!host) return;
+    var present = {};
+    FOODS.forEach(function (f) { if (f.group) present[f.group] = 1; });
+    var labels = UI.groupLabels || {};
+    host.innerHTML = GROUP_ORDER.filter(function (g) { return present[g]; }).map(function (g) {
+      return '<span class="leg"><span class="sw" style="background:' + (GROUP_COLOR[g] || "#888") +
+        '"></span>' + esc(labels[g] || g) + "</span>";
+    }).join("");
   }
   function updateLabels() {
     aminoMaxLabel.textContent = UI.maxLabel + " " + aminoLabel(curAmino) + ": " + aminoMax.value + " " + UI.unit;
@@ -117,9 +140,10 @@
   /* ---------- sorting ---------- */
   var NUMERIC = { protein: 1, diaas: 1 };
   function sortBy(key, dir) {
+    var isAmino = AMINO_COL_KEYS.indexOf(key) !== -1;
     var sorted = rows.slice().sort(function (a, b) {
       var av, bv;
-      if (key === "amino") { av = aa(a, curAmino); bv = aa(b, curAmino); }
+      if (isAmino) { av = aa(a, key); bv = aa(b, key); }
       else if (NUMERIC[key]) { av = parseFloat(a.dataset[key]); bv = parseFloat(b.dataset[key]); }
       else {
         av = (a.dataset[key] || "").toLowerCase(); bv = (b.dataset[key] || "").toLowerCase();
@@ -143,6 +167,8 @@
 
   /* init */
   diaasMin.min = 0; diaasMin.max = UI.diaasMax; diaasMin.step = 1; diaasMin.value = 0;
+  colorCells();
+  renderLegend();
   updateAmino("met");
   applyFilters();
 

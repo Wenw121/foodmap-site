@@ -149,6 +149,24 @@ td.name .alt { display: block; color: var(--faint); font-size: .8rem; font-weigh
 .band-intermediate { background: var(--intermediate); }
 .band-higher { background: var(--higher); }
 
+/* ---------- amino heatmap columns ---------- */
+.amino-note { margin: 18px 0 -6px; }
+td.aa { font-variant-numeric: tabular-nums; }
+td.cell-lower { background: rgba(79, 138, 95, .14); }
+td.cell-intermediate { background: rgba(189, 139, 44, .15); }
+td.cell-higher { background: rgba(177, 84, 58, .16); }
+th.aacol { text-align: right; }
+th.aacol.col-active { color: var(--accent); box-shadow: inset 0 -2.5px 0 var(--accent); }
+tbody tr:hover td.cell-lower { background: rgba(79, 138, 95, .22); }
+tbody tr:hover td.cell-intermediate { background: rgba(189, 139, 44, .24); }
+tbody tr:hover td.cell-higher { background: rgba(177, 84, 58, .25); }
+
+/* ---------- scatter legend ---------- */
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin: 10px 4px 0;
+  font-size: .85rem; color: var(--muted); }
+.legend .leg { display: inline-flex; align-items: center; gap: 6px; }
+.legend .sw { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+
 .no-results { color: var(--muted); padding: 20px 0; }
 
 /* ---------- compare panel ---------- */

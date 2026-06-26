@@ -128,6 +128,13 @@ AMINO_FILTER = [
     ("lys", "Lysine", "赖氨酸"),
 ]
 
+# amino-acid columns shown in the homepage table (short 3-letter codes are
+# language-neutral). Each maps to a data-aa-<key> attribute on the row.
+AMINO_COLS = [
+    ("met", "Met"), ("cys", "Cys"), ("leu", "Leu"), ("bcaa", "BCAA"),
+    ("arg", "Arg"), ("gly", "Gly"), ("lys", "Lys"),
+]
+
 # per-food data-source label (drives the attribution line on each food page)
 SOURCE_LABEL = {
     "en": {"USDA": "USDA FoodData Central match",
@@ -169,6 +176,8 @@ STR = {
         "compare_hint": "Select up to 4 foods in the table to compare them here.",
         "compare_clear": "Clear", "scatter_title": "Amino acid vs DIAAS",
         "scatter_hint": "Each point is a food. X = the amino acid selected above (mg/g protein), Y = DIAAS. The map follows your filters. Hover for the name; click to open its page.",
+        "grp_animal": "Animal", "grp_plant": "Plant", "grp_spice": "Spice", "grp_special": "Special",
+        "amino_cols_note": "Amino acids in mg per g protein. Cells shaded low → high within each column. Use the selector to set the chart axis.",
         "no_results": "No foods match your filters.", "view": "View",
         "back_home": "← All foods", "amino_profile": "Full amino-acid profile",
         "th_value": "mg/g protein", "essential": "Essential",
@@ -261,6 +270,8 @@ STR = {
         "compare_title": "对比", "compare_hint": "在表格中最多勾选 4 种食物，在此并排对比。",
         "compare_clear": "清除", "scatter_title": "氨基酸 vs DIAAS",
         "scatter_hint": "每个点代表一种食物。X = 上方所选氨基酸（mg/g 蛋白），Y = DIAAS。分布图会跟随筛选条件更新。悬停看名称，点击进入详情页。",
+        "grp_animal": "动物", "grp_plant": "植物", "grp_spice": "香料", "grp_special": "特殊",
+        "amino_cols_note": "氨基酸数值为每克蛋白中的毫克数。每列内按低 → 高着色。用上方选择器设定散点图横轴。",
         "no_results": "没有符合筛选条件的食物。", "view": "查看",
         "back_home": "← 全部食物", "amino_profile": "完整氨基酸谱",
         "th_value": "mg/g 蛋白", "essential": "必需",
@@ -629,7 +640,8 @@ def build():
         amino_opts = [{"key": k, "label": (en if lang == "en" else zh)} for k, en, zh in AMINO_FILTER]
         html = index_tpl.render(
             **base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s, foods=ordered,
-            categories=categories, amino_filter=AMINO_FILTER, nav=nav_urls(lang),
+            categories=categories, amino_filter=AMINO_FILTER, amino_cols=AMINO_COLS,
+            nav=nav_urls(lang),
             canonical=home_url(lang), alt_urls={l: home_url(l) for l in LANGS},
             client_data=json.dumps(client_foods, ensure_ascii=False),
             ui_json=json.dumps({"lang": lang, "band": s["band"], "compareMax": 4,
@@ -640,7 +652,9 @@ def build():
                                 "colUnit": ("(mg/g protein)" if lang == "en" else "(mg/g 蛋白)"),
                                 "maxLabel": ("Max" if lang == "en" else "最高"),
                                 "minDiaasLabel": ("Min DIAAS" if lang == "en" else "DIAAS 最低"),
-                                "presetLabel": ("High DIAAS · low" if lang == "en" else "高 DIAAS · 低")},
+                                "presetLabel": ("High DIAAS · low" if lang == "en" else "高 DIAAS · 低"),
+                                "groupLabels": {"Animal": s["grp_animal"], "Plant": s["grp_plant"],
+                                                "Spice": s["grp_spice"], "Special": s["grp_special"]}},
                                ensure_ascii=False),
         )
         out = OUT / lang / "index.html"
