@@ -136,6 +136,20 @@ AMINO_COLS = [
     ("arg", "Arg"), ("gly", "Gly"), ("lys", "Lys"),
 ]
 
+# plain-language key for the abbreviations used in the table (code, en, zh)
+ABBREVS = [
+    ("Met", "Methionine", "甲硫氨酸"),
+    ("Cys", "Cysteine", "半胱氨酸"),
+    ("Leu", "Leucine", "亮氨酸"),
+    ("BCAA", "Branched-chain amino acids (leucine + isoleucine + valine)",
+     "支链氨基酸（亮氨酸 + 异亮氨酸 + 缬氨酸）"),
+    ("Arg", "Arginine", "精氨酸"),
+    ("Gly", "Glycine", "甘氨酸"),
+    ("Lys", "Lysine", "赖氨酸"),
+    ("DIAAS", "Digestible Indispensable Amino Acid Score — a protein-quality score",
+     "可消化必需氨基酸评分（衡量蛋白质量的指标）"),
+]
+
 # per-food data-source label (drives the attribution line on each food page)
 SOURCE_LABEL = {
     "en": {"USDA": "USDA FoodData Central match",
@@ -178,7 +192,8 @@ STR = {
         "compare_clear": "Clear", "scatter_title": "Amino acid vs DIAAS",
         "scatter_hint": "Each point is a food. X = the amino acid selected above (mg/g protein), Y = DIAAS. The map follows your filters. Hover for the name; click to open its page.",
         "grp_animal": "Animal", "grp_plant": "Plant", "grp_spice": "Spice", "grp_special": "Special",
-        "amino_cols_note": "Amino acids in mg per g protein. Cells shaded low → high within each column. Use the selector to set the chart axis.",
+        "amino_cols_note": "Amino acids in mg per g protein. Cells shaded low → high within each column. Use the selector to highlight a column.",
+        "abbr_title": "Abbreviations",
         "no_results": "No foods match your filters.", "view": "View",
         "back_home": "← All foods", "amino_profile": "Full amino-acid profile",
         "th_value": "mg/g protein", "essential": "Essential",
@@ -272,7 +287,8 @@ STR = {
         "compare_clear": "清除", "scatter_title": "氨基酸 vs DIAAS",
         "scatter_hint": "每个点代表一种食物。X = 上方所选氨基酸（mg/g 蛋白），Y = DIAAS。分布图会跟随筛选条件更新。悬停看名称，点击进入详情页。",
         "grp_animal": "动物", "grp_plant": "植物", "grp_spice": "香料", "grp_special": "特殊",
-        "amino_cols_note": "氨基酸数值为每克蛋白中的毫克数。每列内按低 → 高着色。用上方选择器设定散点图横轴。",
+        "amino_cols_note": "氨基酸数值为每克蛋白中的毫克数。每列内按低 → 高着色。用上方选择器可高亮某一列。",
+        "abbr_title": "缩写说明",
         "no_results": "没有符合筛选条件的食物。", "view": "查看",
         "back_home": "← 全部食物", "amino_profile": "完整氨基酸谱",
         "th_value": "mg/g 蛋白", "essential": "必需",
@@ -645,7 +661,7 @@ def build():
         html = index_tpl.render(
             **base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s, foods=ordered,
             categories=categories, amino_filter=AMINO_FILTER, amino_cols=AMINO_COLS,
-            nav=nav_urls(lang),
+            abbrevs=ABBREVS, nav=nav_urls(lang),
             canonical=home_url(lang), alt_urls={l: home_url(l) for l in LANGS},
             client_data=json.dumps(client_foods, ensure_ascii=False),
             ui_json=json.dumps({"lang": lang, "band": s["band"], "compareMax": 4,

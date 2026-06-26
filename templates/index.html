@@ -94,11 +94,13 @@
   <p id="noResults" class="no-results" hidden>{{ s.no_results }}</p>
 </section>
 
-<section class="scatter-wrap">
-  <h2 id="scatterTitle">{{ s.scatter_title }}</h2>
-  <p class="hint">{{ s.scatter_hint }}</p>
-  <div id="scatter" aria-hidden="true"></div>
-  <div id="scatterLegend" class="legend" aria-hidden="true"></div>
+<section class="abbr-wrap">
+  <h2>{{ s.abbr_title }}</h2>
+  <dl class="abbr-list">
+    {% for code, en, zh in abbrevs %}
+    <div><dt>{{ code }}</dt><dd>{{ en if lang == 'en' else zh }}</dd></div>
+    {% endfor %}
+  </dl>
 </section>
 {% endblock %}
 

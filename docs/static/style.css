@@ -102,23 +102,6 @@ h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); margin: 0 0 16px; }
 h2 { font-size: 1.4rem; margin: 36px 0 8px; }
 .hint { color: var(--muted); font-size: .9rem; margin: 0 0 14px; }
 
-/* ---------- scatter ---------- */
-.scatter-wrap { margin-top: 10px; }
-#scatter { background: var(--surface); border: 1px solid var(--line);
-  border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
-#scatter svg { display: block; width: 100%; height: auto; }
-.dot { cursor: pointer; transition: opacity .12s ease; }
-.dot:hover { fill-opacity: 1 !important; stroke: #2b2b2b; stroke-width: 1.5; }
-.scatter-empty { padding: 28px 16px; text-align: center; }
-.dot-tip {
-  position: absolute; z-index: 5; pointer-events: none;
-  max-width: 180px; padding: 6px 9px;
-  background: var(--text, #2b2b2b); color: #fff;
-  font-size: 12px; line-height: 1.35; border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.22);
-}
-.dot-tip strong { font-weight: 600; }
-
 /* ---------- table ---------- */
 .table-wrap { overflow-x: auto; margin-top: 20px; border-radius: var(--r-lg);
   border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
@@ -161,11 +144,15 @@ tbody tr:hover td.cell-lower { background: rgba(79, 138, 95, .22); }
 tbody tr:hover td.cell-intermediate { background: rgba(189, 139, 44, .24); }
 tbody tr:hover td.cell-higher { background: rgba(177, 84, 58, .25); }
 
-/* ---------- scatter legend ---------- */
-.legend { display: flex; flex-wrap: wrap; gap: 16px; margin: 10px 4px 0;
-  font-size: .85rem; color: var(--muted); }
-.legend .leg { display: inline-flex; align-items: center; gap: 6px; }
-.legend .sw { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+/* ---------- abbreviations key ---------- */
+.abbr-wrap { margin-top: 38px; }
+.abbr-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 6px 24px; margin: 12px 0 0; }
+.abbr-list div { display: flex; gap: 10px; align-items: baseline; padding: 5px 0;
+  border-bottom: 1px solid var(--line); }
+.abbr-list dt { font-weight: 600; color: var(--ink); min-width: 52px; flex: none;
+  font-variant-numeric: tabular-nums; }
+.abbr-list dd { margin: 0; color: var(--muted); font-size: .92rem; }
 
 .no-results { color: var(--muted); padding: 20px 0; }
 

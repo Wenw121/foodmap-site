@@ -86,7 +86,7 @@
   <button type="button" id="compareClear">Clear</button>
 </section>
 
-<p class="hint amino-note">Amino acids in mg per g protein. Cells shaded low → high within each column. Use the selector to set the chart axis.</p>
+<p class="hint amino-note">Amino acids in mg per g protein. Cells shaded low → high within each column. Use the selector to highlight a column.</p>
 <section class="table-wrap">
   <table id="foodTable">
     <thead>
@@ -3695,11 +3695,18 @@
   <p id="noResults" class="no-results" hidden>No foods match your filters.</p>
 </section>
 
-<section class="scatter-wrap">
-  <h2 id="scatterTitle">Amino acid vs DIAAS</h2>
-  <p class="hint">Each point is a food. X = the amino acid selected above (mg/g protein), Y = DIAAS. The map follows your filters. Hover for the name; click to open its page.</p>
-  <div id="scatter" aria-hidden="true"></div>
-  <div id="scatterLegend" class="legend" aria-hidden="true"></div>
+<section class="abbr-wrap">
+  <h2>Abbreviations</h2>
+  <dl class="abbr-list">
+    <div><dt>Met</dt><dd>Methionine</dd></div>
+    <div><dt>Cys</dt><dd>Cysteine</dd></div>
+    <div><dt>Leu</dt><dd>Leucine</dd></div>
+    <div><dt>BCAA</dt><dd>Branched-chain amino acids (leucine + isoleucine + valine)</dd></div>
+    <div><dt>Arg</dt><dd>Arginine</dd></div>
+    <div><dt>Gly</dt><dd>Glycine</dd></div>
+    <div><dt>Lys</dt><dd>Lysine</dd></div>
+    <div><dt>DIAAS</dt><dd>Digestible Indispensable Amino Acid Score — a protein-quality score</dd></div>
+  </dl>
 </section>
 </main>
 
