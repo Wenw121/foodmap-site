@@ -103,3 +103,11 @@ shark,Shark,鲨鱼,Animal · fish/seafood,动物 · 鱼/海鲜,24.6,21.8,9.0,60.
 goat,Goat (lean),山羊肉,Animal · red meat,动物 · 红肉,22.0,25.2,,76.4,164.7,69.6,50.9,8.8,,,"Goat, meat, all cuts, lean, raw",FSANZ
 rabbit,Rabbit,兔肉,Animal · red meat,动物 · 红肉,23.2,28.0,11.9,75.8,182.0,60.2,46.4,12.2,,,"Rabbit, farmed, whole, raw",FSANZ
 venison,Venison (lean),鹿肉,Animal · red meat,动物 · 红肉,23.5,27.2,12.8,80.1,184.3,67.3,56.1,12.8,,,"Venison, leg medallion, lean, raw",FSANZ
+miso,Miso,味噌,Plant · legumes,植物 · 豆类,12.79,10.1,,64.1,146.6,61.3,34.9,12.1,,,Miso,USDA
+octopus,Octopus,章鱼,Animal · fish/seafood,动物 · 鱼/海鲜,14.91,22.5,13.1,70.4,157.6,73.0,62.6,11.2,,,"Mollusks, octopus, common, raw",USDA
+abalone,Abalone,鲍鱼,Animal · fish/seafood,动物 · 鱼/海鲜,17.1,22.6,13.1,70.4,157.6,73.0,62.6,11.2,,,"Mollusks, abalone, mixed species, raw",USDA
+clams,Clams,蛤蜊,Animal · fish/seafood,动物 · 鱼/海鲜,14.67,28.8,11.9,81.8,179.6,82.5,43.6,14.0,,,"Mollusks, clam, mixed species, raw",USDA
+pompano,Pompano,鲳鱼,Animal · fish/seafood,动物 · 鱼/海鲜,18.48,29.6,10.7,81.3,178.8,59.8,48.0,11.2,,,"Fish, pompano, florida, raw",USDA
+taro,Taro,芋头,Plant · vegetables/algae,植物 · 蔬菜/藻类,1.5,13.3,21.3,74.0,164.7,68.7,49.3,15.3,,,"Taro, raw",USDA
+lotus-seeds,Lotus seeds,莲子,Plant · seeds,植物 · 种子,15.41,17.3,13.0,78.8,192.7,81.9,53.6,14.3,,,"Seeds, lotus seeds, dried",USDA
+bamboo-shoots,Bamboo shoots,竹笋,Plant · vegetables/algae,植物 · 蔬菜/藻类,2.6,11.5,8.5,53.8,128.4,37.3,33.5,10.4,,,"Bamboo shoots, raw",USDA

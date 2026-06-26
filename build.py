@@ -151,10 +151,10 @@ QUALITY = {  # (min_diaas) -> key
 STR = {
     "en": {
         "site_name": "Methionine Food Map",
-        "tagline": "Protein quality (DIAAS) and full amino-acid profiles of 104 common foods.",
+        "tagline": "Protein quality (DIAAS) and full amino-acid profiles of 112 common foods.",
         "intro": (
             "An interactive, bilingual reference for the methionine content, full "
-            "essential amino-acid profile, and protein quality (DIAAS) of 104 common "
+            "essential amino-acid profile, and protein quality (DIAAS) of 112 common "
             "animal and plant foods. Search, filter by category, compare foods side "
             "by side, and explore the methionine-vs-DIAAS map. Amino-acid values are "
             "milligrams per gram of protein, from USDA FoodData Central."
@@ -180,8 +180,8 @@ STR = {
         "guides_intro": "Curated lists of foods by protein quality (DIAAS), food group, and methionine content — a quick way to find complete proteins, the best plant proteins, and more.",
         "bc_home": "Home", "bc_guides": "Guides",
         "kw_protein": "protein", "kw_amino": "amino acids",
-        "home_title": "Protein Quality & DIAAS of 104 Foods — Amino Acid Comparison",
-        "home_desc": "Compare the protein quality (DIAAS), full essential amino-acid profiles, and methionine content of 104 common animal and plant foods. Search, filter, and compare proteins side by side.",
+        "home_title": "Protein Quality & DIAAS of 112 Foods — Amino Acid Comparison",
+        "home_desc": "Compare the protein quality (DIAAS), full essential amino-acid profiles, and methionine content of 112 common animal and plant foods. Search, filter, and compare proteins side by side.",
         "fdc_source": "USDA FoodData Central match", "band_label": "Methionine (mg/g protein)",
         "protein_label": "Protein content", "per_serving": "Protein per serving",
         "serving_note": "≈ per typical serving",
@@ -245,9 +245,9 @@ STR = {
     },
     "zh": {
         "site_name": "甲硫氨酸食物地图",
-        "tagline": "104 种常见食物的蛋白质量（DIAAS）与完整氨基酸谱。",
+        "tagline": "112 种常见食物的蛋白质量（DIAAS）与完整氨基酸谱。",
         "intro": (
-            "一个交互式双语参考工具，收录 104 种常见动物与植物性食物的甲硫氨酸含量、"
+            "一个交互式双语参考工具，收录 112 种常见动物与植物性食物的甲硫氨酸含量、"
             "完整必需氨基酸谱与蛋白质量（DIAAS）。可搜索、按分类筛选、并排对比，"
             "并探索「甲硫氨酸—DIAAS」分布图。氨基酸数值为每克蛋白质中的毫克数，"
             "来源于 USDA FoodData Central。"
@@ -272,8 +272,8 @@ STR = {
         "guides_intro": "按蛋白质量（DIAAS）、食物类别与甲硫氨酸含量整理的食物清单——快速找到完整蛋白、最佳植物蛋白等。",
         "bc_home": "首页", "bc_guides": "指南",
         "kw_protein": "蛋白质", "kw_amino": "氨基酸",
-        "home_title": "104 种食物的蛋白质量与 DIAAS — 氨基酸对比",
-        "home_desc": "对比 104 种常见动物与植物性食物的蛋白质量（DIAAS）、完整必需氨基酸谱与甲硫氨酸含量。可搜索、筛选并并排比较。",
+        "home_title": "112 种食物的蛋白质量与 DIAAS — 氨基酸对比",
+        "home_desc": "对比 112 种常见动物与植物性食物的蛋白质量（DIAAS）、完整必需氨基酸谱与甲硫氨酸含量。可搜索、筛选并并排比较。",
         "fdc_source": "USDA FoodData Central 匹配项", "band_label": "甲硫氨酸 (mg/g 蛋白)",
         "protein_label": "蛋白质含量", "per_serving": "每份蛋白质",
         "serving_note": "≈ 每份常见食用量",
