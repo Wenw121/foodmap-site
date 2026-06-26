@@ -150,7 +150,7 @@ QUALITY = {  # (min_diaas) -> key
 
 STR = {
     "en": {
-        "site_name": "Amino Acid Food Map",
+        "site_name": "Protein Map",
         "tagline": "Protein quality (DIAAS) and full amino-acid profiles of 112 common foods.",
         "intro": (
             "An interactive, bilingual reference for the full essential amino-acid "
@@ -245,7 +245,7 @@ STR = {
         ],
     },
     "zh": {
-        "site_name": "氨基酸食物地图",
+        "site_name": "蛋白质地图",
         "tagline": "112 种常见食物的蛋白质量（DIAAS）与完整氨基酸谱。",
         "intro": (
             "一个交互式双语参考工具，收录 112 种常见动物与植物性食物的完整必需氨基酸谱、"
