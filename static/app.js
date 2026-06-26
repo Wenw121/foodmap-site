@@ -1,4 +1,4 @@
-/* Methionine Food Map — progressive enhancement for the homepage.
+/* Amino Acid Food Map — progressive enhancement for the homepage.
    Search / category & band filter / column sort operate on the static table
    already in the DOM; compare + scatter read the inline JSON payload. */
 (function () {
@@ -26,6 +26,13 @@
   var bandHead = document.getElementById("bandHead");
   var aminoColHead = document.getElementById("aminoColHead");
   var noResults = document.getElementById("noResults");
+  var scatterHost = document.getElementById("scatter");
+  var scatterTitle = document.getElementById("scatterTitle");
+  var scatterTip = document.createElement("div");
+  scatterTip.className = "dot-tip";
+  scatterTip.hidden = true;
+  if (scatterHost) scatterHost.style.position = "relative";
+  var GROUP_COLOR = { Animal: "#b5532f", Plant: "#4a8a5c", Spice: "#c8932f", Special: "#6b6b70" };
 
   var curAmino = "met";
   var aminoSliderMax = 1;
@@ -93,6 +100,7 @@
       if (ok) shown++;
     });
     noResults.hidden = shown !== 0;
+    drawScatter();
   }
   search.addEventListener("input", applyFilters);
   catFilter.addEventListener("input", applyFilters);
@@ -189,53 +197,88 @@
     return s + "</tr>";
   }
 
-  /* ---------- scatter (vanilla SVG): X=met, Y=diaas ---------- */
-  var GROUP_COLOR = { Animal: "#b5532f", Plant: "#4a8a5c", Spice: "#c8932f", Special: "#6b6b70" };
-  function buildScatter() {
-    var host = document.getElementById("scatter");
-    if (!host) return;
-    var pts = FOODS.filter(function (f) { return f.met != null && f.diaas != null; });
-    if (!pts.length) { host.remove(); return; }
+  /* ---------- scatter (vanilla SVG): X = selected amino acid, Y = DIAAS.
+     Driven by the *visible* table rows so it tracks every filter. ---------- */
+  function niceStep(maxv) {
+    if (maxv <= 12) return 2;
+    if (maxv <= 30) return 5;
+    if (maxv <= 70) return 10;
+    return 20;
+  }
+  function drawScatter() {
+    if (!scatterHost) return;
+    var xLabel = aminoLabel(curAmino);
+    if (scatterTitle) scatterTitle.textContent = xLabel + " vs " + UI.scatterY;
+
+    var pts = [];
+    rows.forEach(function (tr) {
+      if (tr.hidden) return;
+      var x = aa(tr, curAmino);
+      var y = parseFloat(tr.dataset.diaas);
+      if (x === null || isNaN(y)) return;
+      var f = BY_SLUG[tr.dataset.slug] || {};
+      pts.push({ x: x, y: y, slug: tr.dataset.slug, name: nameOf(f), group: f.group });
+    });
+    if (!pts.length) {
+      scatterHost.innerHTML = '<p class="scatter-empty hint">' + esc(UI.na) + "</p>";
+      return;
+    }
+
     var W = 820, H = 460, m = { t: 16, r: 16, b: 48, l: 52 };
     var iw = W - m.l - m.r, ih = H - m.t - m.b;
-    var xs = pts.map(function (p) { return p.met; });
-    var ys = pts.map(function (p) { return p.diaas; });
-    var xmax = Math.max.apply(null, xs) * 1.05;
+    var xs = pts.map(function (p) { return p.x; });
+    var ys = pts.map(function (p) { return p.y; });
+    var xmax = Math.max.apply(null, xs) * 1.05 || 1;
     var ymin = Math.min.apply(null, ys) - 5, ymax = Math.max.apply(null, ys) + 5;
+    if (ymax - ymin < 1) ymax = ymin + 1;
     function X(v) { return m.l + (v / xmax) * iw; }
     function Y(v) { return m.t + ih - ((v - ymin) / (ymax - ymin)) * ih; }
 
-    var svg = ['<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(UI.scatterX) + ' vs ' + esc(UI.scatterY) + '">'];
-    // axes
+    var svg = ['<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(xLabel) + ' vs ' + esc(UI.scatterY) + '">'];
     svg.push(line(m.l, m.t + ih, m.l + iw, m.t + ih));
     svg.push(line(m.l, m.t, m.l, m.t + ih));
-    // x ticks
-    for (var gx = 0; gx <= xmax; gx += 20) {
+    var xStep = niceStep(xmax);
+    for (var gx = 0; gx <= xmax; gx += xStep) {
       svg.push(line(X(gx), m.t + ih, X(gx), m.t + ih + 5));
       svg.push(txt(X(gx), m.t + ih + 18, gx, "middle"));
     }
-    // y ticks
     for (var gy = Math.ceil(ymin / 20) * 20; gy <= ymax; gy += 20) {
       svg.push(line(m.l - 5, Y(gy), m.l, Y(gy)));
       svg.push(txt(m.l - 9, Y(gy) + 4, gy, "end"));
     }
-    svg.push(txt(m.l + iw / 2, H - 6, UI.scatterX, "middle", "axis"));
-    svg.push('<text x="' + (16) + '" y="' + (m.t + ih / 2) + '" transform="rotate(-90 16 ' + (m.t + ih / 2) + ')" text-anchor="middle" class="axis">' + esc(UI.scatterY) + "</text>");
-    // points
+    svg.push(txt(m.l + iw / 2, H - 6, xLabel, "middle", "axis"));
+    svg.push('<text x="16" y="' + (m.t + ih / 2) + '" transform="rotate(-90 16 ' + (m.t + ih / 2) + ')" text-anchor="middle" class="axis">' + esc(UI.scatterY) + "</text>");
     pts.forEach(function (p) {
       var c = GROUP_COLOR[p.group] || "#888";
-      svg.push('<circle class="dot" cx="' + X(p.met).toFixed(1) + '" cy="' + Y(p.diaas).toFixed(1) +
-        '" r="5" fill="' + c + '" fill-opacity="0.78" data-slug="' + p.slug + '"><title>' +
-        esc(nameOf(p)) + " · Met " + p.met + " · DIAAS " + p.diaas + "</title></circle>");
+      svg.push('<circle class="dot" cx="' + X(p.x).toFixed(1) + '" cy="' + Y(p.y).toFixed(1) +
+        '" r="5" fill="' + c + '" fill-opacity="0.78" data-slug="' + p.slug +
+        '" data-name="' + esc(p.name) + '" data-x="' + p.x + '" data-y="' + p.y + '"><title>' +
+        esc(p.name) + " · " + esc(xLabel) + " " + p.x + " · " + esc(UI.scatterY) + " " + p.y + "</title></circle>");
     });
     svg.push("</svg>");
-    host.innerHTML = svg.join("");
+    scatterHost.innerHTML = svg.join("");
+    scatterHost.appendChild(scatterTip);
+    scatterTip.hidden = true;
 
-    host.querySelectorAll(".dot").forEach(function (d) {
-      d.addEventListener("click", function () {
-        location.href = "foods/" + d.dataset.slug + "/";
-      });
+    scatterHost.querySelectorAll(".dot").forEach(function (d) {
+      d.addEventListener("click", function () { location.href = "foods/" + d.dataset.slug + "/"; });
+      d.addEventListener("mouseenter", showTip);
+      d.addEventListener("mousemove", showTip);
+      d.addEventListener("mouseleave", hideTip);
     });
+
+    function showTip(e) {
+      var d = e.currentTarget;
+      scatterTip.innerHTML = "<strong>" + esc(d.getAttribute("data-name")) + "</strong><br>" +
+        esc(xLabel) + " " + d.dataset.x + " · " + esc(UI.scatterY) + " " + d.dataset.y;
+      var hr = scatterHost.getBoundingClientRect();
+      var x = e.clientX - hr.left + 12, y = e.clientY - hr.top + 12;
+      if (x > hr.width - 150) x = hr.width - 150;
+      scatterTip.style.left = Math.max(4, x) + "px";
+      scatterTip.style.top = y + "px";
+      scatterTip.hidden = false;
+    }
+    function hideTip() { scatterTip.hidden = true; }
 
     function line(x1, y1, x2, y2) {
       return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="#ccc7bd" stroke-width="1"/>';
@@ -252,5 +295,5 @@
     });
   }
 
-  buildScatter();
+  drawScatter();
 })();

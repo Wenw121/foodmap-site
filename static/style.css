@@ -108,7 +108,16 @@ h2 { font-size: 1.4rem; margin: 36px 0 8px; }
   border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
 #scatter svg { display: block; width: 100%; height: auto; }
 .dot { cursor: pointer; transition: opacity .12s ease; }
-.dot:hover { fill-opacity: 1 !important; }
+.dot:hover { fill-opacity: 1 !important; stroke: #2b2b2b; stroke-width: 1.5; }
+.scatter-empty { padding: 28px 16px; text-align: center; }
+.dot-tip {
+  position: absolute; z-index: 5; pointer-events: none;
+  max-width: 180px; padding: 6px 9px;
+  background: var(--text, #2b2b2b); color: #fff;
+  font-size: 12px; line-height: 1.35; border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.22);
+}
+.dot-tip strong { font-weight: 600; }
 
 /* ---------- table ---------- */
 .table-wrap { overflow-x: auto; margin-top: 20px; border-radius: var(--r-lg);
