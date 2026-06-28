@@ -16,7 +16,7 @@
 <article class="food">
   <header class="food-head">
     <h1>{{ name }}</h1>
-    <p class="alt-name">{{ alt_name }}</p>
+    {% if lang == 'zh' %}<p class="alt-name">{{ alt_name }}</p>{% endif %}
     <p class="meta">
       <span class="cat">{{ category }}</span>
       <span class="badge band-{{ food.band }}">{{ band_label }}</span>

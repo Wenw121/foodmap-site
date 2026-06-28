@@ -76,7 +76,7 @@
           data-aa-lys="{{ f.amino_full.Lys }}">
         <td class="name">
           <a href="{{ SITE_URL }}/{{ lang }}/foods/{{ f.slug }}/">{{ f.name_en if lang=='en' else f.name_zh }}</a>
-          <span class="alt">{{ f.name_zh if lang=='en' else f.name_en }}</span>
+          {% if lang == 'zh' %}<span class="alt">{{ f.name_en }}</span>{% endif %}
         </td>
         <td class="cat-cell">{{ (f.category_en if lang=='en' else f.category_zh).split('·')[0]|trim }}</td>
         <td class="num">{{ f.protein_g_100g or s.na }}</td>
