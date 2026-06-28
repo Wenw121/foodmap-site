@@ -13,10 +13,13 @@
   --lower: #4f8a5f;
   --intermediate: #bd8b2c;
   --higher: #b1543a;
-  /* sequential single-hue ramp for the amino heatmap (magnitude, not good/bad) */
-  --heat-1: rgba(191, 141, 46, .12);
-  --heat-2: rgba(191, 141, 46, .27);
-  --heat-3: rgba(191, 141, 46, .46);
+  /* vibrant traffic-light ramp for the amino heatmap: green = low, red = high */
+  --heat-1: rgba(34, 180, 112, .30);
+  --heat-2: rgba(248, 182, 36, .40);
+  --heat-3: rgba(236, 72, 56, .34);
+  --heat-1-hi: rgba(34, 180, 112, .46);
+  --heat-2-hi: rgba(248, 182, 36, .56);
+  --heat-3-hi: rgba(236, 72, 56, .50);
   --maxw: 1140px;
   --r-sm: 8px;
   --r-md: 13px;
@@ -138,9 +141,12 @@ td.name .alt { display: block; color: var(--faint); font-size: .8rem; font-weigh
 .amino-note .ramp.r3 { background: var(--heat-3); }
 
 td.aa { font-variant-numeric: tabular-nums; }
-td.cell-lower { background: var(--heat-1); }
-td.cell-intermediate { background: var(--heat-2); }
-td.cell-higher { background: var(--heat-3); }
+td.cell-lower { background: var(--heat-1); }       /* green = low */
+td.cell-intermediate { background: var(--heat-2); } /* amber = mid */
+td.cell-higher { background: var(--heat-3); }       /* red = high */
+#foodTable tbody tr:hover td.cell-lower { background: var(--heat-1-hi); }
+#foodTable tbody tr:hover td.cell-intermediate { background: var(--heat-2-hi); }
+#foodTable tbody tr:hover td.cell-higher { background: var(--heat-3-hi); }
 th.aacol { text-align: right; }
 .cat-cell { color: var(--muted); white-space: nowrap; }
 
