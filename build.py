@@ -150,6 +150,52 @@ ABBREVS = [
      "可消化必需氨基酸评分（衡量蛋白质量的指标）"),
 ]
 
+# single-amino-acid topic pages (long-tail SEO: "foods high in X" / "富含X的食物")
+AMINO_TOPICS = [
+    {"key": "met", "slug": "methionine", "code": "Met",
+     "name_en": "Methionine", "name_zh": "甲硫氨酸（蛋氨酸）",
+     "blurb_en": "Methionine is an essential, sulfur-containing amino acid found in dietary protein. The table below ranks 112 common foods by their methionine content per gram of protein, highest first.",
+     "blurb_zh": "甲硫氨酸（蛋氨酸）是一种含硫必需氨基酸，存在于膳食蛋白中。下表按每克蛋白中的甲硫氨酸含量，对 112 种常见食物从高到低排序。"},
+    {"key": "lys", "slug": "lysine", "code": "Lys",
+     "name_en": "Lysine", "name_zh": "赖氨酸",
+     "blurb_en": "Lysine is an essential amino acid that is often the limiting amino acid in cereal grains. The table ranks 112 common foods by lysine per gram of protein, highest first.",
+     "blurb_zh": "赖氨酸是一种必需氨基酸，在谷物中往往是限制性氨基酸。下表按每克蛋白中的赖氨酸含量，对 112 种常见食物从高到低排序。"},
+    {"key": "leu", "slug": "leucine", "code": "Leu",
+     "name_en": "Leucine", "name_zh": "亮氨酸",
+     "blurb_en": "Leucine is an essential branched-chain amino acid (BCAA). The table ranks 112 common foods by leucine per gram of protein, highest first.",
+     "blurb_zh": "亮氨酸是一种必需支链氨基酸（BCAA）。下表按每克蛋白中的亮氨酸含量，对 112 种常见食物从高到低排序。"},
+    {"key": "bcaa", "slug": "bcaa", "code": "BCAA",
+     "name_en": "BCAAs", "name_zh": "支链氨基酸",
+     "blurb_en": "The branched-chain amino acids (BCAAs) are leucine, isoleucine and valine. The table ranks 112 common foods by total BCAAs per gram of protein, highest first.",
+     "blurb_zh": "支链氨基酸（BCAA）指亮氨酸、异亮氨酸和缬氨酸。下表按每克蛋白中的支链氨基酸总量，对 112 种常见食物从高到低排序。"},
+    {"key": "arg", "slug": "arginine", "code": "Arg",
+     "name_en": "Arginine", "name_zh": "精氨酸",
+     "blurb_en": "Arginine is a conditionally essential amino acid found in dietary protein. The table ranks 112 common foods by arginine per gram of protein, highest first.",
+     "blurb_zh": "精氨酸是一种条件必需氨基酸，存在于膳食蛋白中。下表按每克蛋白中的精氨酸含量，对 112 种常见食物从高到低排序。"},
+    {"key": "gly", "slug": "glycine", "code": "Gly",
+     "name_en": "Glycine", "name_zh": "甘氨酸",
+     "blurb_en": "Glycine is the simplest amino acid and is especially abundant in collagen-rich foods. The table ranks 112 common foods by glycine per gram of protein, highest first.",
+     "blurb_zh": "甘氨酸是结构最简单的氨基酸，在富含胶原蛋白的食物中尤其丰富。下表按每克蛋白中的甘氨酸含量，对 112 种常见食物从高到低排序。"},
+    {"key": "cys", "slug": "cysteine", "code": "Cys",
+     "name_en": "Cysteine", "name_zh": "半胱氨酸",
+     "blurb_en": "Cysteine is a sulfur-containing amino acid (conditionally essential). The table ranks 112 common foods by cysteine per gram of protein, highest first.",
+     "blurb_zh": "半胱氨酸是一种含硫氨基酸（条件必需）。下表按每克蛋白中的半胱氨酸含量，对 112 种常见食物从高到低排序。"},
+]
+_TOPIC_FULL_KEY = {"met": "Met", "cys": "Cys", "leu": "Leu", "arg": "Arg", "gly": "Gly", "lys": "Lys"}
+_HEAT_STOPS = [(125, 205, 135), (250, 224, 120), (242, 140, 130)]
+
+def topic_raw(f, key):
+    return f.get("BCAA") if key == "bcaa" else f["amino_full"].get(_TOPIC_FULL_KEY[key])
+
+def heat_color(t):
+    t = 0.0 if t < 0 else 1.0 if t > 1 else t
+    seg = 0 if t <= 0.5 else 1
+    lt = t / 0.5 if t <= 0.5 else (t - 0.5) / 0.5
+    a, b = _HEAT_STOPS[seg], _HEAT_STOPS[seg + 1]
+    return "rgb(%d,%d,%d)" % (round(a[0] + (b[0] - a[0]) * lt),
+                              round(a[1] + (b[1] - a[1]) * lt),
+                              round(a[2] + (b[2] - a[2]) * lt))
+
 # per-food data-source label (drives the attribution line on each food page)
 SOURCE_LABEL = {
     "en": {"USDA": "USDA FoodData Central match",
@@ -193,6 +239,10 @@ STR = {
         "amino_group_label": "Amino acids (mg/g protein)",
         "scale_low": "low", "scale_high": "high",
         "abbr_title": "Abbreviations",
+        "home_amino_browse_title": "Browse by amino acid",
+        "unit_short": "mg/g protein",
+        "amino_topic_note": "Ranked highest first; values are mg per gram of protein. Click a food for its full amino-acid profile.",
+        "amino_topic_all": "← See all 112 foods",
         "no_results": "No foods match your filters.", "view": "View",
         "back_home": "← All foods", "amino_profile": "Full amino-acid profile",
         "th_value": "mg/g protein", "essential": "Essential",
@@ -290,6 +340,10 @@ STR = {
         "amino_group_label": "氨基酸（mg/g 蛋白）",
         "scale_low": "低", "scale_high": "高",
         "abbr_title": "缩写说明",
+        "home_amino_browse_title": "按氨基酸浏览",
+        "unit_short": "mg/g 蛋白",
+        "amino_topic_note": "按从高到低排序；数值为每克蛋白中的毫克数。点击食物可查看完整氨基酸谱。",
+        "amino_topic_all": "← 查看全部 112 种食物",
         "no_results": "没有符合筛选条件的食物。", "view": "查看",
         "back_home": "← 全部食物", "amino_profile": "完整氨基酸谱",
         "th_value": "mg/g 蛋白", "essential": "必需",
@@ -665,6 +719,9 @@ def build():
             **base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s, foods=ordered,
             categories=categories, amino_filter=AMINO_FILTER, amino_cols=AMINO_COLS,
             abbrevs=ABBREVS, nav=nav_urls(lang),
+            amino_topics=[{"url": page_url(lang, "amino/" + t["slug"]),
+                           "name": t["name_en"] if lang == "en" else t["name_zh"]}
+                          for t in AMINO_TOPICS],
             canonical=home_url(lang), alt_urls={l: home_url(l) for l in LANGS},
             client_data=json.dumps(client_foods, ensure_ascii=False),
             ui_json=json.dumps({"lang": lang, "band": s["band"], "compareMax": 4,
@@ -776,6 +833,50 @@ def build():
                             alt_urls={l: page_url(l, "references") for l in LANGS}),
             encoding="utf-8")
 
+    # single-amino-acid topic pages (long-tail SEO)
+    amino_tpl = env.get_template("amino.html")
+    for topic in AMINO_TOPICS:
+        key = topic["key"]
+        ranked = [f for f in foods if to_float(topic_raw(f, key)) is not None]
+        ranked.sort(key=lambda f: to_float(topic_raw(f, key)), reverse=True)
+        vals = sorted(to_float(topic_raw(f, key)) for f in ranked)
+        n = len(vals)
+        for lang in LANGS:
+            s = STR[lang]
+            name = topic["name_en"] if lang == "en" else topic["name_zh"]
+            rows = []
+            for f in ranked:
+                v = to_float(topic_raw(f, key))
+                idx = sum(1 for x in vals if x < v)
+                t = idx / (n - 1) if n > 1 else 0.5
+                rows.append({
+                    "name": f["name_en"] if lang == "en" else f["name_zh"],
+                    "url": food_url(lang, f["slug"]),
+                    "cat": (f["category_en"] if lang == "en" else f["category_zh"]).split("·")[0].strip(),
+                    "value": topic_raw(f, key), "color": heat_color(t),
+                    "protein": f.get("protein_g_100g") or s["na"],
+                    "diaas": f.get("diaas") or s["na"],
+                })
+            if lang == "en":
+                title = f"Foods high in {name} — {name} per gram of protein (112 foods)"
+                h1 = f"{name} content of foods"
+                desc = (f"{name} content of 112 common animal and plant foods, ranked per "
+                        f"gram of protein, with DIAAS protein-quality scores. Data from USDA and FSANZ.")
+            else:
+                title = f"富含{name}的食物 — 每克蛋白{name}含量（112 种食物）"
+                h1 = f"食物中的{name}含量"
+                desc = (f"112 种常见动物与植物性食物的{name}含量（每克蛋白）排行，"
+                        f"附 DIAAS 蛋白质量评分。数据来自 USDA 与 FSANZ。")
+            out = OUT / lang / "amino" / topic["slug"]
+            out.mkdir(parents=True, exist_ok=True)
+            (out / "index.html").write_text(
+                amino_tpl.render(**base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s,
+                                 nav=nav_urls(lang), canonical=page_url(lang, f"amino/{topic['slug']}"),
+                                 alt_urls={l: page_url(l, f"amino/{topic['slug']}") for l in LANGS},
+                                 title=title, h1=h1, description=desc, blurb=topic["blurb_en"] if lang == "en" else topic["blurb_zh"],
+                                 code=topic["code"], rows=rows),
+                encoding="utf-8")
+
     # guide / hub pages + guides index
     hub_tpl = env.get_template("hub.html")
     guides_tpl = env.get_template("guides_index.html")
@@ -844,6 +945,8 @@ def write_sitemap(foods):
     entry({l: guides_index_url(l) for l in LANGS})
     for h in HUBS:
         entry({l: guide_url(l, h["slug"]) for l in LANGS})
+    for t in AMINO_TOPICS:
+        entry({l: page_url(l, "amino/" + t["slug"]) for l in LANGS})
     for f in foods:
         entry({l: food_url(l, f["slug"]) for l in LANGS})
     lines.append("</urlset>")

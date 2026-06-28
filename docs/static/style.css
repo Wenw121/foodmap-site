@@ -152,6 +152,21 @@ th.aacol { text-align: right; }
 #foodTable thead tr.cols th.colname { position: sticky; left: 0; z-index: 3; }
 #foodTable tbody tr:hover td.name { background: var(--bg-tint); }
 
+/* ---------- browse by amino acid ---------- */
+.amino-browse { margin-top: 34px; }
+.amino-links { list-style: none; padding: 0; margin: 12px 0 0;
+  display: flex; flex-wrap: wrap; gap: 9px; }
+.amino-links a { display: inline-block; border: 1px solid var(--line-strong);
+  border-radius: 999px; padding: 7px 16px; font-size: .92rem; background: var(--surface);
+  color: var(--ink); transition: all .16s ease; box-shadow: var(--shadow-sm); }
+.amino-links a:hover { border-color: var(--accent); color: var(--accent);
+  background: var(--accent-soft); transform: translateY(-1px); }
+
+/* topic page table reuses heatmap cell colour via inline style */
+.amino-topic { max-width: 70ch; }
+.topic-table td.aa { font-variant-numeric: tabular-nums; }
+.amino-topic-back { margin-top: 16px; }
+
 /* ---------- abbreviations key ---------- */
 .abbr-wrap { margin-top: 38px; }
 .abbr-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

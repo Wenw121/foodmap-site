@@ -94,6 +94,15 @@
   <p id="noResults" class="no-results" hidden>{{ s.no_results }}</p>
 </section>
 
+<section class="amino-browse">
+  <h2>{{ s.home_amino_browse_title }}</h2>
+  <ul class="amino-links">
+    {% for a in amino_topics %}
+    <li><a href="{{ a.url }}">{{ a.name }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+
 <section class="abbr-wrap">
   <h2>{{ s.abbr_title }}</h2>
   <dl class="abbr-list">

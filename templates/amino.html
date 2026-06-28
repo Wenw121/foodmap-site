@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} | {{ s.site_name }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block content %}
+<p class="crumb"><a href="{{ SITE_URL }}/{{ lang }}/">{{ s.back_home }}</a></p>
+
+<article class="prose amino-topic">
+  <h1>{{ h1 }}</h1>
+  <p>{{ blurb }}</p>
+  <p class="hint">{{ s.amino_topic_note }}</p>
+</article>
+
+<section class="table-wrap">
+  <table class="topic-table">
+    <thead>
+      <tr>
+        <th scope="col">{{ s.th_food }}</th>
+        <th scope="col">{{ s.th_category }}</th>
+        <th class="num" scope="col">{{ code }} <small>{{ s.unit_short }}</small></th>
+        <th class="num" scope="col">{{ s.th_protein }}</th>
+        <th class="num" scope="col">{{ s.th_diaas }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td class="name"><a href="{{ r.url }}">{{ r.name }}</a></td>
+        <td class="cat-cell">{{ r.cat }}</td>
+        <td class="num aa" style="background:{{ r.color }}">{{ r.value }}</td>
+        <td class="num">{{ r.protein }}</td>
+        <td class="num">{{ r.diaas }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<p class="hint amino-topic-back"><a href="{{ nav.foods }}">{{ s.amino_topic_all }}</a></p>
+{% endblock %}

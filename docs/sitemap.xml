@@ -121,6 +121,90 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/lower-methionine-foods/"/>
   </url>
   <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/amino/methionine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/methionine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/methionine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/methionine/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/amino/methionine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/methionine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/methionine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/methionine/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/amino/lysine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/lysine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/lysine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/lysine/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/amino/lysine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/lysine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/lysine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/lysine/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/amino/leucine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/leucine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/leucine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/leucine/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/amino/leucine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/leucine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/leucine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/leucine/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/amino/bcaa/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/bcaa/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/bcaa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/bcaa/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/amino/bcaa/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/bcaa/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/bcaa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/bcaa/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/amino/arginine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/arginine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/arginine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/arginine/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/amino/arginine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/arginine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/arginine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/arginine/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/amino/glycine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/glycine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/glycine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/glycine/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/amino/glycine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/glycine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/glycine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/glycine/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/amino/cysteine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/cysteine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/cysteine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/cysteine/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/amino/cysteine/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/amino/cysteine/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/amino/cysteine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/amino/cysteine/"/>
+  </url>
+  <url>
     <loc>https://wenw121.github.io/foodmap-site/en/foods/almonds/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/foods/almonds/"/>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/foods/almonds/"/>
