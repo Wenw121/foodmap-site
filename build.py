@@ -105,7 +105,7 @@ FULL_AMINOS = [
     ("Ile", "Isoleucine (Ile)", "异亮氨酸 (Ile)", True),
     ("Leu", "Leucine (Leu)", "亮氨酸 (Leu)", True),
     ("Lys", "Lysine (Lys)", "赖氨酸 (Lys)", True),
-    ("Met", "Methionine (Met)", "甲硫氨酸 (Met)", True),
+    ("Met", "Methionine (Met)", "甲硫氨酸/蛋氨酸 (Met)", True),
     ("Cys", "Cysteine (Cys)", "半胱氨酸 (Cys)", False),
     ("Phe", "Phenylalanine (Phe)", "苯丙氨酸 (Phe)", True),
     ("Tyr", "Tyrosine (Tyr)", "酪氨酸 (Tyr)", False),
@@ -138,7 +138,7 @@ AMINO_COLS = [
 
 # plain-language key for the abbreviations used in the table (code, en, zh)
 ABBREVS = [
-    ("Met", "Methionine", "甲硫氨酸"),
+    ("Met", "Methionine", "甲硫氨酸（蛋氨酸）"),
     ("Cys", "Cysteine", "半胱氨酸"),
     ("Leu", "Leucine", "亮氨酸"),
     ("BCAA", "Branched-chain amino acids (leucine + isoleucine + valine)",
@@ -205,6 +205,8 @@ STR = {
         "guides_intro": "Curated lists of foods by protein quality (DIAAS), food group, and methionine content — a quick way to find complete proteins, the best plant proteins, and more.",
         "bc_home": "Home", "bc_guides": "Guides",
         "kw_protein": "protein", "kw_amino": "amino acids",
+        "kw_amino_content": "amino acid content",
+        "home_h1": "Amino acid content & DIAAS protein quality of 112 foods",
         "home_title": "Protein Quality & DIAAS of 112 Foods — Amino Acid Comparison",
         "home_desc": "Compare the protein quality (DIAAS), full essential amino-acid profiles, and methionine content of 112 common animal and plant foods. Search, filter, and compare proteins side by side.",
         "fdc_source": "USDA FoodData Central match", "band_label": "Methionine (mg/g protein)",
@@ -300,6 +302,8 @@ STR = {
         "guides_intro": "按蛋白质量（DIAAS）、食物类别与甲硫氨酸含量整理的食物清单——快速找到完整蛋白、最佳植物蛋白等。",
         "bc_home": "首页", "bc_guides": "指南",
         "kw_protein": "蛋白质", "kw_amino": "氨基酸",
+        "kw_amino_content": "氨基酸含量",
+        "home_h1": "112 种食物的氨基酸含量与 DIAAS 蛋白质量",
         "home_title": "112 种食物的蛋白质量与 DIAAS — 氨基酸对比",
         "home_desc": "对比 112 种常见动物与植物性食物的蛋白质量（DIAAS）、完整必需氨基酸谱与甲硫氨酸含量。可搜索、筛选并并排比较。",
         "fdc_source": "USDA FoodData Central 匹配项", "band_label": "甲硫氨酸 (mg/g 蛋白)",
