@@ -17,27 +17,13 @@
   var rows = Array.prototype.slice.call(tbody.querySelectorAll("tr"));
   var search = document.getElementById("searchBox");
   var catFilter = document.getElementById("catFilter");
-  var aminoSelect = document.getElementById("aminoSelect");
-  var aminoMax = document.getElementById("aminoMax");
-  var diaasMin = document.getElementById("diaasMin");
-  var aminoMaxLabel = document.getElementById("aminoMaxLabel");
-  var diaasMinLabel = document.getElementById("diaasMinLabel");
-  var presetBtn = document.getElementById("presetHiLo");
   var noResults = document.getElementById("noResults");
-  /* amino columns shown all at once in the table; the selector below
-     highlights one column and drives the amino slider/preset. */
+  /* the table shows all amino columns at once, each shaded by its own tertiles */
   var AMINO_COL_KEYS = ["met", "cys", "leu", "bcaa", "arg", "gly", "lys"];
-
-  var curAmino = "all";
-  var aminoSliderMax = 1;
 
   function aa(tr, key) {
     var v = parseFloat(tr.dataset["aa" + key.charAt(0).toUpperCase() + key.slice(1)]);
     return isNaN(v) ? null : v;
-  }
-  function aminoLabel(key) {
-    var o = UI.aminoOptions.filter(function (x) { return x.key === key; })[0];
-    return o ? o.label : key;
   }
   function tertiles(key) {
     var vals = rows.map(function (r) { return aa(r, key); })
@@ -62,44 +48,14 @@
       });
     });
   }
-  /* mark which amino column is currently emphasized by the selector */
-  function highlightCol(key) {
-    table.querySelectorAll("th.aacol").forEach(function (th) {
-      th.classList.toggle("col-active", th.dataset.amino === key);
-    });
-  }
-  /* the selector highlights one column and drives the amino slider/preset */
-  function updateAmino(key) {
-    curAmino = key;
-    var t = tertiles(key);
-    highlightCol(key);
-    aminoSliderMax = Math.ceil(t.max);
-    aminoMax.min = Math.floor(t.min);
-    aminoMax.max = aminoSliderMax;
-    aminoMax.step = 1;
-    aminoMax.value = aminoSliderMax;
-    updateLabels();
-  }
-  function updateLabels() {
-    aminoMaxLabel.textContent = UI.maxLabel + " " + aminoLabel(curAmino) + ": " + aminoMax.value + " " + UI.unit;
-    diaasMinLabel.textContent = UI.minDiaasLabel + ": " + diaasMin.value;
-    presetBtn.textContent = UI.presetLabel + " " + aminoLabel(curAmino);
-  }
-
-  /* ---------- filtering ---------- */
+  /* ---------- filtering (search + category) ---------- */
   function applyFilters() {
     var q = (search.value || "").trim().toLowerCase();
     var cat = catFilter.value;
-    var amax = parseFloat(aminoMax.value);
-    var dmin = parseFloat(diaasMin.value);
     var shown = 0;
     rows.forEach(function (tr) {
-      var av = aa(tr, curAmino);
-      var dv = parseFloat(tr.dataset.diaas);
-      var okAmino = (amax >= aminoSliderMax) || (av !== null && av <= amax);
-      var okDiaas = (dmin <= 0) || (!isNaN(dv) && dv >= dmin);
       var ok = (!q || tr.dataset.search.indexOf(q) !== -1) &&
-               (!cat || tr.dataset.cat === cat) && okAmino && okDiaas;
+               (!cat || tr.dataset.cat === cat);
       tr.hidden = !ok;
       if (ok) shown++;
     });
@@ -107,15 +63,6 @@
   }
   search.addEventListener("input", applyFilters);
   catFilter.addEventListener("input", applyFilters);
-  aminoSelect.addEventListener("change", function () { updateAmino(aminoSelect.value); applyFilters(); });
-  aminoMax.addEventListener("input", function () { updateLabels(); applyFilters(); });
-  diaasMin.addEventListener("input", function () { updateLabels(); applyFilters(); });
-  presetBtn.addEventListener("click", function () {
-    var t = tertiles(curAmino);
-    aminoMax.value = Math.round(t.lo);
-    diaasMin.value = Math.min(75, UI.diaasMax);
-    updateLabels(); applyFilters();
-  });
 
   /* ---------- sorting ---------- */
   var NUMERIC = { protein: 1, diaas: 1 };
@@ -146,9 +93,7 @@
   });
 
   /* init */
-  diaasMin.min = 0; diaasMin.max = UI.diaasMax; diaasMin.step = 1; diaasMin.value = 0;
   colorCells();
-  updateAmino("all");
   applyFilters();
 
   /* ---------- compare ---------- */

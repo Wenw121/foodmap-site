@@ -60,23 +60,6 @@
     <option value="Special · insect">Special · insect</option>
     <option value="Spice · seasoning">Spice · seasoning</option>
   </select>
-  <select id="aminoSelect" aria-label="amino acid">
-    <option value="all">All amino acids (total)</option>
-    <option value="met">Methionine</option>
-    <option value="cys">Cysteine</option>
-    <option value="gly">Glycine</option>
-    <option value="leu">Leucine</option>
-    <option value="bcaa">BCAA</option>
-    <option value="arg">Arginine</option>
-    <option value="lys">Lysine</option>
-  </select>
-</section>
-<section class="controls sliders" aria-label="range filters">
-  <label class="slider"><span id="aminoMaxLabel"></span>
-    <input type="range" id="aminoMax"></label>
-  <label class="slider"><span id="diaasMinLabel"></span>
-    <input type="range" id="diaasMin" min="0"></label>
-  <button type="button" id="presetHiLo" class="preset"></button>
 </section>
 <p class="hint research-cta"><a href="https://wenw121.github.io/foodmap-site/en/amino-acids-and-cancer-research/">Why these amino acids? Read the research background →</a></p>
 
@@ -86,7 +69,7 @@
   <button type="button" id="compareClear">Clear</button>
 </section>
 
-<p class="hint amino-note">Amino acids in mg per g protein. Cells shaded low → high within each column. Use the selector to highlight a column.</p>
+<p class="hint amino-note">Amino acids in mg per g protein. Cells are shaded low → high within each column. Click any column header to sort.</p>
 <section class="table-wrap">
   <table id="foodTable">
     <thead>

@@ -60,23 +60,6 @@
     <option value="Special · insect">特殊 · 昆虫</option>
     <option value="Spice · seasoning">香料 · 调味</option>
   </select>
-  <select id="aminoSelect" aria-label="amino acid">
-    <option value="all">全部氨基酸（总量）</option>
-    <option value="met">甲硫氨酸</option>
-    <option value="cys">半胱氨酸</option>
-    <option value="gly">甘氨酸</option>
-    <option value="leu">亮氨酸</option>
-    <option value="bcaa">支链氨基酸</option>
-    <option value="arg">精氨酸</option>
-    <option value="lys">赖氨酸</option>
-  </select>
-</section>
-<section class="controls sliders" aria-label="range filters">
-  <label class="slider"><span id="aminoMaxLabel"></span>
-    <input type="range" id="aminoMax"></label>
-  <label class="slider"><span id="diaasMinLabel"></span>
-    <input type="range" id="diaasMin" min="0"></label>
-  <button type="button" id="presetHiLo" class="preset"></button>
 </section>
 <p class="hint research-cta"><a href="https://wenw121.github.io/foodmap-site/zh/amino-acids-and-cancer-research/">为什么是这几种氨基酸？查看研究背景 →</a></p>
 
@@ -86,7 +69,7 @@
   <button type="button" id="compareClear">清除</button>
 </section>
 
-<p class="hint amino-note">氨基酸数值为每克蛋白中的毫克数。每列内按低 → 高着色。用上方选择器可高亮某一列。</p>
+<p class="hint amino-note">氨基酸数值为每克蛋白中的毫克数。每列内按低 → 高着色。点击任意表头即可排序。</p>
 <section class="table-wrap">
   <table id="foodTable">
     <thead>

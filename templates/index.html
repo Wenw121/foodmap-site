@@ -20,18 +20,6 @@
     <option value="{{ cat_en }}">{{ cat_en if lang == 'en' else cat_zh }}</option>
     {% endfor %}
   </select>
-  <select id="aminoSelect" aria-label="amino acid">
-    {% for k, en, zh in amino_filter %}
-    <option value="{{ k }}">{{ en if lang == 'en' else zh }}</option>
-    {% endfor %}
-  </select>
-</section>
-<section class="controls sliders" aria-label="range filters">
-  <label class="slider"><span id="aminoMaxLabel"></span>
-    <input type="range" id="aminoMax"></label>
-  <label class="slider"><span id="diaasMinLabel"></span>
-    <input type="range" id="diaasMin" min="0"></label>
-  <button type="button" id="presetHiLo" class="preset"></button>
 </section>
 <p class="hint research-cta"><a href="{{ nav.research }}">{{ s.home_research_cta }}</a></p>
 
