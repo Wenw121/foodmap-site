@@ -13,6 +13,10 @@
   --lower: #4f8a5f;
   --intermediate: #bd8b2c;
   --higher: #b1543a;
+  /* sequential single-hue ramp for the amino heatmap (magnitude, not good/bad) */
+  --heat-1: rgba(191, 141, 46, .12);
+  --heat-2: rgba(191, 141, 46, .27);
+  --heat-3: rgba(191, 141, 46, .46);
   --maxw: 1140px;
   --r-sm: 8px;
   --r-md: 13px;
@@ -100,7 +104,7 @@ table { border-collapse: collapse; width: 100%; background: var(--surface); }
 th, td { padding: 11px 14px; border-bottom: 1px solid var(--line); text-align: left; }
 tbody tr:last-child td { border-bottom: none; }
 th { background: var(--bg-tint); font-family: var(--sans); font-weight: 600;
-  white-space: nowrap; color: var(--ink); position: sticky; top: 0; }
+  white-space: nowrap; color: var(--ink); }
 th[data-sort] { cursor: pointer; user-select: none; transition: color .15s ease; }
 th[data-sort]:hover { color: var(--accent); }
 th[data-sort]::after { content: " ⇅"; color: var(--faint); font-size: .8em; }
@@ -108,7 +112,7 @@ th.sorted-asc::after { content: " ↑"; color: var(--accent); }
 th.sorted-desc::after { content: " ↓"; color: var(--accent); }
 td.num, th.num { text-align: right; }
 tbody tr { transition: background .14s ease; }
-tbody tr:hover { background: var(--accent-soft); }
+tbody tr:hover { background: var(--bg-tint); }
 td.name a { font-weight: 600; }
 td.name .alt { display: block; color: var(--faint); font-size: .8rem; font-weight: 400; }
 
@@ -123,15 +127,35 @@ td.name .alt { display: block; color: var(--faint); font-size: .8rem; font-weigh
 .band-higher { background: var(--higher); }
 
 /* ---------- amino heatmap columns ---------- */
-.amino-note { margin: 18px 0 -6px; }
+.amino-note { margin: 18px 0 -2px; display: flex; flex-wrap: wrap;
+  align-items: center; gap: 6px 18px; justify-content: space-between; }
+.amino-note .scale { display: inline-flex; align-items: center; gap: 5px;
+  font-size: .8rem; color: var(--faint); white-space: nowrap; }
+.amino-note .scale i { font-style: normal; }
+.amino-note .ramp { width: 20px; height: 11px; display: inline-block; border-radius: 2px; }
+.amino-note .ramp.r1 { background: var(--heat-1); }
+.amino-note .ramp.r2 { background: var(--heat-2); }
+.amino-note .ramp.r3 { background: var(--heat-3); }
+
 td.aa { font-variant-numeric: tabular-nums; }
-td.cell-lower { background: rgba(79, 138, 95, .14); }
-td.cell-intermediate { background: rgba(189, 139, 44, .15); }
-td.cell-higher { background: rgba(177, 84, 58, .16); }
+td.cell-lower { background: var(--heat-1); }
+td.cell-intermediate { background: var(--heat-2); }
+td.cell-higher { background: var(--heat-3); }
 th.aacol { text-align: right; }
-tbody tr:hover td.cell-lower { background: rgba(79, 138, 95, .22); }
-tbody tr:hover td.cell-intermediate { background: rgba(189, 139, 44, .24); }
-tbody tr:hover td.cell-higher { background: rgba(177, 84, 58, .25); }
+.cat-cell { color: var(--muted); white-space: nowrap; }
+
+/* grouped header over the amino columns */
+.group-row th { background: var(--bg-tint); border-bottom: none;
+  padding-top: 12px; padding-bottom: 2px; }
+.group-row th.aagroup { text-align: center; color: var(--muted); font-weight: 600;
+  font-size: .82rem; letter-spacing: .02em; border-bottom: 2px solid var(--line-strong); }
+
+/* sticky column header row + sticky first column for horizontal scroll on narrow screens */
+#foodTable { min-width: 880px; }
+#foodTable thead tr.cols th { position: sticky; top: 0; z-index: 2; }
+#foodTable td.name { position: sticky; left: 0; background: var(--surface); z-index: 1; }
+#foodTable thead tr.cols th.colname { position: sticky; left: 0; z-index: 3; }
+#foodTable tbody tr:hover td.name { background: var(--bg-tint); }
 
 /* ---------- abbreviations key ---------- */
 .abbr-wrap { margin-top: 38px; }

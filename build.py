@@ -175,12 +175,9 @@ STR = {
         "site_name": "Protein Map",
         "tagline": "Protein quality (DIAAS) and full amino-acid profiles of 112 common foods.",
         "intro": (
-            "An interactive, bilingual reference for the full essential amino-acid "
-            "profile, methionine and other amino acids studied in cancer metabolism, "
-            "and protein quality (DIAAS) of 112 common animal and plant foods. Search, "
-            "filter by category, compare foods side by side, and explore the amino-acid"
-            "-vs-DIAAS map. Amino-acid values are milligrams per gram of protein, from "
-            "USDA FoodData Central."
+            "Protein quality (DIAAS) and the full amino-acid profile of 112 common "
+            "animal and plant foods, side by side. Search, filter by category, and "
+            "sort any column."
         ),
         "search_ph": "Search a food (e.g. salmon, tofu)…",
         "all_categories": "All categories", "all_bands": "All methionine levels",
@@ -192,7 +189,9 @@ STR = {
         "compare_clear": "Clear", "scatter_title": "Amino acid vs DIAAS",
         "scatter_hint": "Each point is a food. X = the amino acid selected above (mg/g protein), Y = DIAAS. The map follows your filters. Hover for the name; click to open its page.",
         "grp_animal": "Animal", "grp_plant": "Plant", "grp_spice": "Spice", "grp_special": "Special",
-        "amino_cols_note": "Amino acids in mg per g protein. Cells are shaded low → high within each column. Click any column header to sort.",
+        "amino_cols_note": "Each amino-acid cell is shaded by its amount within that column. Click any column header to sort.",
+        "amino_group_label": "Amino acids (mg/g protein)",
+        "scale_low": "low", "scale_high": "high",
         "abbr_title": "Abbreviations",
         "no_results": "No foods match your filters.", "view": "View",
         "back_home": "← All foods", "amino_profile": "Full amino-acid profile",
@@ -273,10 +272,8 @@ STR = {
         "site_name": "蛋白质地图",
         "tagline": "112 种常见食物的蛋白质量（DIAAS）与完整氨基酸谱。",
         "intro": (
-            "一个交互式双语参考工具，收录 112 种常见动物与植物性食物的完整必需氨基酸谱、"
-            "甲硫氨酸及其他在癌症代谢研究中受关注的氨基酸，以及蛋白质量（DIAAS）。"
-            "可搜索、按分类筛选、并排对比，并探索「氨基酸—DIAAS」分布图。"
-            "氨基酸数值为每克蛋白质中的毫克数，来源于 USDA FoodData Central。"
+            "112 种常见动物与植物性食物的蛋白质量（DIAAS）与完整氨基酸谱，并排呈现。"
+            "可搜索、按分类筛选、点任意列排序。"
         ),
         "search_ph": "搜索食物（如 三文鱼、豆腐）…",
         "all_categories": "全部分类", "all_bands": "全部甲硫氨酸水平",
@@ -287,7 +284,9 @@ STR = {
         "compare_clear": "清除", "scatter_title": "氨基酸 vs DIAAS",
         "scatter_hint": "每个点代表一种食物。X = 上方所选氨基酸（mg/g 蛋白），Y = DIAAS。分布图会跟随筛选条件更新。悬停看名称，点击进入详情页。",
         "grp_animal": "动物", "grp_plant": "植物", "grp_spice": "香料", "grp_special": "特殊",
-        "amino_cols_note": "氨基酸数值为每克蛋白中的毫克数。每列内按低 → 高着色。点击任意表头即可排序。",
+        "amino_cols_note": "每个氨基酸格子按其在该列中的高低着色。点击任意表头即可排序。",
+        "amino_group_label": "氨基酸（mg/g 蛋白）",
+        "scale_low": "低", "scale_high": "高",
         "abbr_title": "缩写说明",
         "no_results": "没有符合筛选条件的食物。", "view": "查看",
         "back_home": "← 全部食物", "amino_profile": "完整氨基酸谱",

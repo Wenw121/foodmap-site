@@ -38,7 +38,7 @@
 <main class="container">
 <section class="hero">
   <h1>Protein Map</h1>
-  <p class="lede">An interactive, bilingual reference for the full essential amino-acid profile, methionine and other amino acids studied in cancer metabolism, and protein quality (DIAAS) of 112 common animal and plant foods. Search, filter by category, compare foods side by side, and explore the amino-acid-vs-DIAAS map. Amino-acid values are milligrams per gram of protein, from USDA FoodData Central.</p>
+  <p class="lede">Protein quality (DIAAS) and the full amino-acid profile of 112 common animal and plant foods, side by side. Search, filter by category, and sort any column.</p>
 </section>
 
 <section class="controls" aria-label="filters">
@@ -69,12 +69,24 @@
   <button type="button" id="compareClear">Clear</button>
 </section>
 
-<p class="hint amino-note">Amino acids in mg per g protein. Cells are shaded low → high within each column. Click any column header to sort.</p>
+<div class="amino-note hint">
+  <span>Each amino-acid cell is shaded by its amount within that column. Click any column header to sort.</span>
+  <span class="scale" aria-hidden="true">
+    <i>low</i>
+    <span class="ramp r1"></span><span class="ramp r2"></span><span class="ramp r3"></span>
+    <i>high</i>
+  </span>
+</div>
 <section class="table-wrap">
   <table id="foodTable">
     <thead>
-      <tr>
-        <th data-sort="name" scope="col">Food</th>
+      <tr class="group-row">
+        <th colspan="3"></th>
+        <th colspan="7" class="aagroup" scope="colgroup">Amino acids (mg/g protein)</th>
+        <th colspan="2"></th>
+      </tr>
+      <tr class="cols">
+        <th data-sort="name" class="colname" scope="col">Food</th>
         <th data-sort="cat" scope="col">Category</th>
         <th data-sort="protein" class="num" scope="col">Protein (g/100g)</th>
         <th data-sort="met" data-amino="met" class="num aacol" scope="col">Met</th>
@@ -107,7 +119,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/abalone/">Abalone</a>
           <span class="alt">鲍鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">17.1</td>
         <td class="num aa aa-met">22.6</td>
         <td class="num aa aa-cys">13.1</td>
@@ -139,7 +151,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/adzuki-beans/">Adzuki beans</a>
           <span class="alt">红豆</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">7.52</td>
         <td class="num aa aa-met">10.5</td>
         <td class="num aa aa-cys">9.3</td>
@@ -171,7 +183,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/almonds/">Almonds</a>
           <span class="alt">杏仁（巴旦木）</span>
         </td>
-        <td>Plant · nuts</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">21.15</td>
         <td class="num aa aa-met">7.4</td>
         <td class="num aa aa-cys">10.2</td>
@@ -203,7 +215,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/atlantic-salmon/">Atlantic salmon</a>
           <span class="alt">大西洋鲑鱼（三文鱼）</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">20.42</td>
         <td class="num aa aa-met">30.7</td>
         <td class="num aa aa-cys">10.7</td>
@@ -235,7 +247,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/bacon/">Bacon</a>
           <span class="alt">培根</span>
         </td>
-        <td>Animal · processed meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">35.73</td>
         <td class="num aa aa-met">22.3</td>
         <td class="num aa aa-cys">11.1</td>
@@ -267,7 +279,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/bamboo-shoots/">Bamboo shoots</a>
           <span class="alt">竹笋</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">2.6</td>
         <td class="num aa aa-met">11.5</td>
         <td class="num aa aa-cys">8.5</td>
@@ -299,7 +311,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/barley/">Barley</a>
           <span class="alt">大麦</span>
         </td>
-        <td>Plant · grains</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">9.91</td>
         <td class="num aa aa-met">19.2</td>
         <td class="num aa aa-cys">22.1</td>
@@ -331,7 +343,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/beef-liver/">Beef liver</a>
           <span class="alt">牛肝</span>
         </td>
-        <td>Animal · red meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">20.36</td>
         <td class="num aa aa-met">26.7</td>
         <td class="num aa aa-cys">18.5</td>
@@ -363,7 +375,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/beef-sirloin/">Beef sirloin</a>
           <span class="alt">牛西冷</span>
         </td>
-        <td>Animal · red meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">19.7</td>
         <td class="num aa aa-met">25.6</td>
         <td class="num aa aa-cys">9.7</td>
@@ -395,7 +407,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/black-beans/">Black beans</a>
           <span class="alt">黑豆</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">21.6</td>
         <td class="num aa aa-met">15.0</td>
         <td class="num aa aa-cys">10.9</td>
@@ -427,7 +439,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/bok-choy/">Bok choy (pak choi)</a>
           <span class="alt">青江菜</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">1.5</td>
         <td class="num aa aa-met">6.0</td>
         <td class="num aa aa-cys">11.3</td>
@@ -459,7 +471,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/brazil-nuts/">Brazil nuts</a>
           <span class="alt">巴西坚果</span>
         </td>
-        <td>Plant · nuts</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">14.32</td>
         <td class="num aa aa-met">78.5</td>
         <td class="num aa aa-cys">21.4</td>
@@ -491,7 +503,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/bream/">Bream</a>
           <span class="alt">黑鲷</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">19.6</td>
         <td class="num aa aa-met">29.5</td>
         <td class="num aa aa-cys">10.9</td>
@@ -523,7 +535,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/broccoli/">Broccoli</a>
           <span class="alt">西兰花</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">2.82</td>
         <td class="num aa aa-met">13.5</td>
         <td class="num aa aa-cys">9.9</td>
@@ -555,7 +567,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/brown-rice/">Brown rice</a>
           <span class="alt">糙米</span>
         </td>
-        <td>Plant · grains</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">7.54</td>
         <td class="num aa aa-met">23.7</td>
         <td class="num aa aa-cys">12.7</td>
@@ -587,7 +599,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/buckwheat/">Buckwheat</a>
           <span class="alt">荞麦</span>
         </td>
-        <td>Plant · grains</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">13.25</td>
         <td class="num aa aa-met">13.0</td>
         <td class="num aa aa-cys">17.3</td>
@@ -619,7 +631,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/cashews/">Cashews</a>
           <span class="alt">腰果</span>
         </td>
-        <td>Plant · nuts</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">18.22</td>
         <td class="num aa aa-met">19.9</td>
         <td class="num aa aa-cys">21.6</td>
@@ -651,7 +663,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/cheddar-cheese/">Cheddar cheese</a>
           <span class="alt">切达奶酪</span>
         </td>
-        <td>Animal · whey/dairy</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">24.25</td>
         <td class="num aa aa-met">24.2</td>
         <td class="num aa aa-cys">5.9</td>
@@ -683,7 +695,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/chia-seeds/">Chia seeds</a>
           <span class="alt">奇亚籽</span>
         </td>
-        <td>Plant · seeds</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">16.54</td>
         <td class="num aa aa-met">35.6</td>
         <td class="num aa aa-cys">24.6</td>
@@ -715,7 +727,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/chicken-breast/">Chicken breast</a>
           <span class="alt">鸡胸肉</span>
         </td>
-        <td>Animal · poultry</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">20.85</td>
         <td class="num aa aa-met">27.0</td>
         <td class="num aa aa-cys">13.1</td>
@@ -747,7 +759,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/chicken-thigh/">Chicken thigh</a>
           <span class="alt">鸡腿肉</span>
         </td>
-        <td>Animal · poultry</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">16.52</td>
         <td class="num aa aa-met">26.5</td>
         <td class="num aa aa-cys">11.1</td>
@@ -779,7 +791,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/chickpeas/">Chickpeas</a>
           <span class="alt">鹰嘴豆</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">20.47</td>
         <td class="num aa aa-met">13.2</td>
         <td class="num aa aa-cys">13.6</td>
@@ -811,7 +823,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/cinnamon-ground/">Cinnamon (ground)</a>
           <span class="alt">肉桂粉</span>
         </td>
-        <td>Spice · seasoning</td>
+        <td class="cat-cell">Spice</td>
         <td class="num">3.99</td>
         <td class="num aa aa-met">19.5</td>
         <td class="num aa aa-cys">14.5</td>
@@ -843,7 +855,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/clams/">Clams</a>
           <span class="alt">蛤蜊</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">14.67</td>
         <td class="num aa aa-met">28.8</td>
         <td class="num aa aa-cys">11.9</td>
@@ -875,7 +887,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/cod/">Cod</a>
           <span class="alt">鳕鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">17.81</td>
         <td class="num aa aa-met">29.6</td>
         <td class="num aa aa-cys">10.7</td>
@@ -907,7 +919,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/corn/">Corn</a>
           <span class="alt">玉米</span>
         </td>
-        <td>Plant · grains</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">9.42</td>
         <td class="num aa aa-met">20.9</td>
         <td class="num aa aa-cys">18.0</td>
@@ -939,7 +951,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/cottage-cheese/">Cottage cheese</a>
           <span class="alt">茅屋芝士</span>
         </td>
-        <td>Animal · whey/dairy</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">12.39</td>
         <td class="num aa aa-met">30.1</td>
         <td class="num aa aa-cys">9.3</td>
@@ -971,7 +983,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/crab/">Crab</a>
           <span class="alt">蟹</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">18.06</td>
         <td class="num aa aa-met">28.1</td>
         <td class="num aa aa-cys">11.2</td>
@@ -1003,7 +1015,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/cricket/">Cricket (dried)</a>
           <span class="alt">蟋蟀（干）</span>
         </td>
-        <td>Special · insect</td>
+        <td class="cat-cell">Special</td>
         <td class="num">70.0</td>
         <td class="num aa aa-met">15.7</td>
         <td class="num aa aa-cys">11.4</td>
@@ -1035,7 +1047,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/duck/">Duck</a>
           <span class="alt">鸭肉</span>
         </td>
-        <td>Animal · poultry</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">18.28</td>
         <td class="num aa aa-met">27.0</td>
         <td class="num aa aa-cys">15.4</td>
@@ -1067,7 +1079,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/edamame-green-soy/">Edamame (green soy)</a>
           <span class="alt">毛豆</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">12.95</td>
         <td class="num aa aa-met">12.1</td>
         <td class="num aa aa-cys">9.1</td>
@@ -1099,7 +1111,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/eel/">Eel (unagi)</a>
           <span class="alt">鳗鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">18.44</td>
         <td class="num aa aa-met">29.6</td>
         <td class="num aa aa-cys">10.7</td>
@@ -1131,7 +1143,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/egg-white/">Egg white</a>
           <span class="alt">蛋清</span>
         </td>
-        <td>Animal · eggs</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">10.9</td>
         <td class="num aa aa-met">36.6</td>
         <td class="num aa aa-cys">26.3</td>
@@ -1163,7 +1175,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/egg-yolk/">Egg yolk</a>
           <span class="alt">蛋黄</span>
         </td>
-        <td>Animal · eggs</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">15.86</td>
         <td class="num aa aa-met">23.8</td>
         <td class="num aa aa-cys">16.6</td>
@@ -1195,7 +1207,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/enoki-mushroom/">Enoki mushroom</a>
           <span class="alt">金针菇</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">2.66</td>
         <td class="num aa aa-met">11.3</td>
         <td class="num aa aa-cys">7.5</td>
@@ -1227,7 +1239,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/flathead/">Flathead</a>
           <span class="alt">鲬鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">21.1</td>
         <td class="num aa aa-met">30.3</td>
         <td class="num aa aa-cys">11.8</td>
@@ -1259,7 +1271,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/flaxseed/">Flaxseed</a>
           <span class="alt">亚麻籽</span>
         </td>
-        <td>Plant · seeds</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">18.0359</td>
         <td class="num aa aa-met">22.3</td>
         <td class="num aa aa-cys">N/A</td>
@@ -1291,7 +1303,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/gelatin/">Gelatin</a>
           <span class="alt">明胶</span>
         </td>
-        <td>Special · collagen</td>
+        <td class="cat-cell">Special</td>
         <td class="num">85.6</td>
         <td class="num aa aa-met">7.1</td>
         <td class="num aa aa-cys">N/A</td>
@@ -1323,7 +1335,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/goat/">Goat (lean)</a>
           <span class="alt">山羊肉</span>
         </td>
-        <td>Animal · red meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">22.0</td>
         <td class="num aa aa-met">25.2</td>
         <td class="num aa aa-cys">N/A</td>
@@ -1355,7 +1367,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/greek-yogurt/">Greek yogurt</a>
           <span class="alt">希腊酸奶</span>
         </td>
-        <td>Animal · whey/dairy</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">8.24</td>
         <td class="num aa aa-met">27.5</td>
         <td class="num aa aa-cys">6.3</td>
@@ -1387,7 +1399,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/green-peas/">Green peas</a>
           <span class="alt">青豌豆</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">5.42</td>
         <td class="num aa aa-met">15.1</td>
         <td class="num aa aa-cys">5.9</td>
@@ -1419,7 +1431,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/ground-beef/">Ground beef</a>
           <span class="alt">牛肉糜</span>
         </td>
-        <td>Animal · red meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">14.35</td>
         <td class="num aa aa-met">25.7</td>
         <td class="num aa aa-cys">10.3</td>
@@ -1451,7 +1463,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/grouper/">Grouper</a>
           <span class="alt">石斑鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">19.38</td>
         <td class="num aa aa-met">29.6</td>
         <td class="num aa aa-cys">10.7</td>
@@ -1483,7 +1495,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/ham-cured/">Ham (cured)</a>
           <span class="alt">火腿（腌制）</span>
         </td>
-        <td>Animal · processed meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">16.6</td>
         <td class="num aa aa-met">19.2</td>
         <td class="num aa aa-cys">9.6</td>
@@ -1515,7 +1527,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/hazelnuts/">Hazelnuts</a>
           <span class="alt">榛子</span>
         </td>
-        <td>Plant · nuts</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">14.95</td>
         <td class="num aa aa-met">14.8</td>
         <td class="num aa aa-cys">18.5</td>
@@ -1547,7 +1559,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/hemp-seeds/">Hemp seeds</a>
           <span class="alt">火麻仁（大麻籽）</span>
         </td>
-        <td>Plant · seeds</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">31.56</td>
         <td class="num aa aa-met">29.6</td>
         <td class="num aa aa-cys">21.3</td>
@@ -1579,7 +1591,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/kelp-kombu/">Kelp (kombu)</a>
           <span class="alt">海带</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">1.68</td>
         <td class="num aa aa-met">14.9</td>
         <td class="num aa aa-cys">58.3</td>
@@ -1611,7 +1623,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/kidney-beans/">Kidney beans</a>
           <span class="alt">红芸豆</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">22.53</td>
         <td class="num aa aa-met">15.0</td>
         <td class="num aa aa-cys">10.9</td>
@@ -1643,7 +1655,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/king-george-whiting/">King George whiting</a>
           <span class="alt">乔治王鱚</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">19.8</td>
         <td class="num aa aa-met">29.7</td>
         <td class="num aa aa-cys">11.2</td>
@@ -1675,7 +1687,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/lamb-leg/">Lamb leg</a>
           <span class="alt">羊腿</span>
         </td>
-        <td>Animal · red meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">17.91</td>
         <td class="num aa aa-met">25.7</td>
         <td class="num aa aa-cys">11.9</td>
@@ -1707,7 +1719,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/lentils/">Lentils</a>
           <span class="alt">扁豆（小扁豆）</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">24.63</td>
         <td class="num aa aa-met">8.5</td>
         <td class="num aa aa-cys">13.1</td>
@@ -1739,7 +1751,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/lotus-seeds/">Lotus seeds</a>
           <span class="alt">莲子</span>
         </td>
-        <td>Plant · seeds</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">15.41</td>
         <td class="num aa aa-met">17.3</td>
         <td class="num aa aa-cys">13.0</td>
@@ -1771,7 +1783,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/mackerel/">Mackerel</a>
           <span class="alt">鲭鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">18.6</td>
         <td class="num aa aa-met">29.6</td>
         <td class="num aa aa-cys">10.7</td>
@@ -1803,7 +1815,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/mealworm/">Mealworm larvae (dried)</a>
           <span class="alt">黄粉虫幼虫（干）</span>
         </td>
-        <td>Special · insect</td>
+        <td class="cat-cell">Special</td>
         <td class="num">52.8</td>
         <td class="num aa aa-met">15.2</td>
         <td class="num aa aa-cys">11.4</td>
@@ -1835,7 +1847,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/millet/">Millet</a>
           <span class="alt">小米</span>
         </td>
-        <td>Plant · grains</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">11.02</td>
         <td class="num aa aa-met">20.1</td>
         <td class="num aa aa-cys">19.2</td>
@@ -1867,7 +1879,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/miso/">Miso</a>
           <span class="alt">味噌</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">12.79</td>
         <td class="num aa aa-met">10.1</td>
         <td class="num aa aa-cys">N/A</td>
@@ -1899,7 +1911,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/mozzarella/">Mozzarella</a>
           <span class="alt">马苏里拉奶酪</span>
         </td>
-        <td>Animal · whey/dairy</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">22.17</td>
         <td class="num aa aa-met">23.2</td>
         <td class="num aa aa-cys">5.2</td>
@@ -1931,7 +1943,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/mung-bean-sprouts/">Mung bean sprouts</a>
           <span class="alt">绿豆芽</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">3.04</td>
         <td class="num aa aa-met">11.2</td>
         <td class="num aa aa-cys">5.6</td>
@@ -1963,7 +1975,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/mung-beans/">Mung beans</a>
           <span class="alt">绿豆</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">23.86</td>
         <td class="num aa aa-met">12.0</td>
         <td class="num aa aa-cys">8.8</td>
@@ -1995,7 +2007,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/natto/">Natto</a>
           <span class="alt">纳豆</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">19.4</td>
         <td class="num aa aa-met">10.7</td>
         <td class="num aa aa-cys">11.3</td>
@@ -2027,7 +2039,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/nori-laver/">Nori (laver)</a>
           <span class="alt">紫菜</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">5.81</td>
         <td class="num aa aa-met">25.0</td>
         <td class="num aa aa-cys">17.2</td>
@@ -2059,7 +2071,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/oats/">Oats</a>
           <span class="alt">燕麦</span>
         </td>
-        <td>Plant · grains</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">13.15</td>
         <td class="num aa aa-met">15.7</td>
         <td class="num aa aa-cys">34.6</td>
@@ -2091,7 +2103,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/octopus/">Octopus</a>
           <span class="alt">章鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">14.91</td>
         <td class="num aa aa-met">22.5</td>
         <td class="num aa aa-cys">13.1</td>
@@ -2123,7 +2135,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/oysters/">Oysters</a>
           <span class="alt">牡蛎</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">5.22</td>
         <td class="num aa aa-met">22.6</td>
         <td class="num aa aa-cys">13.2</td>
@@ -2155,7 +2167,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/parmesan-cheese/">Parmesan cheese</a>
           <span class="alt">帕玛森奶酪</span>
         </td>
-        <td>Animal · whey/dairy</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">35.75</td>
         <td class="num aa aa-met">26.8</td>
         <td class="num aa aa-cys">6.6</td>
@@ -2187,7 +2199,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/peanuts/">Peanuts</a>
           <span class="alt">花生</span>
         </td>
-        <td>Plant · nuts</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">26.15</td>
         <td class="num aa aa-met">12.3</td>
         <td class="num aa aa-cys">12.8</td>
@@ -2219,7 +2231,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/pecans/">Pecans</a>
           <span class="alt">碧根果（美国山核桃）</span>
         </td>
-        <td>Plant · nuts</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">9.17</td>
         <td class="num aa aa-met">20.0</td>
         <td class="num aa aa-cys">16.6</td>
@@ -2251,7 +2263,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/pinto-beans/">Pinto beans</a>
           <span class="alt">斑豆</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">5.25</td>
         <td class="num aa aa-met">10.5</td>
         <td class="num aa aa-cys">11.4</td>
@@ -2283,7 +2295,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/pistachios/">Pistachios</a>
           <span class="alt">开心果</span>
         </td>
-        <td>Plant · nuts</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">20.16</td>
         <td class="num aa aa-met">17.9</td>
         <td class="num aa aa-cys">14.5</td>
@@ -2315,7 +2327,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/pompano/">Pompano</a>
           <span class="alt">鲳鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">18.48</td>
         <td class="num aa aa-met">29.6</td>
         <td class="num aa aa-cys">10.7</td>
@@ -2347,7 +2359,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/pork-loin/">Pork loin</a>
           <span class="alt">猪里脊（大里脊）</span>
         </td>
-        <td>Animal · red meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">21.34</td>
         <td class="num aa aa-met">27.6</td>
         <td class="num aa aa-cys">11.5</td>
@@ -2379,7 +2391,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/pork-sausage/">Pork sausage</a>
           <span class="alt">猪肉香肠</span>
         </td>
-        <td>Animal · processed meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">13.8</td>
         <td class="num aa aa-met">23.8</td>
         <td class="num aa aa-cys">10.1</td>
@@ -2411,7 +2423,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/pork-tenderloin-lean/">Pork tenderloin (lean)</a>
           <span class="alt">猪里脊（小里脊·瘦）</span>
         </td>
-        <td>Animal · red meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">20.95</td>
         <td class="num aa aa-met">27.5</td>
         <td class="num aa aa-cys">11.6</td>
@@ -2443,7 +2455,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/potato/">Potato</a>
           <span class="alt">马铃薯（土豆）</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">2.05</td>
         <td class="num aa aa-met">15.6</td>
         <td class="num aa aa-cys">11.7</td>
@@ -2475,7 +2487,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/pumpkin-seeds/">Pumpkin seeds</a>
           <span class="alt">南瓜籽</span>
         </td>
-        <td>Plant · seeds</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">30.23</td>
         <td class="num aa aa-met">19.9</td>
         <td class="num aa aa-cys">11.0</td>
@@ -2507,7 +2519,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/quinoa/">Quinoa</a>
           <span class="alt">藜麦</span>
         </td>
-        <td>Plant · grains</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">14.12</td>
         <td class="num aa aa-met">21.9</td>
         <td class="num aa aa-cys">14.4</td>
@@ -2539,7 +2551,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/rabbit/">Rabbit</a>
           <span class="alt">兔肉</span>
         </td>
-        <td>Animal · red meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">23.2</td>
         <td class="num aa aa-met">28.0</td>
         <td class="num aa aa-cys">11.9</td>
@@ -2571,7 +2583,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/sardines/">Sardines</a>
           <span class="alt">沙丁鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">24.62</td>
         <td class="num aa aa-met">29.6</td>
         <td class="num aa aa-cys">10.7</td>
@@ -2603,7 +2615,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/scallops/">Scallops</a>
           <span class="alt">扇贝</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">12.06</td>
         <td class="num aa aa-met">23.7</td>
         <td class="num aa aa-cys">10.0</td>
@@ -2635,7 +2647,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/sea-bass/">Sea bass</a>
           <span class="alt">鲈鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">18.43</td>
         <td class="num aa aa-met">29.6</td>
         <td class="num aa aa-cys">10.7</td>
@@ -2667,7 +2679,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/sesame-seeds/">Sesame seeds</a>
           <span class="alt">芝麻</span>
         </td>
-        <td>Plant · seeds</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">17.73</td>
         <td class="num aa aa-met">33.1</td>
         <td class="num aa aa-cys">20.2</td>
@@ -2699,7 +2711,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/shark/">Shark</a>
           <span class="alt">鲨鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">24.6</td>
         <td class="num aa aa-met">21.8</td>
         <td class="num aa aa-cys">9.0</td>
@@ -2731,7 +2743,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/shiitake-mushroom/">Shiitake mushroom</a>
           <span class="alt">香菇</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">2.24</td>
         <td class="num aa aa-met">14.7</td>
         <td class="num aa aa-cys">9.8</td>
@@ -2763,7 +2775,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/shrimp/">Shrimp</a>
           <span class="alt">虾</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">20.42</td>
         <td class="num aa aa-met">27.3</td>
         <td class="num aa aa-cys">11.9</td>
@@ -2795,7 +2807,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/snapper/">Snapper</a>
           <span class="alt">澳洲鲷</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">20.3</td>
         <td class="num aa aa-met">30.0</td>
         <td class="num aa aa-cys">11.2</td>
@@ -2827,7 +2839,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/soba-noodles/">Soba noodles</a>
           <span class="alt">荞麦面</span>
         </td>
-        <td>Plant · grains</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">14.38</td>
         <td class="num aa aa-met">14.2</td>
         <td class="num aa aa-cys">18.6</td>
@@ -2859,7 +2871,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/soy-milk/">Soy milk</a>
           <span class="alt">豆浆</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">3.27</td>
         <td class="num aa aa-met">8.3</td>
         <td class="num aa aa-cys">N/A</td>
@@ -2891,7 +2903,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/soy-protein-isolate/">Soy protein isolate</a>
           <span class="alt">大豆分离蛋白</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">88.32</td>
         <td class="num aa aa-met">12.8</td>
         <td class="num aa aa-cys">11.8</td>
@@ -2923,7 +2935,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/soybeans/">Soybeans</a>
           <span class="alt">黄豆（大豆）</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">36.49</td>
         <td class="num aa aa-met">15.0</td>
         <td class="num aa aa-cys">18.0</td>
@@ -2955,7 +2967,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/spinach/">Spinach</a>
           <span class="alt">菠菜</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">2.86</td>
         <td class="num aa aa-met">18.5</td>
         <td class="num aa aa-cys">12.2</td>
@@ -2987,7 +2999,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/spirulina-dried/">Spirulina (dried)</a>
           <span class="alt">螺旋藻（干）</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">57.47</td>
         <td class="num aa aa-met">20.0</td>
         <td class="num aa aa-cys">11.5</td>
@@ -3019,7 +3031,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/squid-calamari/">Squid (calamari)</a>
           <span class="alt">鱿鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">16.7</td>
         <td class="num aa aa-met">25.7</td>
         <td class="num aa aa-cys">11.4</td>
@@ -3051,7 +3063,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/sunflower-seeds/">Sunflower seeds</a>
           <span class="alt">葵花籽</span>
         </td>
-        <td>Plant · seeds</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">20.78</td>
         <td class="num aa aa-met">23.8</td>
         <td class="num aa aa-cys">21.7</td>
@@ -3083,7 +3095,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/sweet-potato/">Sweet potato</a>
           <span class="alt">红薯</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">1.57</td>
         <td class="num aa aa-met">18.5</td>
         <td class="num aa aa-cys">14.0</td>
@@ -3115,7 +3127,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/taro/">Taro</a>
           <span class="alt">芋头</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">1.5</td>
         <td class="num aa aa-met">13.3</td>
         <td class="num aa aa-cys">21.3</td>
@@ -3147,7 +3159,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/tempeh/">Tempeh</a>
           <span class="alt">天贝</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">20.29</td>
         <td class="num aa aa-met">8.6</td>
         <td class="num aa aa-cys">9.5</td>
@@ -3179,7 +3191,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/tilapia/">Tilapia</a>
           <span class="alt">罗非鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">20.08</td>
         <td class="num aa aa-met">29.5</td>
         <td class="num aa aa-cys">11.0</td>
@@ -3211,7 +3223,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/tofu/">Tofu</a>
           <span class="alt">豆腐</span>
         </td>
-        <td>Plant · legumes</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">17.27</td>
         <td class="num aa aa-met">12.2</td>
         <td class="num aa aa-cys">3.3</td>
@@ -3243,7 +3255,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/tuna/">Tuna</a>
           <span class="alt">金枪鱼</span>
         </td>
-        <td>Animal · fish/seafood</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">23.33</td>
         <td class="num aa aa-met">29.6</td>
         <td class="num aa aa-cys">10.7</td>
@@ -3275,7 +3287,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/turkey-breast/">Turkey breast</a>
           <span class="alt">火鸡胸肉</span>
         </td>
-        <td>Animal · poultry</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">23.66</td>
         <td class="num aa aa-met">26.2</td>
         <td class="num aa aa-cys">9.4</td>
@@ -3307,7 +3319,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/turmeric-ground/">Turmeric (ground)</a>
           <span class="alt">姜黄粉</span>
         </td>
-        <td>Spice · seasoning</td>
+        <td class="cat-cell">Spice</td>
         <td class="num">9.68</td>
         <td class="num aa aa-met">14.5</td>
         <td class="num aa aa-cys">15.5</td>
@@ -3339,7 +3351,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/venison/">Venison (lean)</a>
           <span class="alt">鹿肉</span>
         </td>
-        <td>Animal · red meat</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">23.5</td>
         <td class="num aa aa-met">27.2</td>
         <td class="num aa aa-cys">12.8</td>
@@ -3371,7 +3383,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/wakame/">Wakame seaweed</a>
           <span class="alt">裙带菜</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">3.03</td>
         <td class="num aa aa-met">20.8</td>
         <td class="num aa aa-cys">9.2</td>
@@ -3403,7 +3415,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/walnuts/">Walnuts</a>
           <span class="alt">核桃</span>
         </td>
-        <td>Plant · nuts</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">15.23</td>
         <td class="num aa aa-met">15.5</td>
         <td class="num aa aa-cys">13.7</td>
@@ -3435,7 +3447,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/wheat-hard/">Wheat (hard)</a>
           <span class="alt">硬质小麦</span>
         </td>
-        <td>Plant · grains</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">12.61</td>
         <td class="num aa aa-met">15.9</td>
         <td class="num aa aa-cys">25.5</td>
@@ -3467,7 +3479,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/wheat-germ/">Wheat germ</a>
           <span class="alt">小麦胚芽</span>
         </td>
-        <td>Plant · grains</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">23.15</td>
         <td class="num aa aa-met">19.7</td>
         <td class="num aa aa-cys">19.8</td>
@@ -3499,7 +3511,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/whey-protein-isolate/">Whey protein isolate</a>
           <span class="alt">分离乳清蛋白</span>
         </td>
-        <td>Animal · whey/dairy</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">11.73</td>
         <td class="num aa aa-met">18.8</td>
         <td class="num aa aa-cys">18.0</td>
@@ -3531,7 +3543,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/white-mushroom/">White mushroom</a>
           <span class="alt">白蘑菇</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">3.09</td>
         <td class="num aa aa-met">10.0</td>
         <td class="num aa aa-cys">3.9</td>
@@ -3563,7 +3575,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/white-rice/">White rice</a>
           <span class="alt">白米</span>
         </td>
-        <td>Plant · grains</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">7.13</td>
         <td class="num aa aa-met">23.6</td>
         <td class="num aa aa-cys">20.5</td>
@@ -3595,7 +3607,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/whole-egg/">Whole egg</a>
           <span class="alt">全蛋</span>
         </td>
-        <td>Animal · eggs</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">12.56</td>
         <td class="num aa aa-met">30.3</td>
         <td class="num aa aa-cys">21.7</td>
@@ -3627,7 +3639,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/whole-milk/">Whole milk</a>
           <span class="alt">全脂牛奶</span>
         </td>
-        <td>Animal · whey/dairy</td>
+        <td class="cat-cell">Animal</td>
         <td class="num">3.15</td>
         <td class="num aa aa-met">26.3</td>
         <td class="num aa aa-cys">6.0</td>
@@ -3659,7 +3671,7 @@
           <a href="https://wenw121.github.io/foodmap-site/en/foods/yam/">Yam</a>
           <span class="alt">山药</span>
         </td>
-        <td>Plant · vegetables/algae</td>
+        <td class="cat-cell">Plant</td>
         <td class="num">1.53</td>
         <td class="num aa aa-met">13.7</td>
         <td class="num aa aa-cys">12.4</td>

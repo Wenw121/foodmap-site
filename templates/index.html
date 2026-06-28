@@ -29,12 +29,24 @@
   <button type="button" id="compareClear">{{ s.compare_clear }}</button>
 </section>
 
-<p class="hint amino-note">{{ s.amino_cols_note }}</p>
+<div class="amino-note hint">
+  <span>{{ s.amino_cols_note }}</span>
+  <span class="scale" aria-hidden="true">
+    <i>{{ s.scale_low }}</i>
+    <span class="ramp r1"></span><span class="ramp r2"></span><span class="ramp r3"></span>
+    <i>{{ s.scale_high }}</i>
+  </span>
+</div>
 <section class="table-wrap">
   <table id="foodTable">
     <thead>
-      <tr>
-        <th data-sort="name" scope="col">{{ s.th_food }}</th>
+      <tr class="group-row">
+        <th colspan="3"></th>
+        <th colspan="{{ amino_cols|length }}" class="aagroup" scope="colgroup">{{ s.amino_group_label }}</th>
+        <th colspan="2"></th>
+      </tr>
+      <tr class="cols">
+        <th data-sort="name" class="colname" scope="col">{{ s.th_food }}</th>
         <th data-sort="cat" scope="col">{{ s.th_category }}</th>
         <th data-sort="protein" class="num" scope="col">{{ s.th_protein }}</th>
         {% for k, lbl in amino_cols %}
@@ -66,7 +78,7 @@
           <a href="{{ SITE_URL }}/{{ lang }}/foods/{{ f.slug }}/">{{ f.name_en if lang=='en' else f.name_zh }}</a>
           <span class="alt">{{ f.name_zh if lang=='en' else f.name_en }}</span>
         </td>
-        <td>{{ f.category_en if lang=='en' else f.category_zh }}</td>
+        <td class="cat-cell">{{ (f.category_en if lang=='en' else f.category_zh).split('·')[0]|trim }}</td>
         <td class="num">{{ f.protein_g_100g or s.na }}</td>
         {% for k, lbl in amino_cols %}
         <td class="num aa aa-{{ k }}">{{ acols[k] if (acols[k] is not none and acols[k] != "") else s.na }}</td>
