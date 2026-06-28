@@ -25,26 +25,33 @@
     var v = parseFloat(tr.dataset["aa" + key.charAt(0).toUpperCase() + key.slice(1)]);
     return isNaN(v) ? null : v;
   }
-  function tertiles(key) {
-    var vals = rows.map(function (r) { return aa(r, key); })
-      .filter(function (v) { return v !== null; }).sort(function (a, b) { return a - b; });
-    var n = vals.length;
-    return { lo: vals[Math.floor(n / 3)], hi: vals[Math.floor(2 * n / 3)],
-             min: vals[0], max: vals[n - 1] };
+  /* smooth green -> yellow -> red gradient (low -> high), MyFitnessPal-style.
+     anchors must match the legend bar in style.css */
+  var HEAT_STOPS = [[125, 205, 135], [250, 224, 120], [242, 140, 130]];
+  function lerp(a, b, t) { return Math.round(a + (b - a) * t); }
+  function heatColor(t) {
+    if (t < 0) t = 0; else if (t > 1) t = 1;
+    var seg = t <= 0.5 ? 0 : 1;
+    var lt = t <= 0.5 ? t / 0.5 : (t - 0.5) / 0.5;
+    var a = HEAT_STOPS[seg], b = HEAT_STOPS[seg + 1];
+    return "rgb(" + lerp(a[0], b[0], lt) + "," + lerp(a[1], b[1], lt) + "," + lerp(a[2], b[2], lt) + ")";
   }
-  function bandOf(v, t) { return v === null ? null : v < t.lo ? "lower" : v >= t.hi ? "higher" : "intermediate"; }
-
-  /* shade every amino column low->high by its own tertiles (a heatmap "map"),
-     done once on load since tertiles are over the full data set */
+  /* colour each amino cell on a continuous gradient by its percentile rank
+     within its own column, so colours blend smoothly instead of in 3 steps */
   function colorCells() {
     AMINO_COL_KEYS.forEach(function (key) {
-      var t = tertiles(key);
+      var vals = rows.map(function (r) { return aa(r, key); })
+        .filter(function (v) { return v !== null; }).sort(function (a, b) { return a - b; });
+      var n = vals.length;
       rows.forEach(function (tr) {
         var cell = tr.querySelector(".aa-" + key);
         if (!cell) return;
-        var b = bandOf(aa(tr, key), t);
-        cell.classList.remove("cell-lower", "cell-intermediate", "cell-higher");
-        if (b) cell.classList.add("cell-" + b);
+        var v = aa(tr, key);
+        if (v === null) { cell.style.backgroundColor = ""; return; }
+        var idx = 0;
+        while (idx < n && vals[idx] < v) idx++;
+        var t = n > 1 ? idx / (n - 1) : 0.5;
+        cell.style.backgroundColor = heatColor(t);
       });
     });
   }
