@@ -70,8 +70,10 @@ METHOD_FOR = {  # slug -> method key (else 'default' when DIAAS present)
     "mealworm": "invitro_insect", "cricket": "invitro_insect",
 }
 
-# secondary MEASURED DIAAS (cooked, in vivo growing pig, 6mo–3y pattern),
-# shown as an extra labelled line so it never overwrites the comparable value
+# secondary published DIAAS, shown as an extra labelled line so it never
+# overwrites the comparable value. Each source's method differs (see ALT_METHOD).
+# Herreman 2020 entries are only added where the form matches (isolate-to-isolate
+# or meat-to-meat); its isolate values are NOT placed on whole-food pages.
 ALT_DIAAS = {  # slug -> (diaas, limiting_aa, source_key)
     "black-beans": ("49", "SAA", "nosworthy2017"),
     "pinto-beans": ("60", "SAA", "nosworthy2017"),
@@ -84,9 +86,16 @@ ALT_DIAAS = {  # slug -> (diaas, limiting_aa, source_key)
     "white-rice": ("37", "Lys", "han2019"),
     "wheat-hard": ("20", "Lys", "han2019"),
     "millet": ("7", "Lys", "han2019"),
+    "soy-protein-isolate": ("91", "SAA", "herreman2020"),
+    "whey-protein-isolate": ("85", "", "herreman2020"),
+    "pork-loin": ("117", "", "herreman2020"),
 }
-ALT_METHOD = {"en": "Measured · cooked · 6mo–3y reference pattern",
-              "zh": "实测 · 熟制 · 6 月–3 岁参考模式"}
+ALT_METHOD = {  # source_key -> method label; "_default" for measured/cooked alts
+    "_default": {"en": "Measured · cooked · 6mo–3y reference pattern",
+                 "zh": "实测 · 熟制 · 6 月–3 岁参考模式"},
+    "herreman2020": {"en": "Review compilation · growing-pig SID · 0.5–3y reference pattern",
+                     "zh": "综述整理值 · 生长猪 SID · 0.5–3 岁参考模式"},
+}
 
 # ---- typical serving sizes (grams), approximate, for "protein per serving" ----
 CATEGORY_SERVING = {
@@ -835,7 +844,7 @@ def build():
                 av, al, asrc = f["alt_diaas"]
                 alt = {"val": av,
                        "limit": LIMIT_LABEL.get(al, {}).get(lang, al),
-                       "method": ALT_METHOD[lang],
+                       "method": ALT_METHOD.get(asrc, ALT_METHOD["_default"])[lang],
                        "source": refs.get(asrc, {}).get("ref_en" if lang == "en" else "ref_zh", ""),
                        "url": refs.get(asrc, {}).get("url", "")}
             jsonld = {
