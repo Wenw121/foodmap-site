@@ -71,6 +71,20 @@
   search.addEventListener("input", applyFilters);
   catFilter.addEventListener("input", applyFilters);
 
+  /* ---------- analytics (no-op unless gtag is present) ---------- */
+  function track(name, params) { if (window.track) window.track(name, params); }
+  var searchTimer;
+  search.addEventListener("input", function () {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function () {
+      var q = (search.value || "").trim();
+      if (q) track("search_used", { q_len: q.length });
+    }, 800);
+  });
+  catFilter.addEventListener("change", function () {
+    track("filter_used", { type: "category", key: catFilter.value || "all" });
+  });
+
   /* ---------- sorting ---------- */
   var NUMERIC = { protein: 1, diaas: 1 };
   function sortBy(key, dir) {
@@ -96,6 +110,7 @@
       dir = -dir;
       th.classList.add(dir === 1 ? "sorted-asc" : "sorted-desc");
       sortBy(th.dataset.sort, dir);
+      track("filter_used", { type: "sort", key: th.dataset.sort, dir: dir });
     });
   });
 
@@ -118,12 +133,14 @@
       } else {
         selected = selected.filter(function (s) { return s !== slug; });
       }
+      track("compare_clicked", { action: cb.checked ? "add" : "remove", count: selected.length });
       renderCompare();
     });
   });
   clearBtn.addEventListener("click", function () {
     selected = [];
     table.querySelectorAll("input.cmp").forEach(function (c) { c.checked = false; });
+    track("compare_clicked", { action: "clear" });
     renderCompare();
   });
 

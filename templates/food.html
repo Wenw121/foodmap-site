@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ name }} {{ s.kw_amino_content }} · DIAAS {{ food.diaas or s.na }} | {{ s.site_name }}{% endblock %}
 {% block description %}{{ description }}{% endblock %}
+{% block body_data %} data-page="food" data-slug="{{ food.slug }}"{% endblock %}
 {% block head_extra %}
 <script type="application/ld+json">
 {{ jsonld|safe }}
@@ -56,13 +57,13 @@
     {% endif %}
     {% if diaas_sources %}
     <p class="src">{{ s.diaas_source }}:
-      {% for r in diaas_sources %}<a href="{{ r.url }}" rel="nofollow">{{ r.label }}</a>{% if not loop.last %}; {% endif %}{% endfor %}
+      {% for r in diaas_sources %}<a href="{{ r.url }}" rel="nofollow" data-event="source_link_click" data-label="{{ r.label }}">{{ r.label }}</a>{% if not loop.last %}; {% endif %}{% endfor %}
     </p>
     {% endif %}
     {% if alt %}
     <p class="alt-diaas"><strong>{{ s.also_measured }}:</strong> DIAAS {{ alt.val }}
       {% if alt.limit %}({{ s.limiting_aa|lower }}: {{ alt.limit }}){% endif %}<br>
-      <span class="src">{{ alt.method }} — <a href="{{ alt.url }}" rel="nofollow">{{ alt.source }}</a></span>
+      <span class="src">{{ alt.method }} — <a href="{{ alt.url }}" rel="nofollow" data-event="source_link_click" data-label="alt-diaas">{{ alt.source }}</a></span>
     </p>
     {% endif %}
     {% else %}

@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{% if MEASUREMENT_ID %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ MEASUREMENT_ID }}"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','{{ MEASUREMENT_ID }}');
+</script>
+{% endif %}
 <title>{% block title %}{{ s.site_name }}{% endblock %}</title>
 <meta name="description" content="{% block description %}{{ s.tagline }}{% endblock %}">
 <link rel="canonical" href="{{ canonical }}">
@@ -29,7 +36,7 @@
 <link rel="stylesheet" href="{{ SITE_URL }}/static/style.css">
 {% block head_extra %}{% endblock %}
 </head>
-<body>
+<body{% block body_data %}{% endblock %}>
 <header class="site-header">
   <a class="brand" href="{{ SITE_URL }}/{{ lang }}/">{{ s.site_name }}</a>
   <nav class="site-nav">
@@ -41,7 +48,7 @@
     <a href="{{ nav.aging }}">{{ s.nav_aging }}</a>
     <a href="{{ nav.references }}">{{ s.nav_references }}</a>
     {% endif %}
-    <a class="lang" href="{{ alt_urls['en' if lang == 'zh' else 'zh'] }}">{{ s.other_lang }}</a>
+    <a class="lang" href="{{ alt_urls['en' if lang == 'zh' else 'zh'] }}" data-event="language_switch" data-to="{{ 'en' if lang == 'zh' else 'zh' }}">{{ s.other_lang }}</a>
   </nav>
 </header>
 
@@ -53,6 +60,7 @@
   <p class="disclaimer">{{ DISCLAIMER[lang] }}</p>
   <p class="src">{{ s.footer_data }}</p>
 </footer>
+<script src="{{ SITE_URL }}/static/analytics.js" defer></script>
 {% block body_extra %}{% endblock %}
 </body>
 </html>

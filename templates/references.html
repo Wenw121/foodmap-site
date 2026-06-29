@@ -12,7 +12,7 @@
     {% for r in g.refs %}
     <li id="{{ r.key }}">
       {{ r[lang_key] }}
-      {% if r.url %}<br><a href="{{ r.url }}" rel="nofollow">{{ r.url }}</a>{% endif %}
+      {% if r.url %}<br><a href="{{ r.url }}" rel="nofollow" data-event="source_link_click" data-label="{{ r.key }}">{{ r.url }}</a>{% endif %}
     </li>
     {% endfor %}
   </ol>

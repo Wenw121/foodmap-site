@@ -28,7 +28,7 @@
   </ul>
 
   <p class="src">{{ s.aging_sources_label }}
-    {% for r in sources %}<a href="{{ r.url }}" rel="nofollow">{{ r.label }}</a>{% if not loop.last %}; {% endif %}{% endfor %}.
+    {% for r in sources %}<a href="{{ r.url }}" rel="nofollow" data-event="source_link_click" data-label="{{ r.label }}">{{ r.label }}</a>{% if not loop.last %}; {% endif %}{% endfor %}.
     {{ s.aging_sources_more }} <a href="{{ nav.references }}">{{ s.nav_references }} →</a>
   </p>
 </article>
