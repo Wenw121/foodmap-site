@@ -11,6 +11,8 @@
     <p>{{ s.research_note }}</p>
   </aside>
 
+  {% include "_tool_cta.html" %}
+
   {% for sec in s.research %}
   <h2>{{ sec.h }}</h2>
   {% for para in sec.p %}
