@@ -27,7 +27,7 @@ edamame-green-soy,Edamame (green soy),毛豆,Plant · legumes,植物 · 豆类,1
 egg-white,Egg white,蛋清,Animal · eggs,动物 · 蛋类,10.9,36.6,26.3,93.2,228.0,59.4,37.9,11.5,113,,"Egg, white, raw, fresh",USDA
 egg-yolk,Egg yolk,蛋黄,Animal · eggs,动物 · 蛋类,15.86,23.8,16.6,88.2,202.6,69.3,30.8,11.2,110,,"Egg, yolk, raw, fresh",USDA
 enoki-mushroom,Enoki mushroom,金针菇,Plant · vegetables/algae,植物 · 蔬菜/藻类,2.66,11.3,7.5,48.9,169.2,41.4,41.4,15.0,,NA,"Mushrooms, enoki, raw",USDA
-flaxseed,Flaxseed,亚麻籽,Plant · seeds,植物 · 种子,18.0359,22.3,0.0,76.5,191.6,122.6,76.8,16.7,45,Lys,"Flaxseed, ground",USDA
+flaxseed,Flaxseed,亚麻籽,Plant · seeds,植物 · 种子,18.0359,22.3,18.6,76.5,191.6,122.6,76.8,16.7,45,Lys,"Flaxseed, ground",USDA
 gelatin,Gelatin,明胶,Special · collagen,特殊 · 胶原蛋白,85.6,7.1,0.0,28.7,66.5,77.3,222.5,0.0,0,Trp,"Gelatins, dry powder, unsweetened",USDA
 greek-yogurt,Greek yogurt,希腊酸奶,Animal · whey/dairy,动物 · 乳清/乳制品,8.24,27.5,6.3,99.6,219.3,36.0,19.1,14.8,115,,"Yogurt, Greek, whole, plain, CHOBANI",USDA
 green-peas,Green peas,青豌豆,Plant · legumes,植物 · 豆类,5.42,15.1,5.9,59.6,139.0,79.0,33.9,6.8,70,SAA,"Peas, green, raw",USDA
