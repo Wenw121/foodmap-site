@@ -276,6 +276,7 @@ STR = {
         "bc_home": "Home", "bc_guides": "Guides",
         "kw_protein": "protein", "kw_amino": "amino acids",
         "kw_amino_content": "amino acid content",
+        "kw_methionine": "methionine", "kw_quality": "protein quality",
         "home_h1": "Amino acid content & DIAAS protein quality of 112 foods",
         "home_title": "Protein Quality & DIAAS of 112 Foods — Amino Acid Comparison",
         "home_desc": "Compare the protein quality (DIAAS), full essential amino-acid profiles, and methionine content of 112 common animal and plant foods. Search, filter, and compare proteins side by side.",
@@ -401,6 +402,7 @@ STR = {
         "bc_home": "首页", "bc_guides": "指南",
         "kw_protein": "蛋白质", "kw_amino": "氨基酸",
         "kw_amino_content": "氨基酸含量",
+        "kw_methionine": "甲硫氨酸", "kw_quality": "蛋白质量",
         "home_h1": "112 种食物的氨基酸含量与 DIAAS 蛋白质量",
         "home_title": "112 种食物的蛋白质量与 DIAAS — 氨基酸对比",
         "home_desc": "对比 112 种常见动物与植物性食物的蛋白质量（DIAAS）、完整必需氨基酸谱与甲硫氨酸含量。可搜索、筛选并并排比较。",
@@ -854,10 +856,13 @@ def build():
                        "url": refs.get(asrc, {}).get("url", "")}
             jsonld = {
                 "@context": "https://schema.org", "@type": "Dataset",
-                "name": f"{name} — {s['site_name']}", "description": make_description(f, lang),
+                "name": f"{name} — {s['site_name']}", "alternateName": [alt_name],
+                "description": make_description(f, lang),
                 "url": food_url(lang, f["slug"]), "inLanguage": HTML_LANG[lang],
                 "isAccessibleForFree": True,
-                "keywords": ["methionine", "DIAAS", "protein quality", "amino acids", name, alt_name],
+                # keywords are kept language-pure (no cross-language name); the other-language
+                # name lives in alternateName instead.
+                "keywords": [name, s["kw_methionine"], "DIAAS", s["kw_quality"], s["kw_amino"]],
                 "creator": {"@type": "Organization", "name": s["site_name"]},
                 "variableMeasured": (
                     [{"@type": "PropertyValue", "name": en, "value": f["amino_full"].get(k),
@@ -1082,6 +1087,41 @@ def _is_noindex(html):
     return 'name="robots" content="noindex"' in html
 
 
+CJK_RE = re.compile(r"[一-鿿]")
+
+
+def _dataset_jsonld(html):
+    """Return the Dataset JSON-LD object from a rendered page, or None."""
+    for block in re.findall(r'<script type="application/ld\+json">\s*(.*?)\s*</script>',
+                            html, re.DOTALL):
+        try:
+            obj = json.loads(block)
+        except ValueError:
+            continue
+        if isinstance(obj, dict) and obj.get("@type") == "Dataset":
+            return obj
+    return None
+
+
+def _check_food_jsonld(rel, html):
+    """Language-purity + required-field checks for a food page's Dataset JSON-LD.
+    Returns a list of problem strings (empty = OK)."""
+    lang = rel.parts[0]
+    data = _dataset_jsonld(html)
+    if data is None:
+        return ["JSON-LD Dataset missing"]
+    problems = []
+    for key in ("name", "alternateName", "keywords", "url", "inLanguage"):
+        if not data.get(key):
+            problems.append(f"JSON-LD missing {key}")
+    kws = data.get("keywords") or []
+    if lang == "en" and any(CJK_RE.search(str(k)) for k in kws):
+        problems.append("en JSON-LD keywords contain CJK")
+    if lang == "zh" and not any(CJK_RE.search(str(k)) for k in kws):
+        problems.append("zh JSON-LD keywords contain no Chinese")
+    return problems
+
+
 def validate_pages():
     """Fail the build if any indexable page is missing a required element.
     Required on every indexable HTML page: canonical, hreflang, a non-empty meta
@@ -1105,6 +1145,8 @@ def validate_pages():
             missing.append("meta description")
         if 'class="disclaimer"' not in html:
             missing.append("disclaimer")
+        if rel.parts[0] in ("en", "zh") and "foods" in rel.parts:
+            missing.extend(_check_food_jsonld(rel, html))
         if missing:
             problems.append((str(rel), missing))
     if problems:
