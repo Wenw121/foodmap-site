@@ -287,6 +287,27 @@ STR = {
                 "DIAAS values are measured for specific foods and forms, often in pig or human ileal studies; variety, cooking, and processing change them. The values here are representative, not exact for every preparation. Many whole foods — most vegetables, mushrooms, and spices — have no published DIAAS at all, and are shown as “no published value” rather than guessed."]},
         ],
         "nav_research": "Research",
+        "nav_aging": "Healthy aging",
+        "aging_title": "Protein and healthy aging: what the research says",
+        "aging_lead": "A neutral look at what research associates protein intake — and plant versus animal sources — with healthy aging, with the amino-acid and DIAAS data behind it.",
+        "aging_note": "This page summarizes published research for background only. It is not medical or dietary advice, and nothing here claims any food, protein, or diet extends lifespan or prevents disease. Most longevity findings are either observational associations, which cannot prove cause, or preclinical animal work. Protein needs vary by age, health, and activity — decide yours with a doctor or registered dietitian.",
+        "aging_explore_h": "Explore the data",
+        "aging_sources_label": "Background sources:",
+        "aging_sources_more": "Full amino-acid and DIAAS citations:",
+        "aging": [
+            {"h": "Why protein comes up in aging research", "p": [
+                "Protein is studied in aging from two opposite directions at once, which is why the picture is genuinely mixed. One line of work asks how to get enough protein to preserve muscle with age; another asks how lower or plant-shifted protein associates with markers of longevity. Both can hold for different people and life stages."]},
+            {"h": "The “source matters” findings", "p": [
+                "Large observational studies have associated higher plant-protein intake with lower all-cause and cardiovascular mortality, and have found that replacing a small share of animal protein with plant protein is associated with lower death rates. These are correlations from population data, not proof that the protein itself caused the difference — people who eat more plant protein tend to differ in many other ways too."]},
+            {"h": "Longevity-diet frameworks", "p": [
+                "Some researchers, such as Valter Longo, propose moderate and mostly plant protein through midlife, with more protein after roughly age 65. This is one dietary framework among several, and the details are still debated."]},
+            {"h": "What the lab studies show", "p": [
+                "In animal models, lowering specific amino acids — methionine, or the branched-chain amino acids — reduces growth signals such as IGF-1 and mTOR that are linked to aging in those models. This is preclinical work. It does not show that restricting these amino acids is safe or beneficial for people, and essential amino acids are required for health."]},
+            {"h": "The honest tension", "p": [
+                "Pulling the other way: older adults often need more protein, not less, to avoid muscle loss (sarcopenia), commonly cited around 1 to 1.2 grams per kilogram of body weight per day. So “less protein for longevity” is not a universal rule — it depends on age, health, and goals."]},
+            {"h": "How this connects to the data here", "p": [
+                "If you do shift toward plant protein, protein quality matters more, because plant proteins are often limited by lysine or the sulfur amino acids (methionine and cysteine). The tables below let you compare foods on quality (DIAAS) and on individual amino acids."]},
+        ],
         "home_research_cta": "Why these amino acids? Read the research background →",
         "ref_grp_quality": "Protein quality (DIAAS)",
         "ref_grp_cancer": "Amino acids in cancer-metabolism research",
@@ -388,6 +409,27 @@ STR = {
                 "DIAAS 是针对特定食物与形态测得的，多来自猪或人的回肠实验；品种、烹饪、加工都会改变它。本站数值为代表值，并非每种做法的精确值。许多整食物——大多数蔬菜、蘑菇和香料——根本没有已发表的 DIAAS，本站标为「暂无已发表的值」，而非臆测填数。"]},
         ],
         "nav_research": "研究背景",
+        "nav_aging": "蛋白质与健康衰老",
+        "aging_title": "蛋白质与健康衰老：研究到底说了什么",
+        "aging_lead": "中立地梳理研究把蛋白质摄入——以及植物 vs 动物来源——与健康衰老联系起来的证据，并附上背后的氨基酸与 DIAAS 数据。",
+        "aging_note": "本页仅整理已发表研究，作为背景信息，不构成医疗或饮食建议；本页不主张任何食物、蛋白质或饮食能延长寿命或预防疾病。多数与长寿相关的发现，要么是观察性关联（无法证明因果），要么是临床前的动物研究。蛋白质需求因年龄、健康状况与活动量而异，请与医生或注册营养师一起决定。",
+        "aging_explore_h": "查看相关数据",
+        "aging_sources_label": "背景来源：",
+        "aging_sources_more": "完整的氨基酸与 DIAAS 引用：",
+        "aging": [
+            {"h": "为什么衰老研究会关注蛋白质", "p": [
+                "蛋白质在衰老研究里被从两个相反的方向同时审视，这也是为什么结论本身就很复杂。一类研究关注如何摄入足够蛋白质以随年龄保住肌肉；另一类研究关注较低或更偏植物的蛋白质如何与长寿指标相关联。对不同的人和不同的人生阶段，二者都可能成立。"]},
+            {"h": "“来源很重要”的发现", "p": [
+                "大型观察性研究把较高的植物蛋白摄入与较低的全因及心血管死亡率联系起来，并发现用植物蛋白替代一小部分动物蛋白与较低的死亡率相关。这些是来自人群数据的相关性，并不能证明是蛋白质本身造成了差异——多吃植物蛋白的人往往在许多其他方面也不同。"]},
+            {"h": "长寿饮食框架", "p": [
+                "一些研究者（如 Valter Longo）主张在中年阶段采用适量、以植物为主的蛋白质，并在约 65 岁后增加蛋白质摄入。这只是若干框架之一，细节仍有争议。"]},
+            {"h": "实验室研究显示了什么", "p": [
+                "在动物模型中，降低特定氨基酸——甲硫氨酸或支链氨基酸——会减弱在这些模型中与衰老相关的生长信号（如 IGF-1 与 mTOR）。这是临床前研究，并不能说明对人限制这些氨基酸是安全或有益的；而且必需氨基酸是健康所必需的。"]},
+            {"h": "诚实的张力", "p": [
+                "另一个方向：老年人往往需要更多而非更少的蛋白质，以避免肌肉流失（肌少症），常被引用的量约为每公斤体重每天 1 至 1.2 克。所以“为了长寿就少吃蛋白质”并不是放之四海皆准的规则——这取决于年龄、健康状况与目标。"]},
+            {"h": "这与本站数据的关系", "p": [
+                "如果你确实转向植物蛋白，蛋白质量就更重要，因为植物蛋白常受赖氨酸或含硫氨基酸（甲硫氨酸与半胱氨酸）限制。下面的表格可让你按质量（DIAAS）和单个氨基酸比较食物。"]},
+        ],
         "home_research_cta": "为什么是这几种氨基酸？查看研究背景 →",
         "ref_grp_quality": "蛋白质量（DIAAS）",
         "ref_grp_cancer": "癌症代谢研究中的氨基酸",
@@ -714,12 +756,14 @@ def build():
     root_tpl = env.get_template("root.html")
     explainer_tpl = env.get_template("explainer.html")
     research_tpl = env.get_template("research.html")
+    aging_tpl = env.get_template("aging.html")
     refs_tpl = env.get_template("references.html")
 
     def nav_urls(lang):
         return {"foods": home_url(lang), "guides": guides_index_url(lang),
                 "explainer": page_url(lang, "what-is-diaas"),
                 "research": page_url(lang, "amino-acids-and-cancer-research"),
+                "aging": page_url(lang, "protein-and-healthy-aging"),
                 "references": page_url(lang, "references")}
 
     # homepages
@@ -837,6 +881,31 @@ def build():
                                 canonical=page_url(lang, "amino-acids-and-cancer-research"),
                                 alt_urls={l: page_url(l, "amino-acids-and-cancer-research") for l in LANGS}),
             encoding="utf-8")
+        explore_names = {
+            "en": {"best-plant-protein": "Best plant proteins by DIAAS",
+                   "lower-methionine-foods": "Lower-methionine foods",
+                   "protein-quality-ranking": "All foods ranked by protein quality"},
+            "zh": {"best-plant-protein": "按 DIAAS 排序的最优植物蛋白",
+                   "lower-methionine-foods": "较低甲硫氨酸的食物",
+                   "protein-quality-ranking": "全部食物按蛋白质量排行"},
+        }[lang]
+        aging_explore = [{"url": guide_url(lang, slug), "name": nm}
+                         for slug, nm in explore_names.items()]
+        aging_sources = [
+            {"label": "Harvard Health — plant protein and longevity",
+             "url": "https://www.health.harvard.edu/staying-healthy/eat-more-plant-based-proteins-to-boost-longevity"},
+            {"label": "Valter Longo — daily longevity diet",
+             "url": "https://valterlongo.com/daily-longevity-diet-for-adults/"},
+            {"label": "Dietary protein intake and longevity (review)",
+             "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6562018/"},
+        ]
+        (OUT / lang / "protein-and-healthy-aging").mkdir(parents=True, exist_ok=True)
+        (OUT / lang / "protein-and-healthy-aging" / "index.html").write_text(
+            aging_tpl.render(**base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s,
+                             nav=nav_urls(lang), explore_links=aging_explore, sources=aging_sources,
+                             canonical=page_url(lang, "protein-and-healthy-aging"),
+                             alt_urls={l: page_url(l, "protein-and-healthy-aging") for l in LANGS}),
+            encoding="utf-8")
         ref_groups = [{"heading": s[hk], "refs": [refs[k] for k in keys if k in refs]}
                       for hk, keys in ref_group_keys]
         (OUT / lang / "references").mkdir(parents=True, exist_ok=True)
@@ -934,7 +1003,7 @@ def build():
 
     write_sitemap(foods)
     write_robots()
-    n = 1 + len(LANGS) * (1 + 3 + 1 + len(HUBS) + len(foods))
+    n = 1 + len(LANGS) * (1 + 4 + 1 + len(HUBS) + len(foods))
     print(f"Built {n} HTML pages ({len(foods)} foods, {len(HUBS)} guides, +explainer +references) -> {OUT}")
     print(f"SITE_URL = {SITE_URL}")
 
@@ -956,6 +1025,7 @@ def write_sitemap(foods):
     entry({l: home_url(l) for l in LANGS})
     entry({l: page_url(l, "what-is-diaas") for l in LANGS})
     entry({l: page_url(l, "amino-acids-and-cancer-research") for l in LANGS})
+    entry({l: page_url(l, "protein-and-healthy-aging") for l in LANGS})
     entry({l: page_url(l, "references") for l in LANGS})
     entry({l: guides_index_url(l) for l in LANGS})
     for h in HUBS:

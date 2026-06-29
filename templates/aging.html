@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ s.aging_title }} | {{ s.site_name }}{% endblock %}
+{% block description %}{{ s.aging_lead }}{% endblock %}
+
+{% block content %}
+<article class="prose">
+  <h1>{{ s.aging_title }}</h1>
+  <p class="lede">{{ s.aging_lead }}</p>
+
+  <aside class="note" role="note">
+    <p>{{ s.aging_note }}</p>
+  </aside>
+
+  {% for sec in s.aging %}
+  <h2>{{ sec.h }}</h2>
+  {% for para in sec.p %}
+  <p>{{ para }}</p>
+  {% endfor %}
+  {% endfor %}
+
+  <h2>{{ s.aging_explore_h }}</h2>
+  <ul class="related-list">
+    {% for l in explore_links %}
+    <li><a href="{{ l.url }}">{{ l.name }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <p class="src">{{ s.aging_sources_label }}
+    {% for r in sources %}<a href="{{ r.url }}" rel="nofollow">{{ r.label }}</a>{% if not loop.last %}; {% endif %}{% endfor %}.
+    {{ s.aging_sources_more }} <a href="{{ nav.references }}">{{ s.nav_references }} →</a>
+  </p>
+</article>
+{% endblock %}
