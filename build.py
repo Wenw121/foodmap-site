@@ -229,7 +229,7 @@ STR = {
         "all_categories": "All categories", "all_bands": "All methionine levels",
         "th_food": "Food", "th_category": "Category", "th_band": "Methionine",
         "th_protein": "Protein (g/100g)", "th_met": "Methionine (mg/g protein)",
-        "th_diaas": "DIAAS", "th_compare": "Compare",
+        "th_diaas": "DIAAS", "th_quality": "Quality", "th_compare": "Compare",
         "compare_title": "Comparison",
         "compare_hint": "Select up to 4 foods in the table to compare them here.",
         "compare_clear": "Clear", "scatter_title": "Amino acid vs DIAAS",
@@ -331,7 +331,7 @@ STR = {
         "all_categories": "全部分类", "all_bands": "全部甲硫氨酸水平",
         "th_food": "食物", "th_category": "分类", "th_band": "甲硫氨酸",
         "th_protein": "蛋白质 (g/100g)", "th_met": "甲硫氨酸 (mg/g 蛋白)",
-        "th_diaas": "DIAAS", "th_compare": "对比",
+        "th_diaas": "DIAAS", "th_quality": "质量档", "th_compare": "对比",
         "compare_title": "对比", "compare_hint": "在表格中最多勾选 4 种食物，在此并排对比。",
         "compare_clear": "清除", "scatter_title": "氨基酸 vs DIAAS",
         "scatter_hint": "每个点代表一种食物。X = 上方所选氨基酸（mg/g 蛋白），Y = DIAAS。分布图会跟随筛选条件更新。悬停看名称，点击进入详情页。",
@@ -434,6 +434,13 @@ BAND_ADJ = {"en": {"lower": "low", "intermediate": "moderate", "higher": "high"}
 
 # category guide / hub pages (target broader search queries + internal linking)
 HUBS = [
+    {"slug": "protein-quality-ranking",
+     "title": {"en": "Protein quality ranking: foods scored by DIAAS",
+               "zh": "蛋白质量排行：按 DIAAS 给食物打分排序"},
+     "intro": {"en": "Every food on this site with a published DIAAS, ranked highest protein quality first. FAO tiers: DIAAS ≥100 is excellent, 75–99 high quality, below 75 carries no quality claim.",
+               "zh": "本站所有有已发表 DIAAS 的食物，按蛋白质量从高到低排序。FAO 三档：DIAAS ≥100 为优质，75–99 为高质量，低于 75 不作质量声明。"},
+     "filter": lambda f: f["diaas_val"] is not None,
+     "sort": lambda f: -(f["diaas_val"] or 0)},
     {"slug": "complete-proteins",
      "title": {"en": "Complete proteins: foods with DIAAS 100 or higher",
                "zh": "完整蛋白：DIAAS ≥ 100 的食物"},
@@ -447,6 +454,13 @@ HUBS = [
                "zh": "按每 100 克蛋白质含量排序的植物性食物，并列出 DIAAS 与甲硫氨酸便于比较。"},
      "filter": lambda f: f["category_en"].startswith("Plant"),
      "sort": lambda f: -(f["protein_val"] or 0), "limit": 20},
+    {"slug": "best-plant-protein",
+     "title": {"en": "Best plant proteins by quality (DIAAS) — complete plant proteins",
+               "zh": "最优植物蛋白排行（按 DIAAS）— 完整植物蛋白"},
+     "intro": {"en": "Plant foods with a published DIAAS, ranked by protein quality. Soy and a few pseudo-grains come closest to complete; most plant proteins are limited by lysine or the sulfur amino acids.",
+               "zh": "有已发表 DIAAS 的植物性食物，按蛋白质量排序。大豆与少数假谷物最接近完整蛋白；多数植物蛋白受赖氨酸或含硫氨基酸限制。"},
+     "filter": lambda f: f["category_en"].startswith("Plant") and f["diaas_val"] is not None,
+     "sort": lambda f: -(f["diaas_val"] or 0)},
     {"slug": "diaas-of-legumes",
      "title": {"en": "DIAAS of legumes and beans", "zh": "豆类的 DIAAS"},
      "intro": {"en": "Protein quality (DIAAS) and limiting amino acids of beans, lentils, peas, and soy foods — most are limited by the sulfur amino acids.",
@@ -898,6 +912,7 @@ def build():
                 **base_ctx, lang=lang, html_lang=HTML_LANG[lang], s=s, nav=nav_urls(lang),
                 title=h["title"][lang], intro=h["intro"][lang], foods=items,
                 name_key=name_key, cat_key=cat_key, food_base=f"{SITE_URL}/{lang}/foods/",
+                quality_labels={k: QUALITY_SHORT[k][lang] for k in QUALITY_SHORT},
                 breadcrumb=crumbs, canonical=guide_url(lang, h["slug"]),
                 alt_urls={l: guide_url(l, h["slug"]) for l in LANGS})
             out = OUT / lang / "guides" / h["slug"] / "index.html"

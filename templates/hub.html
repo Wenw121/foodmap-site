@@ -22,6 +22,7 @@
           <th class="num" scope="col">{{ s.th_protein }}</th>
           <th class="num" scope="col">{{ s.th_met }}</th>
           <th class="num" scope="col">{{ s.th_diaas }}</th>
+          <th scope="col">{{ s.th_quality }}</th>
         </tr>
       </thead>
       <tbody>
@@ -32,6 +33,7 @@
           <td class="num">{{ f.protein_g_100g or s.na }}</td>
           <td class="num">{{ f.Met or s.na }}</td>
           <td class="num">{{ f.diaas or s.na }}</td>
+          <td>{{ quality_labels[f.quality] if f.quality else s.na }}</td>
         </tr>
         {% endfor %}
       </tbody>

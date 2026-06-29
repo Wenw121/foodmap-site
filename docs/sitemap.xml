@@ -61,6 +61,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/"/>
   </url>
   <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/guides/protein-quality-ranking/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/protein-quality-ranking/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/protein-quality-ranking/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/protein-quality-ranking/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/guides/protein-quality-ranking/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/protein-quality-ranking/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/protein-quality-ranking/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/protein-quality-ranking/"/>
+  </url>
+  <url>
     <loc>https://wenw121.github.io/foodmap-site/en/guides/complete-proteins/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/complete-proteins/"/>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/complete-proteins/"/>
@@ -83,6 +95,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/high-protein-plant-foods/"/>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/high-protein-plant-foods/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/high-protein-plant-foods/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/en/guides/best-plant-protein/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/best-plant-protein/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/best-plant-protein/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/best-plant-protein/"/>
+  </url>
+  <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/guides/best-plant-protein/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/best-plant-protein/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/best-plant-protein/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/guides/best-plant-protein/"/>
   </url>
   <url>
     <loc>https://wenw121.github.io/foodmap-site/en/guides/diaas-of-legumes/</loc>
