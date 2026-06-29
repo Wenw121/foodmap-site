@@ -31,6 +31,10 @@ OUT = ROOT / "docs"
 
 # IMPORTANT: set this to your real deployment URL (no trailing slash).
 SITE_URL = os.environ.get("SITE_URL", "https://example.github.io/foodmap-site").rstrip("/")
+# When moving to a custom domain, set CUSTOM_DOMAIN (e.g. "aminoacidfoods.com") so a
+# CNAME file is written into docs/ on every build (GitHub Pages needs it, and the build
+# wipes docs/ each run). Also set SITE_URL to the matching https://<domain>.
+CUSTOM_DOMAIN = os.environ.get("CUSTOM_DOMAIN", "").strip()
 
 LANGS = ["en", "zh"]
 HTML_LANG = {"en": "en", "zh": "zh-Hans"}
@@ -1003,6 +1007,7 @@ def build():
 
     write_sitemap(foods)
     write_robots()
+    write_cname()
     n = 1 + len(LANGS) * (1 + 4 + 1 + len(HUBS) + len(foods))
     print(f"Built {n} HTML pages ({len(foods)} foods, {len(HUBS)} guides, +explainer +references) -> {OUT}")
     print(f"SITE_URL = {SITE_URL}")
@@ -1041,6 +1046,11 @@ def write_sitemap(foods):
 def write_robots():
     (OUT / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
+
+
+def write_cname():
+    if CUSTOM_DOMAIN:
+        (OUT / "CNAME").write_text(CUSTOM_DOMAIN + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":
