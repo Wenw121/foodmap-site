@@ -26,6 +26,7 @@ ROOT = Path(__file__).resolve().parent
 DATA_CSV = ROOT / "data" / "foods.csv"
 AMINO_CSV = ROOT / "data" / "amino_full.csv"
 REF_CSV = ROOT / "data" / "references.csv"
+CFCT_CSV = ROOT / "data" / "cfct_amino.csv"
 TEMPLATES = ROOT / "templates"
 STATIC = ROOT / "static"
 OUT = ROOT / "docs"
@@ -290,6 +291,12 @@ STR = {
         "na": "N/A",
         "ref_title": "References & data sources",
         "ref_intro": "DIAAS values on this site come from the peer-reviewed literature below; the amino-acid values shown are from USDA FoodData Central. The national and regional food-composition databases listed under data sources are additional authoritative references for the protein and amino-acid composition of foods. Existing whole-food DIAAS values are representative figures compiled from Mathai 2017, Bailey 2020, and FAO 2013.",
+        "ref_method": {"h": "Data quality: an independent cross-check", "p": [
+            "The amino-acid profiles on this site use a single source per food — USDA FoodData Central, or FSANZ where noted. To check those values are not outliers, we compared eight animal foods against an independent national database, the Chinese Food Composition Table listed under data sources below, after converting both to milligrams per gram of protein.",
+            "Across the eight foods the two databases agreed to a mean absolute difference of about 14%. The backbone amino acids — leucine, lysine, threonine, isoleucine, valine, the aromatic pair and arginine — mostly matched within 15%, the range expected between separate laboratories and sample sets.",
+            "The larger differences clustered in a few predictable places: tryptophan, which needs a separate hydrolysis step and reads low for red meat in some databases; the split between methionine and cystine, where the two individual values differ but their sum stays stable; and cases where one English name covers different species or a different food form, such as fresh versus canned.",
+            "Because those divergences fall on the amino acids that can decide a food's limiting amino acid, we do not average or swap values across databases. Each food keeps one labelled source, and the cross-check is used only to flag values worth re-examining, not to change them.",
+        ]},
         "explainer_title": "What is DIAAS? A short guide to protein quality",
         "explainer_lead": "DIAAS is the modern standard for scoring how well a food's protein meets human amino-acid needs. Here's how to read every number on this site.",
         "explainer": [
@@ -412,10 +419,17 @@ STR = {
         "diaas_source": "DIAAS 出处", "other_lang": "English",
         "footer_data": "氨基酸数据来源：USDA FoodData Central 与 FSANZ（按食物标注）。DIAAS 数值来自已发表文献，详见「参考文献」。",
         "nav_explainer": "什么是 DIAAS？", "nav_references": "参考文献", "nav_foods": "食物",
+        "nav_cfct": "中式食物氨基酸",
         "band": {"lower": "较低甲硫氨酸", "intermediate": "中等甲硫氨酸", "higher": "较高甲硫氨酸"},
         "na": "暂无",
         "ref_title": "参考文献与数据来源",
         "ref_intro": "本站的 DIAAS 值来自下列同行评议文献；所显示的氨基酸数值取自 USDA FoodData Central。「食物成分数据来源」下列出的各国家与地区食物成分数据库，是食物蛋白质与氨基酸组成的权威参考。现有整食物的 DIAAS 为整理自 Mathai 2017、Bailey 2020 与 FAO 2013 的代表值。",
+        "ref_method": {"h": "数据质量：独立来源交叉校验", "p": [
+            "本站每个食物的氨基酸剖面只采用单一来源——USDA FoodData Central，标注处为 FSANZ。为确认这些值不是离群值，我们把八种动物性食物与一个独立的国家级数据库——下方「食物成分数据来源」中所列的《中国食物成分表》——做了对比，两边都换算成每克蛋白质的毫克数。",
+            "在这八种食物上，两个数据库的平均绝对差异约为 14%。骨架氨基酸（亮氨酸、赖氨酸、苏氨酸、异亮氨酸、缬氨酸、芳香族氨基酸与精氨酸）大多在 15% 以内吻合，属于不同实验室与样本之间的正常波动范围。",
+            "较大的差异集中在几个可预期的位置：色氨酸需要单独的水解步骤，部分数据库对红肉测得偏低；蛋氨酸与胱氨酸的拆分，两者各自的值不同，但两者之和稳定；以及同一个名称对应不同物种或不同食物形态的情况，例如鲜品与罐头。",
+            "由于这些差异恰好落在可能决定某个食物限制性氨基酸的那几个氨基酸上，我们不跨数据库平均或替换数值。每个食物只保留一个标注来源，交叉校验仅用于标记需要复查的值，而不用于修改它们。",
+        ]},
         "explainer_title": "什么是 DIAAS？一份蛋白质量速读指南",
         "explainer_lead": "DIAAS 是衡量食物蛋白质满足人体氨基酸需求程度的现代标准。下面教你读懂本站的每一个数字。",
         "explainer": [
@@ -572,6 +586,44 @@ def load_refs():
         for r in csv.DictReader(fh):
             refs[r["key"]] = r
     return refs
+
+
+CFCT_COLS = [("His", "组氨酸"), ("Ile", "异亮氨酸"), ("Leu", "亮氨酸"), ("Lys", "赖氨酸"),
+             ("Met", "甲硫氨酸"), ("Cys", "胱氨酸"), ("Phe", "苯丙氨酸"), ("Tyr", "酪氨酸"),
+             ("Thr", "苏氨酸"), ("Trp", "色氨酸"), ("Val", "缬氨酸"), ("Arg", "精氨酸"), ("Gly", "甘氨酸")]
+
+
+def load_cfct():
+    """Curated China Food Composition Table (6th ed.) animal amino-acid rows, zh-only page.
+    Raw values are mg/100g edible portion; pg = mg per gram of protein. Because the rows are
+    transcribed from a printed table, the build FAILS if any row's Met+Cys vs total S-AA, or
+    Phe+Tyr vs total aromatic, disagree by >10% — a guard against transcription errors."""
+    groups, seen, bad = [], {}, []
+    with CFCT_CSV.open(encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            prot = float(r["protein"])
+            def num(k):
+                v = r[k].strip()
+                return float(v) if v else None
+            saa, met, cys = num("SAA"), num("Met"), num("Cys")
+            if saa and met is not None and abs(met + (cys or 0) - saa) / saa > 0.10:
+                bad.append(f"{r['name']}: Met+Cys vs S-AA off by {(met+(cys or 0)-saa)/saa*100:+.0f}%")
+            aaa, phe, tyr = num("AAA"), num("Phe"), num("Tyr")
+            if aaa and phe and tyr and abs(phe + tyr - aaa) / aaa > 0.10:
+                bad.append(f"{r['name']}: Phe+Tyr vs aromatic off by {(phe+tyr-aaa)/aaa*100:+.0f}%")
+            cells = [{"p100": (f"{v:.0f}" if (v := num(k)) is not None else None),
+                      "pg": (f"{v/prot:.1f}" if v is not None else None)} for k, _ in CFCT_COLS]
+            food = {"name": r["name"], "code": r["code"], "protein": f"{prot:g}", "cells": cells}
+            if r["cat"] not in seen:
+                seen[r["cat"]] = {"cat": r["cat"], "foods": []}
+                groups.append(seen[r["cat"]])
+            seen[r["cat"]]["foods"].append(food)
+    if bad:
+        print("CFCT transcription checksum FAILED:")
+        for b in bad:
+            print("  -", b)
+        raise SystemExit(1)
+    return groups
 
 
 def load_foods():
@@ -784,13 +836,15 @@ def build():
     research_tpl = env.get_template("research.html")
     aging_tpl = env.get_template("aging.html")
     refs_tpl = env.get_template("references.html")
+    cfct_tpl = env.get_template("cfct.html")
 
     def nav_urls(lang):
         return {"foods": home_url(lang), "guides": guides_index_url(lang),
                 "explainer": page_url(lang, "what-is-diaas"),
                 "research": page_url(lang, "amino-acids-and-cancer-research"),
                 "aging": page_url(lang, "protein-and-healthy-aging"),
-                "references": page_url(lang, "references")}
+                "references": page_url(lang, "references"),
+                "cfct": page_url("zh", "china-food-amino")}
 
     # homepages
     dvals = [f["diaas_val"] for f in foods if f["diaas_val"]]
@@ -945,6 +999,15 @@ def build():
                             alt_urls={l: page_url(l, "references") for l in LANGS}),
             encoding="utf-8")
 
+    # China Food Composition Table amino table — zh-only reference page
+    cfct_url = page_url("zh", "china-food-amino")
+    (OUT / "zh" / "china-food-amino").mkdir(parents=True, exist_ok=True)
+    (OUT / "zh" / "china-food-amino" / "index.html").write_text(
+        cfct_tpl.render(**base_ctx, lang="zh", html_lang=HTML_LANG["zh"], s=STR["zh"],
+                        nav=nav_urls("zh"), groups=load_cfct(), cols=CFCT_COLS,
+                        canonical=cfct_url, alt_urls={"zh": cfct_url}),
+        encoding="utf-8")
+
     # single-amino-acid topic pages (long-tail SEO)
     amino_tpl = env.get_template("amino.html")
     for topic in AMINO_TOPICS:
@@ -1052,7 +1115,7 @@ def write_sitemap(foods):
             lines.append(f"    <loc>{loc}</loc>")
             for l, u in urls_by_lang.items():
                 lines.append(f'    <xhtml:link rel="alternate" hreflang="{HTML_LANG[l]}" href="{u}"/>')
-            lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{urls_by_lang["en"]}"/>')
+            lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{urls_by_lang.get("en", urls_by_lang.get("zh"))}"/>')
             lines.append("  </url>")
 
     entry({l: home_url(l) for l in LANGS})
@@ -1060,6 +1123,7 @@ def write_sitemap(foods):
     entry({l: page_url(l, "amino-acids-and-cancer-research") for l in LANGS})
     entry({l: page_url(l, "protein-and-healthy-aging") for l in LANGS})
     entry({l: page_url(l, "references") for l in LANGS})
+    entry({"zh": page_url("zh", "china-food-amino")})  # zh-only page
     entry({l: guides_index_url(l) for l in LANGS})
     for h in HUBS:
         entry({l: guide_url(l, h["slug"]) for l in LANGS})

@@ -13,10 +13,10 @@ gtag('js',new Date());gtag('config','{{ MEASUREMENT_ID }}');
 <title>{% block title %}{{ s.site_name }}{% endblock %}</title>
 <meta name="description" content="{% block description %}{{ s.tagline }}{% endblock %}">
 <link rel="canonical" href="{{ canonical }}">
-{% for l in LANGS %}
+{% for l in LANGS %}{% if l in alt_urls %}
 <link rel="alternate" hreflang="{{ HTML_LANG[l] }}" href="{{ alt_urls[l] }}">
-{% endfor %}
-<link rel="alternate" hreflang="x-default" href="{{ alt_urls['en'] }}">
+{% endif %}{% endfor %}
+<link rel="alternate" hreflang="x-default" href="{{ alt_urls['en'] if 'en' in alt_urls else alt_urls['zh'] }}">
 <meta property="og:title" content="{{ self.title() }}">
 <meta property="og:description" content="{{ self.description() }}">
 <meta property="og:type" content="website">
@@ -47,6 +47,9 @@ gtag('js',new Date());gtag('config','{{ MEASUREMENT_ID }}');
     <a href="{{ nav.research }}">{{ s.nav_research }}</a>
     <a href="{{ nav.aging }}">{{ s.nav_aging }}</a>
     <a href="{{ nav.references }}">{{ s.nav_references }}</a>
+    {% if lang == 'zh' and nav.cfct %}
+    <a href="{{ nav.cfct }}">{{ s.nav_cfct }}</a>
+    {% endif %}
     {% endif %}
     <a class="lang" href="{{ alt_urls['en' if lang == 'zh' else 'zh'] }}" data-event="language_switch" data-to="{{ 'en' if lang == 'zh' else 'zh' }}">{{ s.other_lang }}</a>
   </nav>

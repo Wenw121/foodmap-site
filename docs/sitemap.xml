@@ -61,6 +61,11 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/en/references/"/>
   </url>
   <url>
+    <loc>https://wenw121.github.io/foodmap-site/zh/china-food-amino/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/china-food-amino/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wenw121.github.io/foodmap-site/zh/china-food-amino/"/>
+  </url>
+  <url>
     <loc>https://wenw121.github.io/foodmap-site/en/guides/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://wenw121.github.io/foodmap-site/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wenw121.github.io/foodmap-site/zh/guides/"/>

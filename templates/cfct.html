@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}中式动物性食物氨基酸含量表 | {{ s.site_name }}{% endblock %}
+{% block description %}常见中式动物性食物（畜肉、禽、蛋、奶、鱼虾蟹贝）的氨基酸含量，整理自《中国食物成分表》标准版第6版。仅收原料级全食物；本表为氨基酸含量，非 DIAAS 蛋白质量评分。{% endblock %}
+
+{% block head_extra %}
+<style>
+  .table-scroll{overflow-x:auto;margin:1rem 0}
+  .cfct-table{border-collapse:collapse;font-size:.85rem;white-space:nowrap}
+  .cfct-table th,.cfct-table td{border:1px solid var(--border,#e5e5e5);padding:.35rem .5rem;text-align:right}
+  .cfct-table thead th{text-align:right}
+  .cfct-table th:first-child,.cfct-table td:first-child{text-align:left;position:sticky;left:0;background:var(--bg,#fff)}
+  .cfct-table tbody th{font-weight:600}
+  .cfct-cat th{background:var(--surface,#f5f5f5);font-weight:600}
+  .unit-toggle{display:inline-flex;gap:.25rem;margin:.5rem 0}
+  .unit-toggle button{padding:.35rem .75rem;border:1px solid var(--border,#ccc);background:var(--bg,#fff);cursor:pointer;border-radius:6px;font:inherit}
+  .unit-toggle button.active{background:var(--accent,#2f6f4f);color:#fff;border-color:var(--accent,#2f6f4f)}
+</style>
+{% endblock %}
+
+{% block content %}
+<article class="prose">
+  <h1>中式动物性食物氨基酸含量表</h1>
+  <p class="lede">常见中式动物性食物（畜肉、禽、蛋、奶、鱼虾蟹贝）的氨基酸含量，数据整理自《中国食物成分表》标准版（第6版）。仅收原料级全食物，不含品牌与熟制加工品。</p>
+
+  <aside class="note" role="note">
+    <p>本表为氨基酸<strong>含量</strong>，不是 DIAAS 蛋白质量评分，不能据此直接比较蛋白质量。数值由本站从第6版表格转录，并做过内部一致性校验（含硫、芳香族氨基酸的分项与总量核对）；权威用途请以原书为准。</p>
+  </aside>
+
+  <div class="unit-toggle" role="group" aria-label="单位切换">
+    <button type="button" data-mode="p100" class="active">每 100g 可食部</button>
+    <button type="button" data-mode="pg">每克蛋白（mg/g）</button>
+  </div>
+
+  <div class="table-scroll">
+    <table class="cfct-table" id="cfctTable">
+      <thead>
+        <tr>
+          <th>食物</th>
+          <th>蛋白质<br>g/100g</th>
+          {% for key, label in cols %}<th>{{ label }}</th>{% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for g in groups %}
+        <tr class="cfct-cat"><th colspan="{{ cols|length + 2 }}">{{ g.cat }}</th></tr>
+        {% for f in g.foods %}
+        <tr>
+          <th>{{ f.name }}</th>
+          <td class="num">{{ f.protein }}</td>
+          {% for c in f.cells %}<td class="num"{% if c.p100 %} data-p100="{{ c.p100 }}" data-pg="{{ c.pg }}"{% endif %}>{{ c.p100 or '—' }}</td>{% endfor %}
+        </tr>
+        {% endfor %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="src">单位：mg（留空为原书未测）。来源：杨月欣 主编。中国食物成分表：标准版（第6版）。北京：北京大学医学出版社；2018—2019。完整来源见 <a href="{{ nav.references }}">参考文献 →</a></p>
+</article>
+{% endblock %}
+
+{% block body_extra %}
+<script>
+(function(){
+  var t=document.getElementById('cfctTable'); if(!t)return;
+  var btns=document.querySelectorAll('.unit-toggle button');
+  function setMode(m){
+    var cells=t.querySelectorAll('td[data-p100]');
+    for(var i=0;i<cells.length;i++){
+      cells[i].textContent=(m==='pg')?cells[i].getAttribute('data-pg'):cells[i].getAttribute('data-p100');
+    }
+    for(var j=0;j<btns.length;j++){btns[j].classList.toggle('active',btns[j].getAttribute('data-mode')===m);}
+  }
+  for(var k=0;k<btns.length;k++){btns[k].addEventListener('click',(function(b){return function(){setMode(b.getAttribute('data-mode'));};})(btns[k]));}
+})();
+</script>
+{% endblock %}

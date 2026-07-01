@@ -6,6 +6,12 @@
 <article class="prose">
   <h1>{{ s.ref_title }}</h1>
   <p class="lede">{{ s.ref_intro }}</p>
+  {% if s.ref_method %}
+  <section class="method">
+    <h2>{{ s.ref_method.h }}</h2>
+    {% for para in s.ref_method.p %}<p>{{ para }}</p>{% endfor %}
+  </section>
+  {% endif %}
   {% for g in ref_groups %}
   <h2>{{ g.heading }}</h2>
   <ol class="refs">
