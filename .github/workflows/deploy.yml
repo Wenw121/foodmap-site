@@ -1,0 +1,49 @@
+name: Build and deploy to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# least-privilege token for Pages deploy
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# one live deploy at a time; let a newer push win
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      # build.py runs validate_pages() + the CFCT checksum gate;
+      # a non-zero exit here BLOCKS the deploy. This is the whole point of Option B.
+      - name: Build (quality gates block deploy on failure)
+        env:
+          SITE_URL: https://wenw121.github.io/foodmap-site
+        run: python build.py
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
