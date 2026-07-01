@@ -27,6 +27,7 @@ DATA_CSV = ROOT / "data" / "foods.csv"
 AMINO_CSV = ROOT / "data" / "amino_full.csv"
 REF_CSV = ROOT / "data" / "references.csv"
 CFCT_CSV = ROOT / "data" / "cfct_amino.csv"
+OVERRIDES_CSV = ROOT / "data" / "food_overrides.csv"
 TEMPLATES = ROOT / "templates"
 STATIC = ROOT / "static"
 OUT = ROOT / "docs"
@@ -51,11 +52,30 @@ DISCLAIMER = {
 
 # ---- DIAAS values added/overridden from cited literature ----
 # slug -> (diaas, limiting_aa_code, [source_keys])
-DIAAS_OVERRIDE = {
-    "potato": ("100", "", ["herreman2020"]),
-    "gelatin": ("2", "Trp", ["herreman2020"]),
-    "soy-protein-isolate": ("90", "SAA", ["mathai2017"]),
-}
+def load_overrides():
+    """Per-food hand-curated overrides, one row per food in data/food_overrides.csv.
+    Single source of truth for per-slug DIAAS overrides, alt sourced DIAAS lines,
+    method assignment, and serving sizes (ADR-003: no per-food data in code).
+    Alt-DIAAS review values (e.g. Herreman 2020) are only listed where the protein
+    form matches (isolate-to-isolate / meat-to-meat), never on whole-food pages."""
+    diaas_override, method_for, alt_diaas, serving_override = {}, {}, {}, {}
+    with OVERRIDES_CSV.open(encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            slug = r["slug"]
+            if r["diaas_override"]:
+                diaas_override[slug] = (r["diaas_override"], r["diaas_limit"],
+                                        r["diaas_sources"].split("|"))
+            if r["method_for"]:
+                method_for[slug] = r["method_for"]
+            if r["alt_diaas"]:
+                alt_diaas[slug] = (r["alt_diaas"], r["alt_limit"], r["alt_source"])
+            if r["serving_g"]:
+                serving_override[slug] = int(r["serving_g"])
+    return diaas_override, method_for, alt_diaas, serving_override
+
+
+# per-food overrides, loaded from data (see food_overrides.csv)
+DIAAS_OVERRIDE, METHOD_FOR, ALT_DIAAS, SERVING_OVERRIDE = load_overrides()
 # default basis for the pre-existing DIAAS values
 DEFAULT_DIAAS_SOURCES = ["mathai2017", "bailey2020", "fao2013"]
 
@@ -69,31 +89,6 @@ DIAAS_METHOD = {
            "herreman": "综述整理值（>3 岁）",
            "invivo_pig": "体内 · 生长猪法",
            "invitro_insect": "体外 DIAAS · 6 月–3 岁模式"},
-}
-METHOD_FOR = {  # slug -> method key (else 'default' when DIAAS present)
-    "potato": "herreman", "gelatin": "herreman", "soy-protein-isolate": "invivo_pig",
-    "mealworm": "invitro_insect", "cricket": "invitro_insect",
-}
-
-# secondary published DIAAS, shown as an extra labelled line so it never
-# overwrites the comparable value. Each source's method differs (see ALT_METHOD).
-# Herreman 2020 entries are only added where the form matches (isolate-to-isolate
-# or meat-to-meat); its isolate values are NOT placed on whole-food pages.
-ALT_DIAAS = {  # slug -> (diaas, limiting_aa, source_key)
-    "black-beans": ("49", "SAA", "nosworthy2017"),
-    "pinto-beans": ("60", "SAA", "nosworthy2017"),
-    "kidney-beans": ("51", "SAA", "nosworthy2017"),
-    "chickpeas": ("67", "Trp", "nosworthy2017"),
-    "lentils": ("58", "SAA", "nosworthy2017"),
-    "buckwheat": ("68", "SAA", "han2019"),
-    "oats": ("43", "Lys", "han2019"),
-    "brown-rice": ("42", "Lys", "han2019"),
-    "white-rice": ("37", "Lys", "han2019"),
-    "wheat-hard": ("20", "Lys", "han2019"),
-    "millet": ("7", "Lys", "han2019"),
-    "soy-protein-isolate": ("91", "SAA", "herreman2020"),
-    "whey-protein-isolate": ("85", "", "herreman2020"),
-    "pork-loin": ("117", "", "herreman2020"),
 }
 ALT_METHOD = {  # source_key -> method label; "_default" for measured/cooked alts
     "_default": {"en": "Measured · cooked · 6mo–3y reference pattern",
@@ -109,12 +104,6 @@ CATEGORY_SERVING = {
     "Animal · fish/seafood": 150, "Plant · legumes": 100, "Plant · grains": 50,
     "Plant · nuts": 30, "Plant · seeds": 20, "Plant · vegetables/algae": 100,
     "Spice · seasoning": 2, "Special · collagen": 10, "Special · insect": 30,
-}
-SERVING_OVERRIDE = {
-    "whole-milk": 240, "greek-yogurt": 170, "egg-white": 33, "egg-yolk": 17,
-    "whole-egg": 50, "whey-protein-isolate": 30, "soy-protein-isolate": 30,
-    "spirulina-dried": 7, "soy-milk": 240, "nori-laver": 3, "wakame": 10,
-    "kelp-kombu": 5,
 }
 
 # full amino-acid display order: (key, en, zh, is_essential)
