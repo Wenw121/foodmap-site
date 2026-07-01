@@ -4,8 +4,10 @@
 
 {% block head_extra %}
 <style>
-  .table-scroll{overflow-x:auto;margin:1rem 0}
-  .cfct-table{border-collapse:collapse;font-size:.85rem;white-space:nowrap}
+  /* break the wide table out of the 70ch reading column up to the container width;
+     text above/below stays at reading width. min() keeps it inside the viewport on mobile. */
+  .table-scroll{overflow-x:auto;margin:1rem 0;width:calc(min(100vw, var(--maxw, 1140px)) - 44px)}
+  .cfct-table{border-collapse:collapse;font-size:.85rem;white-space:nowrap;min-width:100%}
   .cfct-table th,.cfct-table td{border:1px solid var(--border,#e5e5e5);padding:.35rem .5rem;text-align:right}
   .cfct-table thead th{text-align:right}
   .cfct-table th:first-child,.cfct-table td:first-child{text-align:left;position:sticky;left:0;background:var(--bg,#fff)}
